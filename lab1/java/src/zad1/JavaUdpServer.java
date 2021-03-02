@@ -11,19 +11,20 @@ public class JavaUdpServer {
 
         int portNumber = 9008;
         try (DatagramSocket socket = new DatagramSocket(portNumber)) {
-            byte[] receiveBuffer = new byte[1024];
+            var receiveBuffer = new byte[1024];
 
-            Arrays.fill(receiveBuffer, (byte) 0);
-            var receivePacket = new DatagramPacket(receiveBuffer, receiveBuffer.length);
+            while (true) {
+                Arrays.fill(receiveBuffer, (byte) 0);
+                var receivePacket = new DatagramPacket(receiveBuffer, receiveBuffer.length);
+                socket.receive(receivePacket);
+                var msg = new String(receivePacket.getData());
+                System.out.println("received msg: " + msg + " from: " + receivePacket.getAddress());
 
-            socket.receive(receivePacket);
-            var msg = new String(receivePacket.getData());
-            System.out.println("received msg: " + msg + " from: " + receivePacket.getAddress());
 
-            var toSend = "JAVA UDP SERVER response";
-            System.out.println("Sending: " + toSend);
-            socket.send(new DatagramPacket(toSend.getBytes(), toSend.length(), receivePacket.getAddress(), receivePacket.getPort()));
-
+                var toSend = "JAVA UDP SERVER response";
+                System.out.println("Sending: " + toSend);
+                socket.send(new DatagramPacket(toSend.getBytes(), toSend.length(), receivePacket.getAddress(), receivePacket.getPort()));
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

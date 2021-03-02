@@ -11,18 +11,18 @@ public class JavaUdpClient {
 
         int portNumber = 9008;
         try (DatagramSocket socket = new DatagramSocket()) {
-            var receiveBuffer = new byte[1024];
-
             var address = InetAddress.getByName("localhost");
             var sendBuffer = "Ping Java Udp".getBytes();
+
             var sendPacket = new DatagramPacket(sendBuffer, sendBuffer.length, address, portNumber);
             socket.send(sendPacket);
 
+
+            var receiveBuffer = new byte[1024];
             var receivePacket = new DatagramPacket(receiveBuffer, receiveBuffer.length);
             socket.receive(receivePacket);
             var receivedString = new String(receivePacket.getData());
             System.out.println("Received: " + receivedString + " from: " + receivePacket.getAddress());
-
         } catch (Exception e) {
             e.printStackTrace();
         }

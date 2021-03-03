@@ -1,4 +1,1 @@
 rootProject.name = 'zad1'
-include 'server'
-include 'srv'
-

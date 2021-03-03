@@ -1,51 +1,89 @@
 package client;
 
+import lombok.AllArgsConstructor;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.net.Socket;
-import java.nio.channels.Selector;
+import java.net.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
-
-class MessageReceiver extends Thread {
-    private final Socket serverTCPsocket;
+@AllArgsConstructor
+class MessageReceiver implements Runnable {
+    private static final int BUFFER_LEN = 1024;
+    private final Socket serverTCPSocket;
     private final DatagramSocket datagramSocket;
-    private final Selector selector = Selector.open();
+    private final MulticastSocket multicastSocket;
+    private final List<Thread> listeners = new ArrayList<>(3);
 
-    MessageReceiver(Socket serverTCPsocket, DatagramSocket datagramSocket) throws IOException {
-        this.serverTCPsocket = serverTCPsocket;
-        this.datagramSocket = datagramSocket;
+    private void printMessage(String prefix, String message) {
+        var jsonData = new JSONObject(message);
+        System.out.format("[%s] %s: %s%s", prefix, jsonData.get("nick"), jsonData.get("message"), System.lineSeparator());
+    }
+
+    private void listenTCP() {
+        try {
+            var TCPReader = new BufferedReader(new InputStreamReader(serverTCPSocket.getInputStream()));
+            while (true) {
+                var message = TCPReader.readLine();
+                printMessage("TCP", message);
+            }
+        } catch (IOException exception) {
+            System.exit(1);
+        }
+    }
+
+    private void listenUDP() {
+        try {
+            var buffer = new byte[BUFFER_LEN];
+            while (true) {
+                Arrays.fill(buffer, (byte) 0);
+
+                var datagramPacket = new DatagramPacket(buffer, buffer.length);
+                datagramSocket.receive(datagramPacket);
+
+                printMessage("UDP", new String(datagramPacket.getData()));
+            }
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    private void listenMulticast() {
+        try {
+            var buffer = new byte[BUFFER_LEN];
+            while (true) {
+                Arrays.fill(buffer, (byte) 0);
+
+                var datagramPacket = new DatagramPacket(buffer, buffer.length);
+                multicastSocket.receive(datagramPacket);
+
+                printMessage("Multicast", new String(datagramPacket.getData()));
+            }
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
     }
 
     @Override
-    public void run(){
-        try {
-            var reader = new BufferedReader(new InputStreamReader(serverTCPsocket.getInputStream()));
-            for(;;){
-                var message = reader.readLine();
-                var jsonData = new JSONObject(message);
-                System.out.println(jsonData.get("nick") + ": " + jsonData.get("message"));
-            }
-        } catch (IOException ignored) {
-        }
+    public void run() {
+        listeners.add(new Thread(this::listenTCP));
+        listeners.add(new Thread(this::listenUDP));
+        listeners.add(new Thread(this::listenMulticast));
+        listeners.forEach(Thread::start);
     }
 }
 
+@AllArgsConstructor
 class MessageFormatter {
     private final String nick;
 
-    MessageFormatter(String nick) {
-        this.nick = nick;
-    }
-
-    public String getJSONMessage(String content){
+    public String getJSONMessage(String content) {
         var msg = new JSONObject();
         msg.put("nick", nick);
         msg.put("message", content);
@@ -55,57 +93,76 @@ class MessageFormatter {
 
 public class ChatClient {
     private final static int PORT = 11337;
-    private final static String hostname = "localhost";
+    private final static String HOSTNAME = "localhost";
+    private final static int MULTICAST_PORT = 11338;
+    private final static String MULTICAST_HOST = "230.0.0.0";
 
+    private final InetAddress address;
+    private final InetAddress multicastAddress;
 
-    public void run(){
+    public ChatClient() throws UnknownHostException {
+        this.address = InetAddress.getByName(ChatClient.HOSTNAME);
+        this.multicastAddress = InetAddress.getByName(ChatClient.MULTICAST_HOST);
+    }
+
+    public static void main(String[] args) throws UnknownHostException {
+        var chatClient = new ChatClient();
+        chatClient.run();
+    }
+
+    public void run() {
         System.out.print("Enter your nickname: ");
         var scanner = new Scanner(System.in);
         var nick = scanner.nextLine();
         var messageFormatter = new MessageFormatter(nick);
 
-        try(
-                var socket = new Socket(hostname, PORT);
-                var datagramSocket = new DatagramSocket(socket.getLocalPort());
-                var out = new PrintWriter(socket.getOutputStream(), true)
-        ){
-            var messageReceiver = new MessageReceiver(socket, datagramSocket);
-            messageReceiver.start();
+        try (
+                var tcpSocket = new Socket(HOSTNAME, PORT);
+                var udpSocket = new DatagramSocket(tcpSocket.getLocalPort());
+                var multicastSocket = new MulticastSocket(MULTICAST_PORT);
+                var out = new PrintWriter(tcpSocket.getOutputStream(), true)
+        ) {
+            var group = InetAddress.getByName(MULTICAST_HOST);
+            multicastSocket.joinGroup(group);
+//            multicastSocket.setOption(StandardSocketOptions.IP_MULTICAST_LOOP, false);
+            var messageReceiver = new MessageReceiver(tcpSocket, udpSocket, multicastSocket);
+            messageReceiver.run();
             System.out.println("Start chatting!");
 
-            for(;;){
+            while (true) {
                 var msg = scanner.nextLine();
-                if(msg.isBlank() || msg.isEmpty()){
+                if (msg.isBlank() || msg.isEmpty()) {
                     continue;
                 }
 
                 msg = msg.strip();
-                if(msg.equals("!quit")){
+                if (msg.equals("!quit")) {
                     out.println("!quit");
+                    multicastSocket.leaveGroup(group);
                     break;
-                }else if(msg.startsWith("!U ") && msg.length() > 3){
+                } else if (msg.startsWith("!U ") && msg.length() > 3) {
                     msg = msg.substring(3).strip();
-                    sendUDP(datagramSocket, messageFormatter.getJSONMessage(msg));
-                }else if(false){
-
-                }else{
+                    sendUDP(udpSocket, messageFormatter.getJSONMessage(msg));
+                } else if (msg.startsWith("!M ") && msg.length() > 3) {
+                    msg = msg.substring(3).strip();
+                    sendMulticast(multicastSocket, messageFormatter.getJSONMessage(msg));
+                } else {
                     var toSend = messageFormatter.getJSONMessage(msg);
                     out.println(toSend);
                 }
                 System.out.println("You: " + msg);
             }
-        } catch (IOException ignored) {
+        } catch (IOException exception) {
+            exception.printStackTrace();
         }
         System.out.println("Bye!");
     }
 
     private void sendUDP(DatagramSocket socket, String message) throws IOException {
-        var address = InetAddress.getByName(ChatClient.hostname);
-        socket.send(new DatagramPacket(message.getBytes(), message.length(), address, ChatClient.PORT));
+        socket.send(new DatagramPacket(message.getBytes(), message.getBytes().length, this.address, ChatClient.PORT));
     }
 
-    public static void main(String[] args) {
-        var chatClient = new ChatClient();
-        chatClient.run();
+    private void sendMulticast(MulticastSocket socket, String message) throws IOException {
+        socket.send(new DatagramPacket(message.getBytes(), message.getBytes().length, this.multicastAddress, ChatClient.MULTICAST_PORT));
     }
 }

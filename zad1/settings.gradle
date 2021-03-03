@@ -1,2 +1,4 @@
-rootProject.name = 'zad2_gradle'
+rootProject.name = 'zad1'
+include 'server'
+include 'srv'
 

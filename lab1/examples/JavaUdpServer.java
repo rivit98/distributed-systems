@@ -19,6 +19,7 @@ public class JavaUdpServer {
                 DatagramPacket receivePacket = new DatagramPacket(receiveBuffer, receiveBuffer.length);
                 socket.receive(receivePacket);
                 String msg = new String(receivePacket.getData());
+				System.out.println("port: " + receivePacket.getPort());
                 System.out.println("received msg: " + msg);
             }
         }

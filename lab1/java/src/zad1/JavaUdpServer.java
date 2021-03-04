@@ -5,7 +5,6 @@ import java.net.DatagramSocket;
 import java.util.Arrays;
 
 public class JavaUdpServer {
-
     public static void main(String[] args) {
         System.out.println("JAVA UDP SERVER");
 
@@ -15,15 +14,14 @@ public class JavaUdpServer {
 
             while (true) {
                 Arrays.fill(receiveBuffer, (byte) 0);
-                var receivePacket = new DatagramPacket(receiveBuffer, receiveBuffer.length);
-                socket.receive(receivePacket);
-                var msg = new String(receivePacket.getData());
-                System.out.println("received msg: " + msg + " from: " + receivePacket.getAddress());
-
+                var packet = new DatagramPacket(receiveBuffer, receiveBuffer.length);
+                socket.receive(packet);
+                var msg = new String(receiveBuffer, 0, packet.getLength());
+                System.out.println("received msg: " + msg + " from: " + packet.getAddress());
 
                 var toSend = "JAVA UDP SERVER response";
                 System.out.println("Sending: " + toSend);
-                socket.send(new DatagramPacket(toSend.getBytes(), toSend.length(), receivePacket.getAddress(), receivePacket.getPort()));
+                socket.send(new DatagramPacket(toSend.getBytes(), toSend.length(), packet.getAddress(), packet.getPort()));
             }
         } catch (Exception e) {
             e.printStackTrace();

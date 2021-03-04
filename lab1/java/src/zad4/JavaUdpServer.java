@@ -7,7 +7,6 @@ import java.nio.ByteOrder;
 import java.util.Arrays;
 
 public class JavaUdpServer {
-
     public static void main(String[] args) {
         System.out.println("JAVA UDP SERVER");
 
@@ -20,8 +19,8 @@ public class JavaUdpServer {
                 var receivePacket = new DatagramPacket(receiveBuffer, receiveBuffer.length);
                 socket.receive(receivePacket);
 
-                System.out.println("Received: " + new String(receivePacket.getData()));
-                var msg = new String(receivePacket.getData());
+                var msg = new String(receiveBuffer, 0, receivePacket.getLength());
+                System.out.println("Received: " + msg);
                 var response = "";
                 if(msg.toLowerCase().contains("python")){
                     response = "Pong Python";
@@ -31,7 +30,6 @@ public class JavaUdpServer {
 
                 socket.send(new DatagramPacket(response.getBytes(), response.length(), receivePacket.getAddress(), receivePacket.getPort()));
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }

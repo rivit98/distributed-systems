@@ -5,7 +5,6 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 
 public class JavaUdpClient {
-
     public static void main(String[] args) {
         System.out.println("JAVA UDP CLIENT");
 
@@ -17,11 +16,10 @@ public class JavaUdpClient {
             var sendPacket = new DatagramPacket(sendBuffer, sendBuffer.length, address, portNumber);
             socket.send(sendPacket);
 
-
             var receiveBuffer = new byte[1024];
             var receivePacket = new DatagramPacket(receiveBuffer, receiveBuffer.length);
             socket.receive(receivePacket);
-            var receivedString = new String(receivePacket.getData());
+            var receivedString = new String(receiveBuffer, 0, receivePacket.getLength());
             System.out.println("Received: " + receivedString + " from: " + receivePacket.getAddress());
         } catch (Exception e) {
             e.printStackTrace();

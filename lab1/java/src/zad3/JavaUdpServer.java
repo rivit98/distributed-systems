@@ -7,7 +7,6 @@ import java.nio.ByteOrder;
 import java.util.Arrays;
 
 public class JavaUdpServer {
-
     public static void main(String[] args) {
         System.out.println("JAVA UDP SERVER");
 
@@ -21,14 +20,11 @@ public class JavaUdpServer {
                 socket.receive(receivePacket);
 
                 var num = ByteBuffer.wrap(receiveBuffer).order(ByteOrder.LITTLE_ENDIAN).getInt();
+                System.out.println("received number: " + num++);
 
-                System.out.println("received number: " + num);
-                System.out.println("sending number: " + (num + 1));
-
-                var buff = ByteBuffer.allocate(4).order(ByteOrder.LITTLE_ENDIAN).putInt(num+1).array();
+                var buff = ByteBuffer.allocate(4).order(ByteOrder.LITTLE_ENDIAN).putInt(num).array();
                 socket.send(new DatagramPacket(buff, buff.length, receivePacket.getAddress(), receivePacket.getPort()));
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }

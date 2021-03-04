@@ -60,7 +60,6 @@ class Client implements Runnable {
 
             socket.close();
         } catch (IOException exception) {
-            exception.printStackTrace();
         }
     }
 }
@@ -79,7 +78,7 @@ class UDPReceiver implements Runnable {
                 var datagramPacket = new DatagramPacket(buffer, buffer.length);
                 datagramSocket.receive(datagramPacket);
 
-                var msg = new String(datagramPacket.getData());
+                var msg = new String(buffer, 0, datagramPacket.getLength());
                 System.out.println("UDP: " + msg);
                 server.sendToOthersUDP(datagramPacket.getSocketAddress(), msg);
             }

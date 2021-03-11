@@ -1,0 +1,175 @@
+\documentclass[12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+\usepackage{minted}
+\usepackage{geometry}
+\usepackage{natbib}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{bold-extra}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{indentfirst}
+\usepackage{diagbox}
+\usepackage{pifont}
+\usepackage{amssymb}
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+
+\hyphenpenalty=10000
+\tolerance=1000 \emergencystretch=2em
+\titlelabel{\thetitle.\quad}
+
+
+
+\setminted[text]{
+                fontsize=\scriptsize
+                }
+
+ \geometry{
+     left=23mm,
+     top=25mm,
+     right=23mm
+ }
+
+
+\def\mydate{\leavevmode\hbox{\twodigits\day.\twodigits\month.\the\year}}
+\def\twodigits#1{\ifnum#1<10 0\fi\the#1}
+
+\begin{document}
+%titlepage
+\thispagestyle{empty}
+\begin{center}
+\begin{minipage}{0.75\linewidth}
+    \centering
+    \includegraphics[width=0.45\linewidth]{agh_logo2.png}
+    \par
+    \vspace{2cm}
+    {\bfseries{\scshape{\Huge  Systemy rozproszone}}}
+    \par
+    \vspace{1.7cm}
+    {\scshape{\Large Laboratorium 2}}
+    \par
+    \vspace{0.8cm}
+    {\scshape{\Large RabbitMQ}}
+    \par
+    \vspace{3cm}
+
+    {\scshape{\Large Albert Gierlach}}\par
+    \vspace{0.6cm}
+    {\scshape{\Large nr. indeksu: 305303}}\par
+    \vspace{1cm}
+
+    {\Large \mydate}
+\end{minipage}
+\end{center}
+\clearpage
+
+
+
+\section{Zadanie 1a}
+Stosowanie potwierdzania po otrzymaniu wiadomości powoduje sytuację, w której konsument może nie przetworzyć wiadomości, a zostanie ona potwierdzona, więc de facto wiadomość przepadła. Natomiast potwierdzanie po przetworzeniu daje nam dużą pewność, że konsument przetworzył naszą wiadomość. W przypadku, gdy proces konsumenta zostanie zrestartowany w trakcie przetwarzania, to po ponownym połączeniu, wiadomość zostanie ponownie do niego dostarczona, ponieważ producent nie otrzymał potwierdzenia przetworzenia wiadomości.
+
+W związku z powyższym - większą niezawodność daje nam zastosowanie potwierdzeń po przetworzeniu.
+
+Jeżeli nie będziemy potwierdzać wiadomości ani po otrzymaniu, ani po przetworzeniu, to każdy nowy proces konsumenta, będzie ponownie otrzymywał te same wiadomości, ponieważ nie zostaną one usunięte z kolejki wiadomości serwera.
+
+
+\section{Zadanie 1b}
+QoS wyłączone: \\
+
+\begin{tabular}{| p{7cm} | p{7cm} |}
+\hline
+Konsument nr. 1 & Konsument nr. 2 \\
+\hline
+\begin{minted}{text}
+Z1 CONSUMER
+Waiting for messages...
+Received: 1
+Received: 1
+Received: 1
+Received: 1
+Received: 1
+\end{minted}
+& \begin{minted}{text}
+Z1 CONSUMER
+Waiting for messages...
+Received: 5
+Received: 5
+Received: 5
+Received: 5
+Received: 5
+\end{minted} 
+\\
+\hline
+\end{tabular}
+
+
+\vspace{0.7cm}
+QoS włączone: \\
+
+\begin{tabular}{| p{7cm} | p{7cm} |}
+\hline
+Konsument nr. 1 & Konsument nr. 2 \\
+\hline
+\begin{minted}{text}
+Z1 CONSUMER
+Waiting for messages...
+Received: 5
+Received: 1
+Received: 5
+Received: 1
+Received: 5
+\end{minted}
+& \begin{minted}{text}
+Z1 CONSUMER
+Waiting for messages...
+Received: 1
+Received: 1
+Received: 5
+Received: 1
+Received: 5
+\end{minted} 
+\\
+\hline
+\end{tabular}
+\vspace{1cm}
+
+\section{Zadanie 2}
+
+W celu przetestowania różnych polityk routingu stworzone zostały trzy kolejki z różnymi kluczami. Producent będzie wysyłał wiadomości z różnymi kluczami routingu, aby zweryfikować róznice. W tabelach zaznaczono także, która kolejka odbierze daną wiadomość.
+
+\vspace{0.5cm}
+Direct routing:
+
+\vspace{0.3cm}
+\begin{tabular}{|c|>{\centering\arraybackslash}p{2cm}|>{\centering\arraybackslash}p{2cm}|>{\centering\arraybackslash}p{2cm}|}
+\hline
+\backslashbox{klucz wiadomości}{klucz kolejki} & klucz.a & klucz.* & klucz.\# \\ \hline
+klucz.a    & \cmark & \xmark & \xmark \\ \hline
+klucz.b    & \xmark & \xmark & \xmark \\ \hline
+klucz.c.d  & \xmark & \xmark & \xmark \\ \hline
+klucz.\#   & \xmark & \xmark & \cmark \\ \hline
+\end{tabular}\\\\
+
+Powyższa tabela ukazuje naturę direct routingu - klucz wiadomości musi dokładnie pasować do klucza kolejki, a znaki specjalne typu *, \# nie mają zastosowania w tym typie routingu i są traktowane jak zwykłe znaki.
+
+\vspace{1.5cm}
+Topic routing:
+
+\vspace{0.3cm}
+\begin{tabular}{|c|>{\centering\arraybackslash}p{2cm}|>{\centering\arraybackslash}p{2cm}|>{\centering\arraybackslash}p{2cm}|}
+\hline
+\backslashbox{klucz wiadomości}{klucz kolejki} & klucz.a & klucz.* & klucz.\# \\ \hline
+klucz.a    & \cmark & \cmark & \cmark \\ \hline
+klucz.b    & \xmark & \cmark & \cmark \\ \hline
+klucz.c.d  & \xmark & \xmark & \cmark \\ \hline
+klucz.\#   & \xmark & \cmark & \cmark \\ \hline
+\end{tabular}\\\\
+
+W przypadku routingu typu Topic sytuacja wygląda całkiem inaczej. Widzimy zastosowanie wzorców - operator * dopasowuje dokładnie jedno dowolne słowo, a operator \# dopasowuje wiele (bądź zero) słów. W przypadku klucza wiadomości: \emph{klucz.c.d} kolejka przyjmująca następujące klucze: \emph{klucz.*} nie odebrała wiadomości, ponieważ zawierała ona dwa dodatkowe słowa, zamiast jednego.
+
+
+\end{document}

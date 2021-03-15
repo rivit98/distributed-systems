@@ -1,6 +1,7 @@
 package supplier;
 
 import com.rabbitmq.client.*;
+import common.BasicInfoThread;
 import common.Order;
 import common.Utils;
 import org.json.JSONObject;
@@ -10,25 +11,25 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Random;
+import java.util.Map;
 import java.util.concurrent.TimeoutException;
 import java.util.stream.Collectors;
 
-import static common.Config.INFO_EXCHANGE_NAME;
-import static common.Config.ORDERS_EXCHANGE_NAME;
+import static common.Config.*;
 
 
 class SupplyThread extends Thread{
     private final Channel channel;
     private final Consumer consumer;
     private final List<String> queueNames = new LinkedList<>();
+    private final String supplierID;
 
-    public SupplyThread(Channel channel, List<String> availableProducts) throws IOException {
+    public SupplyThread(String supplierID, Channel channel, List<String> availableProducts) throws IOException {
         super("SupplyThread");
+        this.supplierID = supplierID;
         this.channel = channel;
 
-        channel.exchangeDeclare(ORDERS_EXCHANGE_NAME, BuiltinExchangeType.TOPIC);
-        channel.exchangeDeclare(INFO_EXCHANGE_NAME, BuiltinExchangeType.TOPIC);
+
         for(var product : availableProducts){
             var routingKey = Utils.formatProductRoutingKey(product);
             var queueName = String.format("product-queue-%s", product);
@@ -49,7 +50,7 @@ class SupplyThread extends Thread{
                 channel.basicAck(envelope.getDeliveryTag(), false);
 
                 var order = Order.fromJSON(new JSONObject(message));
-                var response = String.format("Order %d (%s) accepted!", order.getOrderID(), order.getProduct());
+                var response = String.format("%s: Order %d (%s) completed!", supplierID, order.getOrderID(), order.getProduct());
                 channel.basicPublish(
                         INFO_EXCHANGE_NAME,
                         Utils.formatInfoRoutingKey(order.getTeamID()),
@@ -72,27 +73,29 @@ class SupplyThread extends Thread{
     }
 }
 
-
-
 public class Supplier {
     public static void main(String[] args) throws IOException, TimeoutException, InterruptedException {
-//        if(args.length < 3){
-//            System.out.println("Usage: supplier supplier_name products...");
-//            return;
-//        }
-        args = new String[]{"asdf", "supplier"  + new Random().nextInt(100), "buty", "tlen"};
+        if(args.length < 2){
+            System.out.println("Usage: supplier supplier_name products...");
+            return;
+        }
 
-        var supplierID = args[1].trim();
-        var availableProducts = Arrays.stream(args).skip(2).collect(Collectors.toList());
+        var supplierID = args[0].trim();
+        var availableProducts = Arrays.stream(args).skip(1).collect(Collectors.toList());
+        System.out.println("Supplier " + supplierID + " | " + availableProducts.toString());
 
-        System.out.println("Starting " + supplierID + " | " + availableProducts.toString());
+        var channel = Utils.createAndSetupChannel();
 
+        var exchangeRoutingMap = Map.of(
+                INFO_SUPPLIERS_EXCHANGE_NAME, ""
+        );
+        var infoThread = new BasicInfoThread(supplierID, channel, exchangeRoutingMap);
+        var supplyThread = new SupplyThread(supplierID, channel, availableProducts);
 
-        var channel = Utils.createChannel();
-        var supplyThread = new SupplyThread(channel, availableProducts);
-
+        infoThread.start();
         supplyThread.start();
 
+        infoThread.join();
         supplyThread.join();
     }
 }

@@ -1,6 +1,7 @@
 package team;
 
-import com.rabbitmq.client.*;
+import com.rabbitmq.client.Channel;
+import common.BasicInfoThread;
 import common.Order;
 import common.Utils;
 
@@ -8,11 +9,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.Random;
+import java.util.Map;
 import java.util.concurrent.TimeoutException;
 
-import static common.Config.INFO_EXCHANGE_NAME;
-import static common.Config.ORDERS_EXCHANGE_NAME;
+import static common.Config.*;
 
 
 class OrderThread extends Thread{
@@ -25,8 +25,6 @@ class OrderThread extends Thread{
         super("OrderThread");
         this.teamID = teamID;
         this.channel = channel;
-
-        channel.exchangeDeclare(ORDERS_EXCHANGE_NAME, BuiltinExchangeType.TOPIC);
     }
 
     @Override
@@ -34,8 +32,10 @@ class OrderThread extends Thread{
         var bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         while (true){
             try {
-                System.out.print("> ");
                 var product = bufferedReader.readLine().trim();
+                if(product.isEmpty()){
+                    continue;
+                }
 
                 var message = new Order(teamID, orderID, product).toJSON();
                 channel.basicPublish(
@@ -44,7 +44,7 @@ class OrderThread extends Thread{
                         null,
                         message.getBytes(StandardCharsets.UTF_8)
                 );
-                System.out.println("Sent order: " + message);
+                System.out.printf("%s: orderID=%d %s\n", teamID, orderID, product);
 
                 orderID++;
             } catch (IOException exception) {
@@ -55,61 +55,24 @@ class OrderThread extends Thread{
     }
 }
 
-class InfoThread extends Thread{
-    private final String teamID;
-    private final Channel channel;
-    private final Consumer consumer;
-    private final String queueName;
-
-
-    public InfoThread(String teamID, Channel channel) throws IOException {
-        super("InfoThread");
-        this.teamID = teamID;
-        this.channel = channel;
-
-        channel.exchangeDeclare(INFO_EXCHANGE_NAME, BuiltinExchangeType.TOPIC);
-        this.queueName = String.format("info-queue-%s", teamID);
-        channel.queueDeclare(queueName, true, false, true, null);
-
-        var routingKey = Utils.formatInfoRoutingKey(teamID);
-        channel.queueBind(queueName, INFO_EXCHANGE_NAME, routingKey);
-        channel.basicQos(1);
-
-        this.consumer = new DefaultConsumer(channel){
-            @Override
-            public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
-                var message = new String(body, StandardCharsets.UTF_8);
-                System.out.println("Info: " + message);
-            }
-        };
-    }
-
-    @Override
-    public void run() {
-        try {
-            channel.basicConsume(queueName, true, consumer);
-        } catch (IOException exception) {
-            exception.printStackTrace();
-        }
-    }
-}
-
-
 public class Team {
     public static void main(String[] args) throws IOException, TimeoutException, InterruptedException {
-//        if(args.length != 2){
-//            System.out.println("Usage: team team_name");
-//            return;
-//        }
+        if(args.length != 1){
+            System.out.println("Usage: team team_name");
+            return;
+        }
 
-        args = new String[]{"asdf", "consumer" + new Random().nextInt(100)};
+        var teamID = args[0].trim();
+        System.out.println("Team " + teamID);
 
-        var teamID = args[1].trim();
-        System.out.println("Starting " + teamID);
+        var channel = Utils.createAndSetupChannel();
 
-        var channel = Utils.createChannel();
+        var exchangeRoutingMap = Map.of(
+                INFO_EXCHANGE_NAME, Utils.formatInfoRoutingKey(teamID),
+                INFO_TEAMS_EXCHANGE_NAME, ""
+        );
+        var infoThread = new BasicInfoThread(teamID, channel, exchangeRoutingMap);
         var orderThread = new OrderThread(teamID, channel);
-        var infoThread = new InfoThread(teamID, channel);
 
         orderThread.start();
         infoThread.start();

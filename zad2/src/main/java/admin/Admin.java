@@ -1,6 +1,7 @@
 package admin;
 
 
+import common.ThreadComposite;
 import common.Utils;
 
 import java.io.IOException;
@@ -12,13 +13,9 @@ public class Admin {
 
         var channel = Utils.createAndSetupChannel();
 
-        var infoThread = new InfoReceiver("admin", channel);
-        var inputThread = new InputThread(channel);
-
-        infoThread.start();
-        inputThread.start();
-
-        infoThread.join();
-        inputThread.join();
+        new ThreadComposite(
+                new InfoReceiver("admin", channel),
+                new InputThread(channel)
+        ).run();
     }
 }

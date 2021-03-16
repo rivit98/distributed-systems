@@ -24,7 +24,6 @@ class SupplyThread extends Thread {
         this.supplierID = supplierID;
         this.channel = channel;
 
-
         for (var product : availableProducts) {
             var routingKey = Utils.formatProductRoutingKey(product);
             var queueName = String.format("product-queue-%s", product);

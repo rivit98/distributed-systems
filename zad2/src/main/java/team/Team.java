@@ -1,6 +1,7 @@
 package team;
 
 import common.BasicInfoThread;
+import common.ThreadComposite;
 import common.Utils;
 
 import java.io.IOException;
@@ -27,13 +28,10 @@ public class Team {
                 INFO_EXCHANGE_NAME, Utils.formatInfoRoutingKey(teamID),
                 INFO_TEAMS_EXCHANGE_NAME, ""
         );
-        var infoThread = new BasicInfoThread(teamID, channel, exchangeRoutingMap);
-        var orderThread = new OrderThread(teamID, channel);
 
-        orderThread.start();
-        infoThread.start();
-
-        orderThread.join();
-        infoThread.join();
+        new ThreadComposite(
+                new BasicInfoThread(teamID, channel, exchangeRoutingMap),
+                new OrderThread(teamID, channel)
+        ).run();
     }
 }

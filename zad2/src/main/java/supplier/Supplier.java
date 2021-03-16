@@ -1,6 +1,7 @@
 package supplier;
 
 import common.BasicInfoThread;
+import common.ThreadComposite;
 import common.Utils;
 
 import java.io.IOException;
@@ -28,13 +29,10 @@ public class Supplier {
         var exchangeRoutingMap = Map.of(
                 INFO_SUPPLIERS_EXCHANGE_NAME, ""
         );
-        var infoThread = new BasicInfoThread(supplierID, channel, exchangeRoutingMap);
-        var supplyThread = new SupplyThread(supplierID, channel, availableProducts);
 
-        infoThread.start();
-        supplyThread.start();
-
-        infoThread.join();
-        supplyThread.join();
+        new ThreadComposite(
+                new BasicInfoThread(supplierID, channel, exchangeRoutingMap),
+                new SupplyThread(supplierID, channel, availableProducts)
+        ).run();
     }
 }

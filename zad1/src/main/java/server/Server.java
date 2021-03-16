@@ -1,92 +1,12 @@
 package server;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.*;
-import java.util.Arrays;
+import java.net.DatagramSocket;
+import java.net.ServerSocket;
+import java.net.SocketAddress;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-
-@Data
-class Client implements Runnable {
-    private final Socket socket;
-    private final DatagramSocket datagramSocket;
-    private final PrintWriter out;
-    private final Server server;
-    private final BufferedReader in;
-    private final SocketAddress socketAddress;
-
-    public Client(Server server, Socket socket, DatagramSocket datagramSocket) throws IOException {
-        this.server = server;
-        this.socket = socket;
-        this.datagramSocket = datagramSocket;
-        this.socketAddress = socket.getRemoteSocketAddress();
-        this.out = new PrintWriter(socket.getOutputStream(), true);
-        this.in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-    }
-
-    public void sendMessageTCP(String message) {
-        out.println(message);
-    }
-
-    public void sendMessageUDP(String message) {
-        try {
-            var datagram = new DatagramPacket(message.getBytes(), message.getBytes().length, socketAddress);
-            datagramSocket.send(datagram);
-        } catch (IOException exception) {
-            exception.printStackTrace();
-        }
-    }
-
-    @Override
-    public void run() {
-        try {
-            while (true) {
-                var msg = in.readLine();
-                if (msg == null || msg.equals("!quit") || socket.isClosed()) {
-                    server.removeClient(this);
-                    break;
-                }
-
-                System.out.println("TCP: " + msg);
-                server.sendToOthersTCP(this, msg);
-            }
-
-            socket.close();
-        } catch (IOException exception) {
-        }
-    }
-}
-
-@AllArgsConstructor
-class UDPReceiver implements Runnable {
-    private final Server server;
-    private final DatagramSocket datagramSocket;
-
-    @Override
-    public void run() {
-        var buffer = new byte[1024];
-        try {
-            while (true) {
-                Arrays.fill(buffer, (byte) 0);
-                var datagramPacket = new DatagramPacket(buffer, buffer.length);
-                datagramSocket.receive(datagramPacket);
-
-                var msg = new String(buffer, 0, datagramPacket.getLength());
-                System.out.println("UDP: " + msg);
-                server.sendToOthersUDP(datagramPacket.getSocketAddress(), msg);
-            }
-        } catch (IOException exception) {
-            exception.printStackTrace();
-        }
-    }
-}
 
 public class Server {
     private final static int PORT = 11337;

@@ -12,26 +12,26 @@ import static common.Config.INFO_EXCHANGE_NAME;
 import static common.Config.ORDERS_EXCHANGE_NAME;
 import static common.Utils.newPrintingConsumer;
 
-class InfoReceiver extends Thread {
+class AdminInfoReceiver extends Thread {
     private final String teamID;
     private final Channel channel;
     private final Consumer consumer;
     private final List<String> queueNames = new LinkedList<>();
 
 
-    public InfoReceiver(String teamID, Channel channel) throws IOException {
+    public AdminInfoReceiver(String teamID, Channel channel) throws IOException {
         super("InfoThread");
         this.teamID = teamID;
         this.channel = channel;
         this.consumer = newPrintingConsumer(channel);
 
-        setupQueue(ORDERS_EXCHANGE_NAME, String.format("product-queue-%s", teamID), Utils.formatProductRoutingKey("#"));
-        setupQueue(INFO_EXCHANGE_NAME, String.format("info-queue-%s", teamID), Utils.formatInfoRoutingKey("#"));
+        setupQueue(ORDERS_EXCHANGE_NAME, String.format("product-%s", teamID), Utils.formatProductRoutingKey("#"));
+        setupQueue(INFO_EXCHANGE_NAME, String.format("info-%s", teamID), Utils.formatInfoRoutingKey("#"));
     }
 
     private void setupQueue(String exchangeName, String queueName, String routingKey) throws IOException {
         channel.queueDeclare(queueName, true, false, true, null);
-        channel.queueBind(queueName, ORDERS_EXCHANGE_NAME, routingKey);
+        channel.queueBind(queueName, exchangeName, routingKey);
         queueNames.add(queueName);
     }
 

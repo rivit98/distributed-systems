@@ -26,7 +26,7 @@ class SupplyThread extends Thread {
 
         for (var product : availableProducts) {
             var routingKey = Utils.formatProductRoutingKey(product);
-            var queueName = String.format("product-queue-%s", product);
+            var queueName = String.format("product-%s", product);
 
             channel.queueDeclare(queueName, true, false, true, null);
             channel.queueBind(queueName, ORDERS_EXCHANGE_NAME, routingKey);

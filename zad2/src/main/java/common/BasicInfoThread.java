@@ -19,7 +19,7 @@ public class BasicInfoThread extends Thread {
         this.teamID = teamID;
         this.channel = channel;
 
-        this.queueName = String.format("info-queue-%s", teamID);
+        this.queueName = String.format("info-%s", teamID);
         channel.queueDeclare(queueName, true, false, true, null);
 
         for (var entry : exchangeRoutingMap.entrySet()) {

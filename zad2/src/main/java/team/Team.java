@@ -13,7 +13,7 @@ import static common.Config.INFO_TEAMS_EXCHANGE_NAME;
 
 
 public class Team {
-    public static void main(String[] args) throws IOException, TimeoutException, InterruptedException {
+    public static void main(String[] args) throws IOException, TimeoutException {
         if(args.length != 1){
             System.out.println("Usage: team team_name");
             return;

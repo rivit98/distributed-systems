@@ -14,7 +14,7 @@ import static common.Config.INFO_SUPPLIERS_EXCHANGE_NAME;
 
 
 public class Supplier {
-    public static void main(String[] args) throws IOException, TimeoutException, InterruptedException {
+    public static void main(String[] args) throws IOException, TimeoutException {
         if(args.length < 2){
             System.out.println("Usage: supplier supplier_name products...");
             return;

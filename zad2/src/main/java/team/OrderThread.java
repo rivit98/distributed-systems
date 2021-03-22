@@ -15,8 +15,6 @@ class OrderThread extends Thread {
     private final Channel channel;
     private final String teamID;
 
-    private int orderID = 1;
-
     public OrderThread(String teamID, Channel channel) {
         super("OrderThread");
         this.teamID = teamID;
@@ -33,17 +31,14 @@ class OrderThread extends Thread {
                     continue;
                 }
 
-                var message = new Order(teamID, orderID, product).toJSON();
+                var message = new Order(teamID, product).toJSON();
                 channel.basicPublish(
                         ORDERS_EXCHANGE_NAME,
                         Utils.formatProductRoutingKey(product),
                         null,
                         message.getBytes(StandardCharsets.UTF_8)
                 );
-                System.out.printf("%s: orderID=%d %s\n", teamID, orderID, product);
-
-                orderID++;
-
+                System.out.printf("%s: %s\n", teamID, product);
             } catch (IOException exception) {
                 exception.printStackTrace();
                 break;

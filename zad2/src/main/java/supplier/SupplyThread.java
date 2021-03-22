@@ -18,6 +18,7 @@ class SupplyThread extends Thread {
     private final Consumer consumer;
     private final List<String> queueNames = new LinkedList<>();
     private final String supplierID;
+    private int orderID = 1;
 
     public SupplyThread(String supplierID, Channel channel, List<String> availableProducts) throws IOException {
         super("SupplyThread");
@@ -44,7 +45,9 @@ class SupplyThread extends Thread {
                 channel.basicAck(envelope.getDeliveryTag(), false);
 
                 var order = Order.fromJSON(new JSONObject(message));
-                var response = String.format("%s: Order %d (%s) completed!", supplierID, order.getOrderID(), order.getProduct());
+                var info = String.format("Order %d (%s) from %s completed!", orderID++, order.getProduct(), order.getTeamID());
+                var response = String.format("%s: Order (%s) completed!", supplierID, order.getProduct());
+                System.out.println(info);
                 channel.basicPublish(
                         INFO_EXCHANGE_NAME,
                         Utils.formatInfoRoutingKey(order.getTeamID()),

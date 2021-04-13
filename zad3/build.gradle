@@ -1,0 +1,38 @@
+plugins {
+    id 'application'
+    id "io.freefair.lombok" version "6.0.0-m2"
+    id 'org.openjfx.javafxplugin' version '0.0.9'
+    id 'java'
+}
+
+group 'pl.edu.agh'
+version '1.0'
+
+apply plugin: 'org.openjfx.javafxplugin'
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://dl.bintray.com/speljohan/rxjavafx-mirror"
+    }
+}
+
+application {
+    mainClassName = 'pl.agh.edu.AppMain'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_15
+    targetCompatibility = JavaVersion.VERSION_15
+}
+
+javafx {
+    version = '15'
+    modules = ['javafx.base', 'javafx.controls', 'javafx.fxml', 'javafx.graphics', 'javafx.media', 'javafx.swing']
+}
+
+dependencies {
+    implementation group: 'io.reactivex.rxjava3', name: 'rxjava', version: '3.0.7'
+    implementation group: 'io.reactivex.rxjava3', name: 'rxjavafx', version: '3.0.1'
+    implementation 'org.apache.zookeeper:zookeeper:3.7.0'
+}

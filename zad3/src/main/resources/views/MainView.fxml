@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.control.TreeTableView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0"
+          prefWidth="581.0" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="pl.agh.edu.visualizer.controllers.MainController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints maxHeight="305.0000061035156" minHeight="10.0" prefHeight="49.00001373291013"
+                        vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="573.7999862670898" minHeight="10.0" prefHeight="573.7999862670898"
+                        vgrow="SOMETIMES"/>
+    </rowConstraints>
+    <TreeTableView prefHeight="200.0" prefWidth="556.0" GridPane.rowIndex="1" fx:id="treeTableView" showRoot="false">
+        <columns>
+            <TreeTableColumn prefWidth="289" text="Path" fx:id="pathColumn" editable="false" resizable="false"
+                             sortable="false" reorderable="false"/>
+            <TreeTableColumn minWidth="0.0" prefWidth="291" text="Data" fx:id="dataColumn" editable="false"
+                             resizable="false" sortable="false" reorderable="false"/>
+        </columns>
+    </TreeTableView>
+    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ZNodeVisualizer" textAlignment="CENTER"
+          wrappingWidth="582.2266387939453">
+        <font>
+            <Font name="System Bold" size="24.0"/>
+        </font>
+    </Text>
+</GridPane>

@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Text?>
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0"
           prefWidth="581.0" xmlns:fx="http://javafx.com/fxml/1"
-          fx:controller="pl.agh.edu.visualizer.controllers.MainController">
+          fx:controller="pl.agh.edu.visualizer.MainController">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
     </columnConstraints>
@@ -21,7 +21,7 @@
         <columns>
             <TreeTableColumn prefWidth="289" text="Path" fx:id="pathColumn" editable="false" resizable="false"
                              sortable="false" reorderable="false"/>
-            <TreeTableColumn minWidth="0.0" prefWidth="291" text="Data" fx:id="dataColumn" editable="false"
+            <TreeTableColumn minWidth="0.0" prefWidth="290" text="Data" fx:id="dataColumn" editable="false"
                              resizable="false" sortable="false" reorderable="false"/>
         </columns>
     </TreeTableView>

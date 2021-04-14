@@ -1,11 +1,11 @@
 package pl.agh.edu.events;
 
-import pl.agh.edu.visualizer.controllers.MainController;
+import pl.agh.edu.visualizer.MainController;
 import pl.agh.edu.watcher.Message;
 
 import java.nio.file.Path;
 
-public class DataChangedEvent extends AbstractEvent{
+public class DataChangedEvent extends AbstractEvent {
     public DataChangedEvent(Message payload) {
         super(payload);
     }

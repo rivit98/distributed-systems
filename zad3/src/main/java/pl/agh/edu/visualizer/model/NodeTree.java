@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.nio.file.Path;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -16,17 +15,17 @@ public class NodeTree {
     private final Map<Path, TreeFileNode> pathToTreeMap = new HashMap<>();
     private TreeFileNode root;
 
-    public void clear(){
-        log.info("Clearing nodeMap " + pathToTreeMap.size());
+    public void clear() {
+        log.info("Clearing nodeMap");
         pathToTreeMap.clear();
         root = null;
     }
 
-    public boolean addNode(String path) {
+    public boolean addNode(Path path) {
         return addNode(path, "");
     }
 
-    public boolean addNode(String path, String data) {
+    public boolean addNode(Path path, String data) {
         var nodeData = new NodeData(path, data);
         var insertedNode = new TreeFileNode(nodeData);
 
@@ -46,10 +45,6 @@ public class NodeTree {
         var parentNode = pathToTreeMap.get(parentPath);
         parentNode.insertNode(newNode);
         pathToTreeMap.put(nodeData.getPath(), newNode);
-    }
-
-    public boolean containsNode(Path path) {
-        return pathToTreeMap.containsKey(path);
     }
 
     public void removeMappedDirs(TreeItem<NodeData> node) {

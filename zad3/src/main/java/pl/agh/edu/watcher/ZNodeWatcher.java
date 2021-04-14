@@ -1,7 +1,6 @@
 package pl.agh.edu.watcher;
 
 import io.reactivex.rxjava3.subjects.PublishSubject;
-import lombok.Getter;
 import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
@@ -9,7 +8,6 @@ import org.apache.zookeeper.ZooKeeper;
 import pl.agh.edu.events.*;
 
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 import java.util.Optional;
 
 public class ZNodeWatcher implements Watcher {

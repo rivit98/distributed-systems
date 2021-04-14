@@ -1,18 +1,14 @@
 package pl.agh.edu.watcher;
 
 import io.reactivex.rxjava3.subjects.PublishSubject;
-import javafx.beans.Observable;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.zookeeper.ZooKeeper;
 import pl.agh.edu.events.IZnodeEvent;
 import pl.agh.edu.events.ZookeeperConnectedEvent;
-import pl.agh.edu.visualizer.AppMain;
-
-import java.io.IOException;
 
 @Slf4j
-public class WatcherTask extends Thread{
+public class WatcherTask extends Thread {
     private final String hostPort;
     private final String znode;
 
@@ -22,12 +18,8 @@ public class WatcherTask extends Thread{
     public WatcherTask(String[] args) {
         super("WatcherTask");
 
-        args = new String[]{"127.0.0.1:2182", "/z", "calc.exe"};
-
         hostPort = args[0];
         znode = args[1];
-        var exec = new String[args.length - 2];
-        System.arraycopy(args, 2, exec, 0, exec.length);
     }
 
     @Override
@@ -39,7 +31,7 @@ public class WatcherTask extends Thread{
 
             var watcher = new ZNodeWatcher(zk, znode, eventStream);
 
-            synchronized (this){
+            synchronized (this) {
                 wait(); //TODO verify this
             }
 
@@ -49,9 +41,9 @@ public class WatcherTask extends Thread{
         }
     }
 
-    public void close(){
+    public void close() {
         log.info("ZWatcher close request");
-        synchronized (this){
+        synchronized (this) {
             notifyAll();
         }
     }

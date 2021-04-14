@@ -3,6 +3,7 @@ package pl.agh.edu.visualizer.model;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import lombok.Getter;
+import lombok.NonNull;
 
 import java.nio.file.Path;
 import java.util.Comparator;
@@ -13,13 +14,9 @@ public class NodeData implements Comparable<NodeData> {
     private final SimpleObjectProperty<Path> pathProperty = new SimpleObjectProperty<>();
     private final SimpleStringProperty dataProperty = new SimpleStringProperty();
 
-    public NodeData(String path, String data) {
-        this.pathProperty.set(Path.of(path));
+    public NodeData(Path path, String data) {
+        this.pathProperty.set(path);
         setData(data);
-    }
-
-    public void setData(String data){
-        dataProperty.set(data);
     }
 
     public Path getPath() {
@@ -28,6 +25,10 @@ public class NodeData implements Comparable<NodeData> {
 
     public String getData() {
         return dataProperty.get();
+    }
+
+    public void setData(String data) {
+        dataProperty.set(data);
     }
 
     @Override
@@ -39,7 +40,7 @@ public class NodeData implements Comparable<NodeData> {
     }
 
     @Override
-    public int compareTo(NodeData other) {
+    public int compareTo(@NonNull NodeData other) {
         return Comparator
                 .comparing(NodeData::getPath)
                 .thenComparing(NodeData::getData)

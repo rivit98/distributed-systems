@@ -1,4 +1,4 @@
-package pl.agh.edu.visualizer.controllers.cellFactories;
+package pl.agh.edu.visualizer.cellFactories;
 
 import javafx.scene.control.TreeTableCell;
 import pl.agh.edu.visualizer.model.NodeData;
@@ -19,7 +19,7 @@ public class PathColumnCellFactory extends TreeTableCell<NodeData, Path> {
 //        setText(translateSlashes(item.getFileName().toString()));
     }
 
-    private String translateSlashes(String from){
+    private String translateSlashes(String from) {
         return from.replace("\\", "/");
     }
 

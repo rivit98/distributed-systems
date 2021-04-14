@@ -1,18 +1,18 @@
 package pl.agh.edu.visualizer.model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableMap;
 import javafx.scene.control.TreeItem;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.nio.file.Path;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 
 @Slf4j
 @Getter
 public class NodeTree {
-    private final Map<Path, TreeFileNode> pathToTreeMap = new HashMap<>();
+    private final ObservableMap<Path, TreeFileNode> pathToTreeMap = FXCollections.observableHashMap();
     private TreeFileNode root;
 
     public void clear() {
@@ -30,13 +30,16 @@ public class NodeTree {
         var insertedNode = new TreeFileNode(nodeData);
 
         if (root != null) {
+            log.debug("addNode " + path);
             insertNewNode(insertedNode);
         } else {
+            log.debug("addNode (root) " + path);
             pathToTreeMap.put(nodeData.getPath(), insertedNode);
             root = insertedNode;
+            return true;
         }
 
-        return root != null;
+        return false;
     }
 
     public void insertNewNode(TreeFileNode newNode) {

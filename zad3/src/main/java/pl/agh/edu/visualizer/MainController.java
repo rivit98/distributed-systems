@@ -5,9 +5,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import pl.agh.edu.visualizer.bindings.DescendantsBinding;
 import pl.agh.edu.visualizer.cellFactories.DataColumnCellFactory;
 import pl.agh.edu.visualizer.cellFactories.PathColumnCellFactory;
 import pl.agh.edu.visualizer.model.NodeData;
@@ -23,46 +25,46 @@ import java.util.Arrays;
 public class MainController {
     private final Stage myStage;
     private final NodeTree nodeTree = new NodeTree();
-    private final WatcherTask receiverThread;
+    private final WatcherTask watcherTask;
     private final String[] execArgs;
 
     @FXML private TreeTableView<NodeData> treeTableView;
     @FXML private TreeTableColumn<NodeData, Path> pathColumn;
     @FXML private TreeTableColumn<NodeData, String> dataColumn;
+    @FXML private Text descendantsNum;
     private Process process;
-
 
     public MainController(Stage stage, String[] args) {
         this.myStage = stage;
-        this.receiverThread = new WatcherTask(args);
+        this.watcherTask = new WatcherTask(args[0], args[1]);
         this.execArgs = new String[args.length - 2];
         System.arraycopy(args, 2, this.execArgs, 0, this.execArgs.length);
     }
 
     @FXML
     public void initialize() {
-        createRoot();
         prepareColumns();
 
         watchEvents();
-        receiverThread.start();
-    }
-
-    private void createRoot() {
-        treeTableView.setRoot(new TreeItem<>());
-        treeTableView.getRoot().setExpanded(true);
+        watcherTask.start();
     }
 
     private void prepareColumns() {
+        treeTableView.setRoot(new TreeItem<>());
+        treeTableView.getRoot().setExpanded(true);
+
         pathColumn.setCellFactory(ttc -> new PathColumnCellFactory());
         pathColumn.setCellValueFactory(node -> node.getValue().getValue().getPathProperty());
 
         dataColumn.setCellFactory(ttc -> new DataColumnCellFactory());
         dataColumn.setCellValueFactory(node -> node.getValue().getValue().getDataProperty());
+
+        descendantsNum.textProperty()
+                .bind(new DescendantsBinding(nodeTree.getPathToTreeMap()).asString());
     }
 
     private void watchEvents() {
-        receiverThread
+        watcherTask
                 .getEventStream()
                 .observeOn(JavaFxScheduler.platform())
                 .doOnNext(e -> log.info(e.toString()))
@@ -78,6 +80,7 @@ public class MainController {
     }
 
     public void addRoot() {
+        log.info("addRoot " + nodeTree.getRoot().getValue().getPath());
         treeTableView.getRoot().getChildren().clear();
         treeTableView.getRoot().getChildren().add(nodeTree.getRoot());
 
@@ -94,15 +97,18 @@ public class MainController {
     }
 
     public void stopProcess() {
-        log.info("Stopping process");
+        if (process == null) {
+            return;
+        }
+        log.info("Stopping process | PID: " + process.pid());
+
         process.destroy();
         process = null;
     }
 
     public void startProcess() {
-        if (process != null) {
-            stopProcess();
-        }
+        stopProcess();
+
         log.info("Starting process");
         try {
             this.process = new ProcessBuilder(execArgs).start();
@@ -112,6 +118,7 @@ public class MainController {
     }
 
     public void onClose() {
-        receiverThread.close();
+        stopProcess();
+        watcherTask.close();
     }
 }

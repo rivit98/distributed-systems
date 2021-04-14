@@ -5,30 +5,37 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0"
-          prefWidth="581.0" xmlns:fx="http://javafx.com/fxml/1"
-          fx:controller="pl.agh.edu.visualizer.MainController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="581.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.agh.edu.visualizer.MainController">
     <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints maxHeight="305.0000061035156" minHeight="10.0" prefHeight="49.00001373291013"
-                        vgrow="SOMETIMES"/>
-        <RowConstraints maxHeight="573.7999862670898" minHeight="10.0" prefHeight="573.7999862670898"
-                        vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="305.0000061035156" minHeight="10.0" prefHeight="49.00001373291013" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="573.7999862670898" minHeight="10.0" prefHeight="573.7999862670898" vgrow="SOMETIMES" />
     </rowConstraints>
-    <TreeTableView prefHeight="200.0" prefWidth="556.0" GridPane.rowIndex="1" fx:id="treeTableView" showRoot="false">
+    <TreeTableView fx:id="treeTableView" prefHeight="200.0" prefWidth="556.0" showRoot="false" GridPane.rowIndex="1">
         <columns>
-            <TreeTableColumn prefWidth="289" text="Path" fx:id="pathColumn" editable="false" resizable="false"
-                             sortable="false" reorderable="false"/>
-            <TreeTableColumn minWidth="0.0" prefWidth="290" text="Data" fx:id="dataColumn" editable="false"
-                             resizable="false" sortable="false" reorderable="false"/>
+            <TreeTableColumn fx:id="pathColumn" editable="false" prefWidth="289" reorderable="false" resizable="false" sortable="false" text="Path" />
+            <TreeTableColumn fx:id="dataColumn" editable="false" minWidth="0.0" prefWidth="290" reorderable="false" resizable="false" sortable="false" text="Data" />
         </columns>
     </TreeTableView>
-    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ZNodeVisualizer" textAlignment="CENTER"
-          wrappingWidth="582.2266387939453">
-        <font>
-            <Font name="System Bold" size="24.0"/>
-        </font>
-    </Text>
+    <GridPane>
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="345.39996337890625" minWidth="10.0" prefWidth="338.20001220703125" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="266.20001220703125" minWidth="10.0" prefWidth="242.9999877929688" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+        <Text fill="WHITE" text="Descendants: " textAlignment="RIGHT" wrappingWidth="340">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+        </Text>
+      <Text fill="WHITE" fx:id="descendantsNum" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="150.60468101501465" GridPane.columnIndex="1">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
+    </GridPane>
 </GridPane>

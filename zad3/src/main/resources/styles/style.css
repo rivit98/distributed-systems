@@ -43,7 +43,7 @@
 
     -fx-light-text-color: rgb(220, 220, 220);
     -fx-mid-text-color: rgb(100, 100, 100);
-    -fx-dark-text-color: rgb(20, 20, 20);
+    /*-fx-dark-text-color: rgb(20, 20, 20);*/
 
     -fx-accent: rgb(0, 80, 100);
 

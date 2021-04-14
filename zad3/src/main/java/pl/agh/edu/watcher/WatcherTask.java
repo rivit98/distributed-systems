@@ -15,11 +15,11 @@ public class WatcherTask extends Thread {
     @Getter
     private final PublishSubject<IZnodeEvent> eventStream = PublishSubject.create();
 
-    public WatcherTask(String[] args) {
+    public WatcherTask(String hostPort, String znode) {
         super("WatcherTask");
 
-        hostPort = args[0];
-        znode = args[1];
+        this.hostPort = hostPort;
+        this.znode = znode;
     }
 
     @Override

@@ -3,14 +3,18 @@ package pl.agh.edu.watcher;
 import io.reactivex.rxjava3.subjects.PublishSubject;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.ZooKeeper;
 import pl.agh.edu.events.IZnodeEvent;
 import pl.agh.edu.events.ZookeeperConnectedEvent;
+
+import java.util.concurrent.Semaphore;
 
 @Slf4j
 public class WatcherTask extends Thread {
     private final String hostPort;
     private final String znode;
+    private final Semaphore semaphore = new Semaphore(0);
 
     @Getter
     private final PublishSubject<IZnodeEvent> eventStream = PublishSubject.create();
@@ -24,27 +28,24 @@ public class WatcherTask extends Thread {
 
     @Override
     public void run() {
-        try {
-            log.info("Starting ZWatcher");
-            ZooKeeper zk = new ZooKeeper(hostPort, 3000, null);
+        log.info("Starting ZWatcher");
+
+        try (ZooKeeper zk = new ZooKeeper(hostPort, 25000, null)) {
             eventStream.onNext(new ZookeeperConnectedEvent());
 
             var watcher = new ZNodeWatcher(zk, znode, eventStream);
 
-            synchronized (this) {
-                wait(); //TODO verify this
-            }
-
+            semaphore.acquire();
             log.info("ZWatcher exit");
+        } catch (KeeperException.ConnectionLossException e) {
+            log.error("ConnectionLost", e);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("WatcherTask", e);
         }
     }
 
     public void close() {
         log.info("ZWatcher close request");
-        synchronized (this) {
-            notifyAll();
-        }
+        semaphore.release();
     }
 }

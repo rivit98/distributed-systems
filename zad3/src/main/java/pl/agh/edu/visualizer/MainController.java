@@ -80,7 +80,7 @@ public class MainController {
     }
 
     public void addRoot() {
-        log.info("addRoot " + nodeTree.getRoot().getValue().getPath());
+        log.debug("addRoot " + nodeTree.getRoot().getValue().getPath());
         treeTableView.getRoot().getChildren().clear();
         treeTableView.getRoot().getChildren().add(nodeTree.getRoot());
 

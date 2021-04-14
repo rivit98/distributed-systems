@@ -5,7 +5,11 @@ import lombok.ToString;
 import pl.agh.edu.watcher.Message;
 
 @AllArgsConstructor
-@ToString
 public abstract class AbstractEvent implements IZnodeEvent {
     protected final Message payload;
+
+    @Override
+    public String toString() {
+        return payload.toString();
+    }
 }

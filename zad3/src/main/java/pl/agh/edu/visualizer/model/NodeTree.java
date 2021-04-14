@@ -16,7 +16,7 @@ public class NodeTree {
     private TreeFileNode root;
 
     public void clear() {
-        log.info("Clearing nodeMap");
+        log.debug("Clearing nodeMap");
         pathToTreeMap.clear();
         root = null;
     }

@@ -1,0 +1,198 @@
+\documentclass[12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+\usepackage{minted}
+\usepackage{geometry}
+\usepackage{natbib}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{bold-extra}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{indentfirst}
+\usepackage{diagbox}
+\usepackage{pifont}
+\usepackage{amssymb}
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+
+\hyphenpenalty=10000
+\tolerance=1000 \emergencystretch=2em
+\titlelabel{\thetitle.\quad}
+
+
+
+\setminted[text]{
+                fontsize=\scriptsize,
+                breaklines
+                }
+
+ \geometry{
+     left=23mm,
+     top=25mm,
+     right=23mm
+ }
+
+
+\def\mydate{\leavevmode\hbox{\twodigits\day.\twodigits\month.\the\year}}
+\def\twodigits#1{\ifnum#1<10 0\fi\the#1}
+
+\begin{document}
+%titlepage
+\thispagestyle{empty}
+\begin{center}
+\begin{minipage}{0.75\linewidth}
+    \centering
+    \includegraphics[width=0.45\linewidth]{agh_logo2.png}
+    \par
+    \vspace{2cm}
+    {\bfseries{\scshape{\Huge  Systemy rozproszone}}}
+    \par
+    \vspace{1.7cm}
+    {\scshape{\Large Laboratorium 4}}
+    \par
+    \vspace{0.8cm}
+    {\scshape{\Large Akka}}
+    \par
+    \vspace{3cm}
+
+    {\scshape{\Large Albert Gierlach}}\par
+    \vspace{0.6cm}
+    {\scshape{\Large nr. indeksu: 305303}}\par
+    \vspace{1cm}
+
+    {\Large \mydate}
+\end{minipage}
+\end{center}
+\clearpage
+
+
+
+\section{Zadanie 1 - strategie obsługi błędów}
+Testy zostały przeprowadzone dla trzech strategii (dla czytelności skrócono treść wyjątku):
+
+\subsection{stop()}
+\begin{minted}{text}
+actorMultiply - operationCount: 1
+actorDivide - operationCount: 1
+actorDivide - operationCount: 2
+actorMultiply - operationCount: 2
+[actorMath-akka.actor.default-dispatcher-6] ERROR akka.actor.typed.Behavior$ - Supervisor StopSupervisor saw failure: / by zero
+java.lang.ArithmeticException: / by zero
+	at Z1.MathActorDivide.onMathCommandDivide(MathActorDivide.java:28)
+actorMultiply - operationCount: 3
+actorMultiply - operationCount: 4
+[actorMath-akka.actor.default-dispatcher-6] INFO akka.actor.LocalActorRef - Message [Z1.MathActor$MathCommandDivide] to Actor[akka://actorMath/user/actorDivide#303956245] was not delivered. [1] dead letters encountered. If this is not an expected behavior then Actor[akka://actorMath/user/actorDivide#303956245] may have terminated unexpectedly. This logging can be turned off or adjusted with configuration settings 'akka.log-dead-letters' and 'akka.log-dead-letters-during-shutdown'.
+[actorMath-akka.actor.default-dispatcher-6] INFO akka.actor.LocalActorRef - Message [Z1.MathActor$MathCommandDivide] to Actor[akka://actorMath/user/actorDivide#303956245] was not delivered. [2] dead letters encountered. If this is not an expected behavior then Actor[akka://actorMath/user/actorDivide#303956245] may have terminated unexpectedly. This logging can be turned off or adjusted with configuration settings 'akka.log-dead-letters' and 'akka.log-dead-letters-during-shutdown'.
+\end{minted}
+
+Aktor odpowiedzialny za obsługę dzielenia zakończył swoje działanie i nie przyjmował dalszych zleceń.
+
+\subsection{resume()}
+\begin{minted}{text}
+actorDivide - operationCount: 1
+actorMultiply - operationCount: 1
+actorMultiply - operationCount: 2
+actorDivide - operationCount: 2
+[actorMath-akka.actor.default-dispatcher-6] ERROR akka.actor.typed.Behavior$ - Supervisor ResumeSupervisor saw failure: / by zero
+java.lang.ArithmeticException: / by zero
+	at Z1.MathActorDivide.onMathCommandDivide(MathActorDivide.java:28)
+actorMultiply - operationCount: 3
+actorMultiply - operationCount: 4
+actorDivide - operationCount: 3
+actorDivide - operationCount: 4
+\end{minted}
+
+Aktor odpowiedzialny za obsługę dzielenia wznowił swoje działanie i obsłużył swoje dalsze zadania.
+
+\newpage
+\subsection{restart()}
+\begin{minted}{text}
+actorMultiply - operationCount: 1
+actorDivide - operationCount: 1
+actorMultiply - operationCount: 2
+actorDivide - operationCount: 2
+[actorMath-akka.actor.default-dispatcher-6] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
+[actorMath-akka.actor.default-dispatcher-3] ERROR akka.actor.typed.Behavior$ - Supervisor RestartSupervisor saw failure: / by zero
+java.lang.ArithmeticException: / by zero
+	at Z1.MathActorDivide.onMathCommandDivide(MathActorDivide.java:28)
+actorMultiply - operationCount: 3
+actorMultiply - operationCount: 4
+actorDivide - operationCount: 1
+actorDivide - operationCount: 2
+
+\end{minted}
+
+Aktor odpowiedzialny za obsługę dzielenia został zastąpiony nową instancją, która obsłużyła nowe zlecenia.
+
+\section{Zadanie 2 - klasteryzacja}
+Kod został uzupełniony zgodnie z wytycznymi w instrukcji. Uruchomienie Z2\_Main dało następujące wyniki:
+\begin{minted}{text}
+[z2main-akka.actor.default-dispatcher-7] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
+akka://z2main/user/upper1 registered
+akka://z2main/user/upper2 registered
+creating receive for text service
+request: hello
+sending to worker: Actor[akka://z2main/user/upper1#1797504143]
+sending to worker: Actor[akka://z2main/user/upper2#-723522103]
+HELLO
+HELLO
+\end{minted}
+
+Aktorzy są poprawnie rejestrowani u recepcjonisty, a następnie każdy z nich przetwarza otrzymane zlecenie i wypisuje wynik - w tym wypadku tekst zapisany wielkimi literami.
+
+Następnie uzupełniłem i uruchomiłem pliki Z2\_NodeA oraz Z2\_NodeB.
+
+Z2\_NodeA:
+\begin{minted}{text}
+Node A: config: Config(SimpleConfigObject({"akka":{"actor":{"provider":"cluster"},"cluster":{"downing-provider-class":"akka.cluster.sbr .SplitBrainResolverProvider","seed-nodes":["akka://ClusterSystem@127.0.0.1:2551","akka://ClusterSystem@127.0.0.1:2552"]} ,"remote":{"artery":{"canonical":{"hostname":"127.0.0.1","port":2551}}}}}))
+[ClusterSystem-akka.actor.default-dispatcher-3] INFO akka.remote.artery.tcp.ArteryTcpTransport - Remoting started with transport [Artery tcp]; listening on address [akka://ClusterSystem@127.0.0.1:2551] with UID [-33207825660936946]
+[ClusterSystem-akka.actor.default-dispatcher-3] INFO akka.cluster.Cluster - Cluster Node [akka://ClusterSystem@127.0.0.1:2551] - Starting up, Akka version [2.6.14] ...
+[ClusterSystem-akka.actor.default-dispatcher-3] INFO akka.cluster.Cluster - Cluster Node [akka://ClusterSystem@127.0.0.1:2551] - Registered cluster JMX MBean [akka:type=Cluster]
+[ClusterSystem-akka.actor.default-dispatcher-3] INFO akka.cluster.Cluster - Cluster Node [akka://ClusterSystem@127.0.0.1:2551] - Started up successfully
+[ClusterSystem-akka.actor.default-dispatcher-6] INFO akka.cluster.sbr.SplitBrainResolver - SBR started. Config: strategy [KeepMajority], stable-after [20 seconds], down-all-when-unstable [15 seconds], selfUniqueAddress [akka://ClusterSystem@127.0.0.1:2551#-33207825660936946], selfDc [default].
+akka://ClusterSystem/user/actor1 registered
+akka://ClusterSystem/user/actor2 registered
+[ClusterSystem-akka.actor.default-dispatcher-15] INFO akka.cluster.Cluster - Cluster Node [akka://ClusterSystem@127.0.0.1:2551] - Node [akka://ClusterSystem@127.0.0.1:2551] is JOINING itself (with roles [dc-default], version [0.0.0]) and forming new cluster
+[ClusterSystem-akka.actor.default-dispatcher-15] INFO akka.cluster.Cluster - Cluster Node [akka://ClusterSystem@127.0.0.1:2551] - is the new leader among reachable nodes (more leaders may exist)
+[ClusterSystem-akka.actor.default-dispatcher-6] INFO akka.cluster.Cluster - Cluster Node [akka://ClusterSystem@127.0.0.1:2551] - Leader is moving node [akka://ClusterSystem@127.0.0.1:2551] to [Up]
+[ClusterSystem-akka.actor.default-dispatcher-15] INFO akka.cluster.sbr.SplitBrainResolver - This node is now the leader responsible for taking SBR decisions among the reachable nodes (more leaders may exist).
+[ClusterSystem-akka.actor.default-dispatcher-6] INFO akka.cluster.Cluster - Cluster Node [akka://ClusterSystem@127.0.0.1:2551] - Received InitJoin message from [Actor[akka://ClusterSystem@127.0.0.1:2552/system/cluster/core/daemon/joinSeedNodeProcess-1#-1035995034]] to [akka://ClusterSystem@127.0.0.1:2551]
+[ClusterSystem-akka.actor.default-dispatcher-6] INFO akka.cluster.Cluster - Cluster Node [akka://ClusterSystem@127.0.0.1:2551] - Sending InitJoinAck message from node [akka://ClusterSystem@127.0.0.1:2551] to [Actor[akka://ClusterSystem@127.0.0.1:2552/system/cluster/core/daemon/joinSeedNodeProcess-1#-1035995034]] (version [2.6.14])
+[ClusterSystem-akka.actor.default-dispatcher-6] INFO akka.cluster.Cluster - Cluster Node [akka://ClusterSystem@127.0.0.1:2551] - Node [akka://ClusterSystem@127.0.0.1:2552] is JOINING, roles [dc-default], version [0.0.0]
+[ClusterSystem-akka.actor.default-dispatcher-6] INFO akka.cluster.Cluster - Cluster Node [akka://ClusterSystem@127.0.0.1:2551] - Leader is moving node [akka://ClusterSystem@127.0.0.1:2552] to [Up]
+HELLO
+HELLO
+\end{minted}
+
+
+Z2\_NodeB:
+\begin{minted}{text}
+Node B: config: Config(SimpleConfigObject({"akka":{"actor":{"provider":"cluster"},"cluster":{"downing-provider-class":"akka.cluster .sbr.SplitBrainResolverProvider","seed-nodes":["akka://ClusterSystem@127.0.0.1:2551", "akka://ClusterSystem@127.0.0.1:2552"]},"remote":{"artery":{"canonical":{"hostname":"127.0.0.1","port":2552}}}}}))
+[ClusterSystem-akka.actor.default-dispatcher-6] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
+[ClusterSystem-akka.actor.default-dispatcher-6] INFO akka.remote.artery.tcp.ArteryTcpTransport - Remoting started with transport [Artery tcp]; listening on address [akka://ClusterSystem@127.0.0.1:2552] with UID [-9092542542576076019]
+[ClusterSystem-akka.actor.default-dispatcher-12] INFO akka.cluster.Cluster - Cluster Node [akka://ClusterSystem@127.0.0.1:2552] - Starting up, Akka version [2.6.14] ...
+[ClusterSystem-akka.actor.default-dispatcher-3] INFO akka.cluster.Cluster - Cluster Node [akka://ClusterSystem@127.0.0.1:2552] - Registered cluster JMX MBean [akka:type=Cluster]
+[ClusterSystem-akka.actor.default-dispatcher-3] INFO akka.cluster.Cluster - Cluster Node [akka://ClusterSystem@127.0.0.1:2552] - Started up successfully
+[ClusterSystem-akka.actor.default-dispatcher-6] INFO akka.cluster.sbr.SplitBrainResolver - SBR started. Config: strategy [KeepMajority], stable-after [20 seconds], down-all-when-unstable [15 seconds], selfUniqueAddress [akka://ClusterSystem@127.0.0.1:2552#-9092542542576076019], selfDc [default].
+creating receive for text service
+[ClusterSystem-akka.actor.default-dispatcher-6] INFO akka.cluster.Cluster - Cluster Node [akka://ClusterSystem@127.0.0.1:2552] - Received InitJoin message from [Actor[akka://ClusterSystem@127.0.0.1:2551/system/cluster/core/daemon/firstSeedNodeProcess-1#1936180322]], but this node is not initialized yet
+[ClusterSystem-akka.actor.default-dispatcher-6] INFO akka.cluster.Cluster - Cluster Node [akka://ClusterSystem@127.0.0.1:2552] - Received InitJoin message from [Actor[akka://ClusterSystem@127.0.0.1:2551/system/cluster/core/daemon/firstSeedNodeProcess-1#1936180322]], but this node is not initialized yet
+[ClusterSystem-akka.actor.default-dispatcher-6] INFO akka.cluster.Cluster - Cluster Node [akka://ClusterSystem@127.0.0.1:2552] - Received InitJoin message from [Actor[akka://ClusterSystem@127.0.0.1:2551/system/cluster/core/daemon/firstSeedNodeProcess-1#1936180322]], but this node is not initialized yet
+[ClusterSystem-akka.actor.default-dispatcher-6] INFO akka.cluster.Cluster - Cluster Node [akka://ClusterSystem@127.0.0.1:2552] - Received InitJoin message from [Actor[akka://ClusterSystem@127.0.0.1:2551/system/cluster/core/daemon/firstSeedNodeProcess-1#1936180322]], but this node is not initialized yet
+[ClusterSystem-akka.actor.default-dispatcher-6] INFO akka.cluster.Cluster - Cluster Node [akka://ClusterSystem@127.0.0.1:2552] - Received InitJoin message from [Actor[akka://ClusterSystem@127.0.0.1:2551/system/cluster/core/daemon/firstSeedNodeProcess-1#1936180322]], but this node is not initialized yet
+[ClusterSystem-akka.actor.default-dispatcher-6] INFO akka.cluster.Cluster - Cluster Node [akka://ClusterSystem@127.0.0.1:2552] - Received InitJoinAck message from [Actor[akka://ClusterSystem@127.0.0.1:2551/system/cluster/core/daemon#-1857672861]] to [akka://ClusterSystem@127.0.0.1:2552]
+[ClusterSystem-akka.actor.default-dispatcher-6] INFO akka.cluster.Cluster - Cluster Node [akka://ClusterSystem@127.0.0.1:2552] - Welcome from [akka://ClusterSystem@127.0.0.1:2551]
+request: hello
+sending to worker: Actor[akka://ClusterSystem@127.0.0.1:2551/user/actor2#-850834751]
+sending to worker: Actor[akka://ClusterSystem@127.0.0.1:2551/user/actor1#-1442025247]
+\end{minted}
+
+Także w tym przykładzie udało się uzyskać pożądany efekt - serwis rozesłał zlecenia do workerów, którzy przetworzyli dane.
+
+
+
+
+\end{document}

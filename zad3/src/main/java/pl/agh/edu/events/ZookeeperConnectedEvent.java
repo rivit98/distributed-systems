@@ -6,6 +6,6 @@ public class ZookeeperConnectedEvent implements IZnodeEvent {
 
     @Override
     public void dispatch(MainController controller) {
-        controller.getMyStage().show();
+//        controller.getMyStage().show();
     }
 }

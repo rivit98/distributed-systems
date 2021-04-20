@@ -26,6 +26,7 @@ public class VisualizerBootstrap extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
+            Platform.setImplicitExit(false);
             showMainView(primaryStage, getParameters().getRaw());
         } catch (IOException e) {
             log.warn("App start error", e);
@@ -55,6 +56,7 @@ public class VisualizerBootstrap extends Application {
         stage.setTitle(applicationTitle);
         stage.setScene(scene);
         stage.setOnCloseRequest(event -> controller.onClose());
+
 //        stage.show();
     }
 }

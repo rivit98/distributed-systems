@@ -1,6 +1,7 @@
 package pl.agh.edu.visualizer;
 
 import io.reactivex.rxjavafx.schedulers.JavaFxScheduler;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
@@ -66,15 +67,18 @@ public class MainController {
     private void watchEvents() {
         watcherTask
                 .getEventStream()
-                .observeOn(JavaFxScheduler.platform())
                 .doOnNext(e -> log.info(e.toString()))
-                .doOnError(t -> log.error(t.toString()))
-                .subscribe(event -> event.dispatch(this));
+                .observeOn(JavaFxScheduler.platform())
+                .subscribe(
+                        event -> event.dispatch(this),
+                        (t) -> log.error(t.toString())
+                );
     }
 
     public void removeRoot() {
         nodeTree.clear();
         treeTableView.getRoot().getChildren().clear();
+        myStage.hide();
 
         stopProcess();
     }
@@ -109,6 +113,8 @@ public class MainController {
     public void startProcess() {
         stopProcess();
 
+        myStage.show();
+
         log.info("Starting process");
         try {
             this.process = new ProcessBuilder(execArgs).start();
@@ -120,5 +126,7 @@ public class MainController {
     public void onClose() {
         stopProcess();
         watcherTask.close();
+//        myStage.close();
+        Platform.exit();
     }
 }

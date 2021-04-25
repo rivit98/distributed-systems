@@ -7,25 +7,24 @@ import akka.actor.typed.javadsl.AbstractBehavior;
 import akka.actor.typed.javadsl.ActorContext;
 import akka.actor.typed.javadsl.Behaviors;
 import akka.actor.typed.javadsl.Receive;
-import messages.DbUpdateStats;
-import messages.ErrorStatsQuery;
 import messages.ErrorStatsResponse;
-import messages.IMessage;
+import messages.db.DbUpdateStats;
+import messages.db.ErrorStatsQuery;
+import messages.db.IDbMessage;
 
-public class DatabaseActor extends AbstractBehavior<IMessage> {
+public class DatabaseActor extends AbstractBehavior<IDbMessage> {
     private final SQLiteService db = new SQLiteService();
 
-    public DatabaseActor(ActorContext<IMessage> context) {
+    public DatabaseActor(ActorContext<IDbMessage> context) {
         super(context);
     }
 
-    public static Behavior<IMessage> create() {
+    public static Behavior<IDbMessage> create() {
         return Behaviors.setup(DatabaseActor::new);
     }
 
-
     @Override
-    public Receive<IMessage> createReceive() {
+    public Receive<IDbMessage> createReceive() {
         return newReceiveBuilder()
                 .onSignal(Terminated.class, this::onTerminated)
                 .onMessage(DbUpdateStats.class, this::onUpdateStats)
@@ -33,7 +32,7 @@ public class DatabaseActor extends AbstractBehavior<IMessage> {
                 .build();
     }
 
-    private Behavior<IMessage> onErrorStatsQuery(ErrorStatsQuery query) {
+    private Behavior<IDbMessage> onErrorStatsQuery(ErrorStatsQuery query) {
         var satID = query.getSatelliteID();
         var errorsNum = db.getErrorCount(satID);
 
@@ -41,12 +40,12 @@ public class DatabaseActor extends AbstractBehavior<IMessage> {
         return this;
     }
 
-    private Behavior<IMessage> onUpdateStats(DbUpdateStats stats) {
+    private Behavior<IDbMessage> onUpdateStats(DbUpdateStats stats) {
         db.updateMany(stats.getErrorsIDs());
         return this;
     }
 
-    private Behavior<IMessage> onTerminated(Signal s) {
+    private Behavior<IDbMessage> onTerminated(Signal s) {
         db.close();
         return Behaviors.stopped();
     }

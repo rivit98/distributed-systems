@@ -9,7 +9,7 @@ import akka.actor.typed.javadsl.Receive;
 import lombok.extern.slf4j.Slf4j;
 import messages.IMessage;
 import messages.StationQuery;
-import satellite.SatelliteSupervisor;
+import satellite.SatellitesSupervisor;
 
 @Slf4j
 public class Dispatcher extends AbstractBehavior<IMessage> {
@@ -33,7 +33,7 @@ public class Dispatcher extends AbstractBehavior<IMessage> {
     private Behavior<IMessage> onDispatcherQueryMessage(StationQuery query) {
         getContext()
                 .spawn(
-                        SatelliteSupervisor.create(),
+                        SatellitesSupervisor.create(),
                         "satellite-supervisor" + supervisorID,
                         DispatcherSelector.fromConfig("my-dispatcher")
                 )

@@ -1,10 +1,10 @@
-package messages;
+package messages.db;
 
 import lombok.Data;
 
 import java.util.List;
 
 @Data
-public class DbUpdateStats implements IMessage {
+public class DbUpdateStats implements IDbMessage {
     private final List<Integer> errorsIDs;
 }

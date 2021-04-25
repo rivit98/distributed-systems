@@ -10,9 +10,9 @@ import com.typesafe.config.ConfigFactory;
 import db.DatabaseActor;
 import dispatcher.Dispatcher;
 import lombok.extern.slf4j.Slf4j;
-import messages.ErrorStatsQuery;
 import messages.IMessage;
 import messages.StationQuery;
+import messages.db.ErrorStatsQuery;
 import station.Station;
 
 import java.io.File;

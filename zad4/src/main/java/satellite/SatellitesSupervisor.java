@@ -20,16 +20,16 @@ import java.util.stream.IntStream;
 
 @Slf4j
 @Getter
-public class SatelliteSupervisor extends AbstractBehavior<IMessage> {
+public class SatellitesSupervisor extends AbstractBehavior<IMessage> {
     private StationQuery originalQuery;
     private List<CompletableFuture<SatelliteResponse>> futureList;
 
-    public SatelliteSupervisor(ActorContext<IMessage> context) {
+    public SatellitesSupervisor(ActorContext<IMessage> context) {
         super(context);
     }
 
     public static Behavior<IMessage> create() {
-        return Behaviors.setup(SatelliteSupervisor::new);
+        return Behaviors.setup(SatellitesSupervisor::new);
     }
 
     @Override

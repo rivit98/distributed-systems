@@ -7,7 +7,13 @@ import akka.actor.typed.javadsl.ActorContext;
 import akka.actor.typed.javadsl.Behaviors;
 import akka.actor.typed.javadsl.Receive;
 import lombok.extern.slf4j.Slf4j;
-import messages.*;
+import messages.ErrorStatsResponse;
+import messages.IMessage;
+import messages.QueryResults;
+import messages.StationQuery;
+import messages.db.DbUpdateStats;
+import messages.db.ErrorStatsQuery;
+import messages.db.IDbMessage;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -19,10 +25,10 @@ public class Station extends AbstractBehavior<IMessage> {
     private int queryID = 1;
     private final String name;
     private final ActorRef<IMessage> dispatcher;
-    private final ActorRef<IMessage> db;
+    private final ActorRef<IDbMessage> db;
     private final Map<Integer, Duration> pending = new HashMap<>();
 
-    public Station(ActorContext<IMessage> context, ActorRef<IMessage> dispatcher, ActorRef<IMessage> db) {
+    public Station(ActorContext<IMessage> context, ActorRef<IMessage> dispatcher, ActorRef<IDbMessage> db) {
         super(context);
 
         this.name = getContext().getSelf().path().name();
@@ -30,7 +36,7 @@ public class Station extends AbstractBehavior<IMessage> {
         this.db = db;
     }
 
-    public static Behavior<IMessage> create(ActorRef<IMessage> dispatcher, ActorRef<IMessage> db) {
+    public static Behavior<IMessage> create(ActorRef<IMessage> dispatcher, ActorRef<IDbMessage> db) {
         return Behaviors.setup(context -> new Station(context, dispatcher, db));
     }
 

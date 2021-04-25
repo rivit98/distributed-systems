@@ -20,4 +20,5 @@ dependencies {
     implementation group: 'com.typesafe.akka', name: 'akka-bom_2.13', version: '2.6.14', ext: 'pom'
     implementation group: 'com.typesafe.akka', name: 'akka-actor-typed_2.13', version: '2.6.14'
     implementation group: 'com.typesafe.akka', name: 'akka-cluster-typed_2.13', version: '2.6.14'
+    implementation group: 'org.xerial', name: 'sqlite-jdbc', version: '3.7.2'
 }

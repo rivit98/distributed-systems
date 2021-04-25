@@ -6,9 +6,9 @@ import akka.actor.typed.javadsl.ActorContext;
 import akka.actor.typed.javadsl.Behaviors;
 import akka.actor.typed.javadsl.Receive;
 import lombok.extern.slf4j.Slf4j;
-import messages.ISatelliteMessage;
-import messages.SatelliteQuery;
-import messages.SatelliteResponse;
+import messages.satellite.ISatelliteMessage;
+import messages.satellite.SatelliteQuery;
+import messages.satellite.SatelliteResponse;
 
 @Slf4j
 public class SatelliteActor extends AbstractBehavior<ISatelliteMessage> {

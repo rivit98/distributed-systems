@@ -1,4 +1,4 @@
-package messages;
+package messages.satellite;
 
 public interface ISatelliteMessage {
 }

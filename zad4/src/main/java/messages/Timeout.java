@@ -1,4 +1,4 @@
 package messages;
 
-public class Timeout implements IMessage{
+public class Timeout implements IMessage {
 }

@@ -5,9 +5,14 @@ import akka.actor.typed.DispatcherSelector;
 import akka.actor.typed.javadsl.*;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import messages.*;
+import messages.IMessage;
+import messages.QueryResults;
+import messages.StationQuery;
+import messages.Timeout;
+import messages.satellite.ISatelliteMessage;
+import messages.satellite.SatelliteQuery;
+import messages.satellite.SatelliteResponse;
 
-import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
@@ -46,12 +51,12 @@ public class SatelliteSupervisor extends AbstractBehavior<IMessage> {
         var percent = ((double) responsesOnTime.size() / originalQuery.getRange()) * 100.0;
         var errorsMap =
                 responsesOnTime
-                    .stream()
-                    .filter(res -> res.getStatus() != SatelliteAPI.Status.OK)
-                    .collect(Collectors.toMap(
-                            SatelliteResponse::getSatelliteID,
-                            SatelliteResponse::getStatus
-                    ));
+                        .stream()
+                        .filter(res -> res.getStatus() != SatelliteAPI.Status.OK)
+                        .collect(Collectors.toMap(
+                                SatelliteResponse::getSatelliteID,
+                                SatelliteResponse::getStatus
+                        ));
 
         var response = new QueryResults(
                 originalQuery.getQueryID(),

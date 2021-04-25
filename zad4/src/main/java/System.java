@@ -28,8 +28,8 @@ public class System extends AbstractBehavior<IMessage> {
         super(context);
 
         var props = DispatcherSelector.fromConfig("my-dispatcher");
+        var database = context.spawn(DatabaseActor.create(), "db", props);
         var dispatcher = context.spawn(Dispatcher.create(), "dispatcher", props);
-        var database = context.spawn(DatabaseActor.create(), "db", props); //TODO: resume strategy
 
         var station1 = context.spawn(Station.create(dispatcher, database), "station1", props);
         var station2 = context.spawn(Station.create(dispatcher, database), "station2", props);

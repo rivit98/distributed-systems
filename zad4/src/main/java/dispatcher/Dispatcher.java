@@ -2,6 +2,7 @@ package dispatcher;
 
 import akka.actor.typed.Behavior;
 import akka.actor.typed.DispatcherSelector;
+import akka.actor.typed.SupervisorStrategy;
 import akka.actor.typed.javadsl.AbstractBehavior;
 import akka.actor.typed.javadsl.ActorContext;
 import akka.actor.typed.javadsl.Behaviors;
@@ -20,7 +21,8 @@ public class Dispatcher extends AbstractBehavior<IMessage> {
     }
 
     public static Behavior<IMessage> create() {
-        return Behaviors.setup(Dispatcher::new);
+        return Behaviors.supervise(Behaviors.setup(Dispatcher::new))
+                .onFailure(Exception.class, SupervisorStrategy.resume());
     }
 
     @Override

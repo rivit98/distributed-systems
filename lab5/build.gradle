@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+    id 'war'
+    id "io.freefair.lombok" version "6.0.0-m2"
+}
+
+group 'com.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    implementation 'javax.activation:activation:1.1.1'
+    implementation 'com.owlike:genson:1.4'
+    implementation 'org.glassfish.hk2:hk2-api:2.4.0-b34'
+    implementation 'org.glassfish.hk2:hk2-locator:2.4.0-b34'
+    implementation 'javax.annotation:javax.annotation-api:1.2'
+    implementation 'org.glassfish.hk2.external:javax.inject:2.4.0-b34'
+    implementation 'javax.servlet:javax.servlet-api:3.0.1'
+    implementation 'javax.ws.rs:javax.ws.rs-api:2.0.1'
+    implementation 'javax.xml.bind:jaxb-api:2.2.7'
+    implementation 'org.glassfish.jersey.core:jersey-client:2.22'
+    implementation 'org.glassfish.jersey.containers:jersey-container-servlet:2.22'
+    implementation 'org.glassfish.jersey.media:jersey-media-jaxb:2.22'
+}
+

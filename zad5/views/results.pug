@@ -1,0 +1,42 @@
+doctype html
+html
+    div(style='width: 60%')
+        a(href='/') Powrót do formularza
+        div(style='margin-top: 10px')
+            | Total results:
+            strong #{videos.length}
+
+        ul(style='list-style-type: none')
+            each vid in videos
+                li
+                    div(style='display: flex; margin-top: 15px;')
+                        div(style='flex: 30%')
+                            img(src=vid.Poster alt=vid.Poster style='width:200px; height: auto')
+                        div(style='flex: 70%; margin-left: 20px')
+                            span(style='font-size: 25px; font-weight: bold;')
+                                | #{vid.Title}
+                            br
+                            | #[strong Type]: #{vid.Type}
+                            br
+                            | #[strong Year]: #{vid.Year} (Released: #{vid.Released})
+                            br
+                            | #[strong Genre]: #{vid.Genre}
+                            br
+                            | #[strong Runtime]: #{vid.Runtime}
+                            br
+                            | #[strong Director]: #{vid.Director}
+                            br
+                            | #[strong Awards]: #{vid.Awards}
+                            br
+                            if displayActors
+                                | #[strong Actors]: #{vid.Actors}
+                                br
+                            | #[strong Plot]: #{vid.Plot}
+                            br
+                            | #[strong Critics rating]: #{vid.rating}
+                            br
+                            | #[strong Users rating]: #{vid.userRating} (#{vid.totalVotes} votes)
+                            br
+                    hr
+            else
+                li No results :(

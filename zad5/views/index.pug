@@ -1,0 +1,47 @@
+doctype html
+head
+    meta(charset='UTF-8')
+    title REST zad5
+h2 Video search
+div(style='width: 50%')
+    form(action='/search' method='get')
+        label
+            | Title:
+            input(name='title' type='text' placeholder='Title' required)
+        br
+        fieldset
+            legend  Type
+            label
+                input(type='radio' name='type' value='all' checked='')
+                |  All
+            label
+                input(type='radio' name='type' value='movie')
+                |  Movie
+            label
+                input(type='radio' name='type' value='series')
+                |  Series
+        br
+        fieldset
+            legend  Plot
+            label
+                input(type='radio' name='plot' value='short' checked='')
+                |  Short
+            label
+                input(type='radio' name='plot' value='full')
+                |  Full
+        br
+        label
+            | Display actors?
+            input(type='checkbox' name='actors' checked='')
+        br
+        br
+        label
+            | Year from:
+            input(name='yearStart' type='number' placeholder='Year start')
+        br
+        label
+            | Year to:
+            input(name='yearEnd' type='number' placeholder='Year end')
+        br
+        br
+        input(type='submit' value='Submit')

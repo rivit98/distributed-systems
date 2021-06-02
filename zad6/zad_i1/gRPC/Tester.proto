@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package tester;
+
+option java_package = "proto";
+option java_outer_classname = "TesterProto";
+
+message SmallData {
+    int32 n1 = 1;
+    int32 n2 = 2;
+    string s1 = 3;
+    bool b1 = 4;
+    repeated int32 iSeq1 = 5;
+}
+
+message MediumData {
+    SmallData smallData = 1;
+    int32 n3 = 2;
+    int32 n4 = 3;
+    double d1 = 4;
+    double d2 = 5;
+    string s2 = 6;
+    bool b2 = 7;
+    repeated string sSeq1 = 8;
+}
+
+message BigData {
+    MediumData mediumData = 1;
+    int32 n5 = 2;
+    int32 n6 = 3;
+    int32 n7 = 4;
+    int32 n8 = 5;
+    int32 n9 = 6;
+    int32 n10 = 7;
+    string s3 = 8;
+    string s4 = 9;
+    string s5 = 10;
+    string s6 = 11;
+    string s7 = 12;
+    string s8 = 13;
+    double d3 = 14;
+    double d4 = 15;
+    double d5 = 16;
+    bool b3 = 17;
+    bool b4 = 18;
+    bool b5 = 19;
+    repeated int32 iSeq2 = 20;
+    repeated string sSeq2 = 21;
+    repeated double dSeq1 = 22;
+    repeated double dSeq2 = 23;
+}
+
+message Empty {
+
+}
+
+service Tester {
+    rpc processSmall (SmallData) returns (Empty);
+    rpc processMedium (MediumData) returns (Empty);
+    rpc processBig (BigData) returns (Empty);
+}

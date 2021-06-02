@@ -1,0 +1,22 @@
+#
+# The client reads this property to create the reference to the
+# "hello" object in the server.
+#
+Tester.Proxy=tester/tester1 : tcp -h 127.0.0.1 -p 10000 -z : udp -h 127.0.0.1 -p 10000 -z
+
+#
+# Warn about connection exceptions.
+#
+Ice.Warn.Connections=1
+
+Ice.ACM.Timeout=10
+
+#
+# Network Tracing
+#
+# 0 = no network tracing
+# 1 = trace connection establishment and closure
+# 2 = like 1, but more detailed
+# 3 = like 2, but also trace data transfer
+#
+Ice.Trace.Network=2

@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+compileJava {
+    sourceCompatibility = '15'
+    targetCompatibility = '15'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    implementation 'com.zeroc:ice:3.7.5'
+    implementation 'com.zeroc:icegrid:3.7.5'
+//    implementation 'com.zeroc:icediscovery:3.7.5'
+    implementation 'org.apache.commons:commons-compress:1.20'
+}

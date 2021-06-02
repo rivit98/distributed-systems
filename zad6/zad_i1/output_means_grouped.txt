@@ -1,0 +1,52 @@
+                    grpc\localhost\big-5 0.47
+                     ice\localhost\big-5 0.49
+           thrift\localhost_binary\big-5 0.59
+          thrift\localhost_compact\big-5 0.25
+
+                 grpc\localhost\medium-5 0.32
+                  ice\localhost\medium-5 0.34
+        thrift\localhost_binary\medium-5 0.18
+       thrift\localhost_compact\medium-5 0.17
+
+                  grpc\localhost\small-5 0.28
+                   ice\localhost\small-5 0.52
+         thrift\localhost_binary\small-5 0.17
+        thrift\localhost_compact\small-5 0.29
+
+---------------------------------------
+
+                  grpc\localhost\big-100 1.09
+                   ice\localhost\big-100 2.93
+         thrift\localhost_binary\big-100 1.9
+        thrift\localhost_compact\big-100 1.01
+
+
+               grpc\localhost\medium-100 0.66
+                ice\localhost\medium-100 0.89
+      thrift\localhost_binary\medium-100 0.63
+     thrift\localhost_compact\medium-100 0.6
+
+
+                grpc\localhost\small-100 0.44
+                 ice\localhost\small-100 0.56
+       thrift\localhost_binary\small-100 0.37
+      thrift\localhost_compact\small-100 0.36
+                 
+---------------------------------------
+
+                 grpc\localhost\big-1000 6.58
+                  ice\localhost\big-1000 13.09
+        thrift\localhost_binary\big-1000 14.25
+       thrift\localhost_compact\big-1000 6.52
+
+
+              grpc\localhost\medium-1000 2.73
+               ice\localhost\medium-1000 6.14
+     thrift\localhost_binary\medium-1000 6.77
+    thrift\localhost_compact\medium-1000 2.71
+
+              
+               grpc\localhost\small-1000 1.53
+                ice\localhost\small-1000 3.12
+      thrift\localhost_binary\small-1000 3.5
+     thrift\localhost_compact\small-1000 0.64

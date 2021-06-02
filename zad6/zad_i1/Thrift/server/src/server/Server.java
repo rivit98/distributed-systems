@@ -1,21 +1,17 @@
 package server;
 
-import org.apache.thrift.TException;
 import org.apache.thrift.protocol.TBinaryProtocol;
 import org.apache.thrift.protocol.TCompactProtocol;
 import org.apache.thrift.protocol.TProtocolFactory;
 import org.apache.thrift.server.TServer;
 import org.apache.thrift.server.TSimpleServer;
 import org.apache.thrift.transport.TServerSocket;
-import thrift.Tester;
 import thrift.BigData;
 import thrift.MediumData;
 import thrift.SmallData;
 import thrift.Tester;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 class TesterImpl implements Tester.Iface {
     private static <T> void iterateAndIgnore(List<T> arr){
@@ -28,7 +24,6 @@ class TesterImpl implements Tester.Iface {
     @Override
     public void processSmall(SmallData smallData) {
         iterateAndIgnore(smallData.getISeq1());
-        System.out.println("processing " + smallData.getN1());
     }
 
     @Override
@@ -56,8 +51,8 @@ class Server {
 
             var serverTransport = new TServerSocket(9090);
 
-//            var protocolFactory = new TBinaryProtocol.Factory();
-            TProtocolFactory protocolFactory = new TCompactProtocol.Factory();
+            var protocolFactory = new TBinaryProtocol.Factory();
+//            TProtocolFactory protocolFactory = new TCompactProtocol.Factory();
 
             var server = new TSimpleServer(
                     new TServer.Args(serverTransport)

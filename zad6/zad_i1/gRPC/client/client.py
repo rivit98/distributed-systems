@@ -1,6 +1,10 @@
 import grpc
 import random
 import string
+import time
+import inspect
+import os
+import statistics
 
 import Tester_pb2
 import Tester_pb2_grpc
@@ -77,13 +81,51 @@ def gen_big(iSeq1_len, sSeq1_len, iSeq2_len, sSeq2_len, dSeq1_len, dSeq2_len):
     )
 
 
-def main():
-    channel = grpc.insecure_channel("localhost:50051")
-    stub = Tester_pb2_grpc.TesterStub(channel)
+def timeit(func):
+    startTime = time.perf_counter_ns()
+    func()
+    return time.perf_counter_ns() - startTime
 
+def do_test(send_func, gen_func, size):
+    times = []
+    args_num = len(inspect.signature(gen_func).parameters)
+    for i in range(1000):
+        data = gen_func(*[size for _ in range(args_num)])
+        f = lambda: send_func(data)
+        t = timeit(f)
+        times.append(t)
+
+    return times
+
+def main():
+    # channel = grpc.insecure_channel("localhost:50051")
+    channel = grpc.insecure_channel("192.168.0.206:50051")
+    stub = Tester_pb2_grpc.TesterStub(channel)
+    # warmup
     stub.processSmall(gen_small(2))
     stub.processMedium(gen_medium(2, 2))
     stub.processBig(gen_big(2, 2, 2, 2, 2, 2))
+
+    results = {}
+
+    for send_func, gen_func, desc in [
+        (stub.processSmall, gen_small, "small"),
+        (stub.processMedium, gen_medium, "medium"),
+        (stub.processBig, gen_big, "big")
+    ]:
+        for size in [5, 100, 1000]:
+            print(desc, size, end=' ')
+            r = do_test(send_func, gen_func, size)
+            results[f"{desc}-{size}"] = r
+            print(round(statistics.mean(r) / 1000000.0, 4), "ms")
+
+    # OUTDIR = '../../output/grpc/localhost/'
+    OUTDIR = '../../output/grpc/lan/'
+    os.makedirs(OUTDIR, exist_ok=True)
+
+    for k, v in results.items():
+        with open(f"{OUTDIR}{k}.csv", "wt") as f:
+            f.write(','.join(map(str, v)))
 
 
 if __name__ == '__main__':

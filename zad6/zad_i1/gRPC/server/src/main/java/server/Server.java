@@ -25,7 +25,6 @@ class TesterImpl extends TesterGrpc.TesterImplBase{
         if(responseObserver != null){
             responseObserver.onNext(empty);
             responseObserver.onCompleted();
-            System.out.println("req completed");
         }
     }
 

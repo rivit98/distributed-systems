@@ -3,7 +3,10 @@ import Ice
 import Tester
 import random
 import string
-
+import time
+import inspect
+import os
+import statistics
 
 def random_string(N):
     return ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(N))
@@ -75,6 +78,21 @@ def gen_big(iSeq1_len, sSeq1_len, iSeq2_len, sSeq2_len, dSeq1_len, dSeq2_len):
         dSeq2=random_d_list(dSeq2_len)
     )
 
+def timeit(func):
+    startTime = time.perf_counter_ns()
+    func()
+    return time.perf_counter_ns() - startTime
+
+def do_test(send_func, gen_func, size):
+    times = []
+    args_num = len(inspect.signature(gen_func).parameters)
+    for i in range(1000):
+        data = gen_func(*[size for _ in range(args_num)])
+        f = lambda: send_func(data)
+        t = timeit(f)
+        times.append(t)
+
+    return times
 
 def main(args):
     with Ice.initialize(args) as communicator:
@@ -83,9 +101,31 @@ def main(args):
         if not tester:
             raise RuntimeError("Invalid proxy")
 
+        # warmup
         tester.processSmall(smallData=gen_small(2))
         tester.processMedium(mediumData=gen_medium(2, 2))
         tester.processBig(bigData=gen_big(2, 2, 2, 2, 2, 2))
+
+        results = {}
+
+        for send_func, gen_func, desc in [
+            (tester.processSmall, gen_small, "small"),
+            (tester.processMedium, gen_medium, "medium"),
+            (tester.processBig, gen_big, "big")
+        ]:
+            for size in [5, 100, 1000]:
+                print(desc, size, end=' ')
+                r = do_test(send_func, gen_func, size)
+                results[f"{desc}-{size}"] = r
+                print(round(statistics.mean(r) / 1000000.0, 4), "ms")
+
+        # OUTDIR = '../../output/ice/localhost/'
+        OUTDIR = '../../output/ice/lan/'
+        os.makedirs(OUTDIR, exist_ok=True)
+
+        for k, v in results.items():
+            with open(f"{OUTDIR}{k}.csv", "wt") as f:
+                f.write(','.join(map(str, v)))
 
 
 if __name__ == '__main__':

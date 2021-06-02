@@ -24,7 +24,6 @@ class TesterImpl implements TesterIface{
     @Override
     public void processSmall(SmallData smallData, Current current) {
         iterateAndIgnore(Arrays.stream(smallData.iSeq1).boxed().collect(Collectors.toList()));
-        System.out.println("Processed " + current.requestId);
     }
 
     @Override

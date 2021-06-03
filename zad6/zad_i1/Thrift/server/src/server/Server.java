@@ -51,8 +51,8 @@ class Server {
 
             var serverTransport = new TServerSocket(9090);
 
-            var protocolFactory = new TBinaryProtocol.Factory();
-//            TProtocolFactory protocolFactory = new TCompactProtocol.Factory();
+//            var protocolFactory = new TBinaryProtocol.Factory();
+            TProtocolFactory protocolFactory = new TCompactProtocol.Factory();
 
             var server = new TSimpleServer(
                     new TServer.Args(serverTransport)

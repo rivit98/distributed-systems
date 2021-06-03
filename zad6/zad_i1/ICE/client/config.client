@@ -2,8 +2,8 @@
 # The client reads this property to create the reference to the
 # "hello" object in the server.
 #
-# Tester.Proxy=tester/tester1 : tcp -h 127.0.0.1 -p 10000 -z : udp -h 127.0.0.1 -p 10000 -z
-Tester.Proxy=tester/tester1 : tcp -h 192.168.0.206 -p 10000 -z : udp -h 192.168.0.206 -p 10000 -z
+Tester.Proxy=tester/tester1 : tcp -h 127.0.0.1 -p 10000 -z : udp -h 127.0.0.1 -p 10000 -z
+# Tester.Proxy=tester/tester1 : tcp -h 192.168.0.206 -p 10000 -z : udp -h 192.168.0.206 -p 10000 -z
 
 #
 # Warn about connection exceptions.

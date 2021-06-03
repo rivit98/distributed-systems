@@ -86,7 +86,8 @@ def timeit(func):
 def do_test(send_func, gen_func, size):
     times = []
     args_num = len(inspect.signature(gen_func).parameters)
-    for i in range(1000):
+    # for i in range(1000):
+    for i in range(1):
         data = gen_func(*[size for _ in range(args_num)])
         f = lambda: send_func(data)
         t = timeit(f)
@@ -106,6 +107,7 @@ def main(args):
         tester.processMedium(mediumData=gen_medium(2, 2))
         tester.processBig(bigData=gen_big(2, 2, 2, 2, 2, 2))
 
+        random.seed(1337)
         results = {}
 
         for send_func, gen_func, desc in [
@@ -113,19 +115,19 @@ def main(args):
             (tester.processMedium, gen_medium, "medium"),
             (tester.processBig, gen_big, "big")
         ]:
-            for size in [5, 100, 1000]:
+            for size in [5, 100, 300]:
                 print(desc, size, end=' ')
                 r = do_test(send_func, gen_func, size)
                 results[f"{desc}-{size}"] = r
                 print(round(statistics.mean(r) / 1000000.0, 4), "ms")
 
-        # OUTDIR = '../../output/ice/localhost/'
-        OUTDIR = '../../output/ice/lan/'
-        os.makedirs(OUTDIR, exist_ok=True)
-
-        for k, v in results.items():
-            with open(f"{OUTDIR}{k}.csv", "wt") as f:
-                f.write(','.join(map(str, v)))
+        OUTDIR = '../../output/ice/localhost/'
+        # OUTDIR = '../../output/ice/lan/'
+        # os.makedirs(OUTDIR, exist_ok=True)
+        #
+        # for k, v in results.items():
+        #     with open(f"{OUTDIR}{k}.csv", "wt") as f:
+        #         f.write(','.join(map(str, v)))
 
 
 if __name__ == '__main__':

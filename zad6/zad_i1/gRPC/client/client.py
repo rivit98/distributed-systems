@@ -90,6 +90,7 @@ def do_test(send_func, gen_func, size):
     times = []
     args_num = len(inspect.signature(gen_func).parameters)
     for i in range(1000):
+    # for i in range(1):
         data = gen_func(*[size for _ in range(args_num)])
         f = lambda: send_func(data)
         t = timeit(f)
@@ -98,14 +99,15 @@ def do_test(send_func, gen_func, size):
     return times
 
 def main():
-    # channel = grpc.insecure_channel("localhost:50051")
-    channel = grpc.insecure_channel("192.168.0.206:50051")
+    channel = grpc.insecure_channel("localhost:50051")
+    # channel = grpc.insecure_channel("192.168.0.206:50051")
     stub = Tester_pb2_grpc.TesterStub(channel)
     # warmup
     stub.processSmall(gen_small(2))
     stub.processMedium(gen_medium(2, 2))
     stub.processBig(gen_big(2, 2, 2, 2, 2, 2))
 
+    random.seed(1337)
     results = {}
 
     for send_func, gen_func, desc in [
@@ -113,14 +115,14 @@ def main():
         (stub.processMedium, gen_medium, "medium"),
         (stub.processBig, gen_big, "big")
     ]:
-        for size in [5, 100, 1000]:
+        for size in [5, 100, 300]:
             print(desc, size, end=' ')
             r = do_test(send_func, gen_func, size)
             results[f"{desc}-{size}"] = r
             print(round(statistics.mean(r) / 1000000.0, 4), "ms")
 
-    # OUTDIR = '../../output/grpc/localhost/'
-    OUTDIR = '../../output/grpc/lan/'
+    OUTDIR = '../../output/grpc/localhost/'
+    # OUTDIR = '../../output/grpc/lan/'
     os.makedirs(OUTDIR, exist_ok=True)
 
     for k, v in results.items():

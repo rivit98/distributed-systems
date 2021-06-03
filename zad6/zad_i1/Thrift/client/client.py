@@ -97,6 +97,7 @@ def do_test(send_func, gen_func, size):
     times = []
     args_num = len(inspect.signature(gen_func).parameters)
     for i in range(1000):
+    # for i in range(1):
         data = gen_func(*[size for _ in range(args_num)])
         f = lambda: send_func(data)
         t = timeit(f)
@@ -105,8 +106,8 @@ def do_test(send_func, gen_func, size):
     return times
 
 def main():
-    # transport = TSocket.TSocket("localhost", 9090)
-    transport = TSocket.TSocket("192.168.0.206", 9090)
+    transport = TSocket.TSocket("localhost", 9090)
+    # transport = TSocket.TSocket("192.168.0.206", 9090)
     transport = TTransport.TBufferedTransport(transport)
 
     # protocol = TBinaryProtocol.TBinaryProtocol(transport)
@@ -120,7 +121,7 @@ def main():
     client.processMedium(gen_medium(2, 2))
     client.processBig(gen_big(2, 2, 2, 2, 2, 2))
 
-
+    random.seed(1337)
     results = {}
 
     for send_func, gen_func, desc in [
@@ -128,16 +129,16 @@ def main():
         (client.processMedium, gen_medium, "medium"),
         (client.processBig, gen_big, "big")
     ]:
-        for size in [5, 100, 1000]:
+        for size in [5, 100, 300]:
             print(desc, size, end=' ')
             r = do_test(send_func, gen_func, size)
             results[f"{desc}-{size}"] = r
             print(round(statistics.mean(r) / 1000000.0, 4), "ms")
 
-    # OUTDIR = '../../output/thrift/localhost_binary/'
+    OUTDIR = '../../output/thrift/localhost_binary/'
     # OUTDIR = '../../output/thrift/localhost_compact/'
     # OUTDIR = '../../output/thrift/lan_binary/'
-    OUTDIR = '../../output/thrift/lan_compact/'
+    # OUTDIR = '../../output/thrift/lan_compact/'
     os.makedirs(OUTDIR, exist_ok=True)
 
     for k, v in results.items():

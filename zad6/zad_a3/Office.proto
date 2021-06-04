@@ -16,47 +16,46 @@ message Case {
 }
 
 message CaseAck {
-    Case case = 1;
-    uint32 resolutionTime = 2;
+    uint32 resolutionTime = 1;
+}
+
+message CaseResolvedResult {
+    string message = 1;
 }
 
 message CaseResult {
     Case case = 1;
-    string message = 2;
-}
-
-message RegisterCaseResult {
     oneof result {
-        CaseAck caseAck = 1;
-        CaseResult caseResult = 2;
+        CaseAck caseAck = 2;
+        CaseResolvedResult caseResolvedResult = 3;
     }
 }
 
 message DriverLicenseData {
-    Client client = 1;
-    string category = 2;
+    string category = 1;
+    string birthDate = 2;
 }
 
 message IDCardData{
-    Client client = 1;
+    string birthDate = 1;
+    string placeOfResidence = 2;
 }
 
 message RegisterCompanyData{
-    Client client = 1;
-    string companyName = 2;
-    double startUpCapital = 3;
+    string companyName = 1;
+    double startUpCapital = 2;
 }
 
 message ClientReady{
-    Client client = 1;
 }
 
 message CaseRequestData{
+    Client client = 1;
     oneof Type {
-        ClientReady clientReady = 1;
-        DriverLicenseData driverLicenseData = 2;
-        IDCardData idCardData = 3;
-        RegisterCompanyData registerCompanyData = 4;
+        ClientReady clientReady = 2;
+        DriverLicenseData driverLicenseData = 3;
+        IDCardData idCardData = 4;
+        RegisterCompanyData registerCompanyData = 5;
     }
 }
 
@@ -65,6 +64,6 @@ message CaseResultSequence {
 }
 
 service Office {
-    rpc caseRequest(stream CaseRequestData) returns (stream RegisterCaseResult);
-    rpc helloRequest(Client) returns (CaseResultSequence);
+    rpc caseRequest(stream CaseRequestData) returns (stream CaseResult);
+    rpc getResolvedCases(Client) returns (CaseResultSequence);
 }

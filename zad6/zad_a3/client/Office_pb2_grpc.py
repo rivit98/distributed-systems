@@ -17,10 +17,10 @@ class OfficeStub(object):
         self.caseRequest = channel.stream_stream(
                 '/office.Office/caseRequest',
                 request_serializer=Office__pb2.CaseRequestData.SerializeToString,
-                response_deserializer=Office__pb2.RegisterCaseResult.FromString,
+                response_deserializer=Office__pb2.CaseResult.FromString,
                 )
-        self.helloRequest = channel.unary_unary(
-                '/office.Office/helloRequest',
+        self.getResolvedCases = channel.unary_unary(
+                '/office.Office/getResolvedCases',
                 request_serializer=Office__pb2.Client.SerializeToString,
                 response_deserializer=Office__pb2.CaseResultSequence.FromString,
                 )
@@ -35,7 +35,7 @@ class OfficeServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def helloRequest(self, request, context):
+    def getResolvedCases(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -47,10 +47,10 @@ def add_OfficeServicer_to_server(servicer, server):
             'caseRequest': grpc.stream_stream_rpc_method_handler(
                     servicer.caseRequest,
                     request_deserializer=Office__pb2.CaseRequestData.FromString,
-                    response_serializer=Office__pb2.RegisterCaseResult.SerializeToString,
+                    response_serializer=Office__pb2.CaseResult.SerializeToString,
             ),
-            'helloRequest': grpc.unary_unary_rpc_method_handler(
-                    servicer.helloRequest,
+            'getResolvedCases': grpc.unary_unary_rpc_method_handler(
+                    servicer.getResolvedCases,
                     request_deserializer=Office__pb2.Client.FromString,
                     response_serializer=Office__pb2.CaseResultSequence.SerializeToString,
             ),
@@ -77,12 +77,12 @@ class Office(object):
             metadata=None):
         return grpc.experimental.stream_stream(request_iterator, target, '/office.Office/caseRequest',
             Office__pb2.CaseRequestData.SerializeToString,
-            Office__pb2.RegisterCaseResult.FromString,
+            Office__pb2.CaseResult.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def helloRequest(request,
+    def getResolvedCases(request,
             target,
             options=(),
             channel_credentials=None,
@@ -92,7 +92,7 @@ class Office(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/office.Office/helloRequest',
+        return grpc.experimental.unary_unary(request, target, '/office.Office/getResolvedCases',
             Office__pb2.Client.SerializeToString,
             Office__pb2.CaseResultSequence.FromString,
             options, channel_credentials,

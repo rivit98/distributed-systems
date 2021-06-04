@@ -15,28 +15,28 @@ public final class OfficeGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<proto.OfficeProto.CaseRequestData,
-      proto.OfficeProto.RegisterCaseResult> getCaseRequestMethod;
+      proto.OfficeProto.CaseResult> getCaseRequestMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "caseRequest",
       requestType = proto.OfficeProto.CaseRequestData.class,
-      responseType = proto.OfficeProto.RegisterCaseResult.class,
+      responseType = proto.OfficeProto.CaseResult.class,
       methodType = io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
   public static io.grpc.MethodDescriptor<proto.OfficeProto.CaseRequestData,
-      proto.OfficeProto.RegisterCaseResult> getCaseRequestMethod() {
-    io.grpc.MethodDescriptor<proto.OfficeProto.CaseRequestData, proto.OfficeProto.RegisterCaseResult> getCaseRequestMethod;
+      proto.OfficeProto.CaseResult> getCaseRequestMethod() {
+    io.grpc.MethodDescriptor<proto.OfficeProto.CaseRequestData, proto.OfficeProto.CaseResult> getCaseRequestMethod;
     if ((getCaseRequestMethod = OfficeGrpc.getCaseRequestMethod) == null) {
       synchronized (OfficeGrpc.class) {
         if ((getCaseRequestMethod = OfficeGrpc.getCaseRequestMethod) == null) {
           OfficeGrpc.getCaseRequestMethod = getCaseRequestMethod =
-              io.grpc.MethodDescriptor.<proto.OfficeProto.CaseRequestData, proto.OfficeProto.RegisterCaseResult>newBuilder()
+              io.grpc.MethodDescriptor.<proto.OfficeProto.CaseRequestData, proto.OfficeProto.CaseResult>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "caseRequest"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   proto.OfficeProto.CaseRequestData.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  proto.OfficeProto.RegisterCaseResult.getDefaultInstance()))
+                  proto.OfficeProto.CaseResult.getDefaultInstance()))
               .setSchemaDescriptor(new OfficeMethodDescriptorSupplier("caseRequest"))
               .build();
         }
@@ -46,34 +46,34 @@ public final class OfficeGrpc {
   }
 
   private static volatile io.grpc.MethodDescriptor<proto.OfficeProto.Client,
-      proto.OfficeProto.CaseResultSequence> getHelloRequestMethod;
+      proto.OfficeProto.CaseResultSequence> getGetResolvedCasesMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "helloRequest",
+      fullMethodName = SERVICE_NAME + '/' + "getResolvedCases",
       requestType = proto.OfficeProto.Client.class,
       responseType = proto.OfficeProto.CaseResultSequence.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<proto.OfficeProto.Client,
-      proto.OfficeProto.CaseResultSequence> getHelloRequestMethod() {
-    io.grpc.MethodDescriptor<proto.OfficeProto.Client, proto.OfficeProto.CaseResultSequence> getHelloRequestMethod;
-    if ((getHelloRequestMethod = OfficeGrpc.getHelloRequestMethod) == null) {
+      proto.OfficeProto.CaseResultSequence> getGetResolvedCasesMethod() {
+    io.grpc.MethodDescriptor<proto.OfficeProto.Client, proto.OfficeProto.CaseResultSequence> getGetResolvedCasesMethod;
+    if ((getGetResolvedCasesMethod = OfficeGrpc.getGetResolvedCasesMethod) == null) {
       synchronized (OfficeGrpc.class) {
-        if ((getHelloRequestMethod = OfficeGrpc.getHelloRequestMethod) == null) {
-          OfficeGrpc.getHelloRequestMethod = getHelloRequestMethod =
+        if ((getGetResolvedCasesMethod = OfficeGrpc.getGetResolvedCasesMethod) == null) {
+          OfficeGrpc.getGetResolvedCasesMethod = getGetResolvedCasesMethod =
               io.grpc.MethodDescriptor.<proto.OfficeProto.Client, proto.OfficeProto.CaseResultSequence>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "helloRequest"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "getResolvedCases"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   proto.OfficeProto.Client.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   proto.OfficeProto.CaseResultSequence.getDefaultInstance()))
-              .setSchemaDescriptor(new OfficeMethodDescriptorSupplier("helloRequest"))
+              .setSchemaDescriptor(new OfficeMethodDescriptorSupplier("getResolvedCases"))
               .build();
         }
       }
     }
-    return getHelloRequestMethod;
+    return getGetResolvedCasesMethod;
   }
 
   /**
@@ -127,15 +127,15 @@ public final class OfficeGrpc {
     /**
      */
     public io.grpc.stub.StreamObserver<proto.OfficeProto.CaseRequestData> caseRequest(
-        io.grpc.stub.StreamObserver<proto.OfficeProto.RegisterCaseResult> responseObserver) {
+        io.grpc.stub.StreamObserver<proto.OfficeProto.CaseResult> responseObserver) {
       return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getCaseRequestMethod(), responseObserver);
     }
 
     /**
      */
-    public void helloRequest(proto.OfficeProto.Client request,
+    public void getResolvedCases(proto.OfficeProto.Client request,
         io.grpc.stub.StreamObserver<proto.OfficeProto.CaseResultSequence> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getHelloRequestMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetResolvedCasesMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
@@ -145,15 +145,15 @@ public final class OfficeGrpc {
             io.grpc.stub.ServerCalls.asyncBidiStreamingCall(
               new MethodHandlers<
                 proto.OfficeProto.CaseRequestData,
-                proto.OfficeProto.RegisterCaseResult>(
+                proto.OfficeProto.CaseResult>(
                   this, METHODID_CASE_REQUEST)))
           .addMethod(
-            getHelloRequestMethod(),
+            getGetResolvedCasesMethod(),
             io.grpc.stub.ServerCalls.asyncUnaryCall(
               new MethodHandlers<
                 proto.OfficeProto.Client,
                 proto.OfficeProto.CaseResultSequence>(
-                  this, METHODID_HELLO_REQUEST)))
+                  this, METHODID_GET_RESOLVED_CASES)))
           .build();
     }
   }
@@ -175,17 +175,17 @@ public final class OfficeGrpc {
     /**
      */
     public io.grpc.stub.StreamObserver<proto.OfficeProto.CaseRequestData> caseRequest(
-        io.grpc.stub.StreamObserver<proto.OfficeProto.RegisterCaseResult> responseObserver) {
+        io.grpc.stub.StreamObserver<proto.OfficeProto.CaseResult> responseObserver) {
       return io.grpc.stub.ClientCalls.asyncBidiStreamingCall(
           getChannel().newCall(getCaseRequestMethod(), getCallOptions()), responseObserver);
     }
 
     /**
      */
-    public void helloRequest(proto.OfficeProto.Client request,
+    public void getResolvedCases(proto.OfficeProto.Client request,
         io.grpc.stub.StreamObserver<proto.OfficeProto.CaseResultSequence> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
-          getChannel().newCall(getHelloRequestMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getGetResolvedCasesMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -205,9 +205,9 @@ public final class OfficeGrpc {
 
     /**
      */
-    public proto.OfficeProto.CaseResultSequence helloRequest(proto.OfficeProto.Client request) {
+    public proto.OfficeProto.CaseResultSequence getResolvedCases(proto.OfficeProto.Client request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
-          getChannel(), getHelloRequestMethod(), getCallOptions(), request);
+          getChannel(), getGetResolvedCasesMethod(), getCallOptions(), request);
     }
   }
 
@@ -227,14 +227,14 @@ public final class OfficeGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<proto.OfficeProto.CaseResultSequence> helloRequest(
+    public com.google.common.util.concurrent.ListenableFuture<proto.OfficeProto.CaseResultSequence> getResolvedCases(
         proto.OfficeProto.Client request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getHelloRequestMethod(), getCallOptions()), request);
+          getChannel().newCall(getGetResolvedCasesMethod(), getCallOptions()), request);
     }
   }
 
-  private static final int METHODID_HELLO_REQUEST = 0;
+  private static final int METHODID_GET_RESOLVED_CASES = 0;
   private static final int METHODID_CASE_REQUEST = 1;
 
   private static final class MethodHandlers<Req, Resp> implements
@@ -254,8 +254,8 @@ public final class OfficeGrpc {
     @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
-        case METHODID_HELLO_REQUEST:
-          serviceImpl.helloRequest((proto.OfficeProto.Client) request,
+        case METHODID_GET_RESOLVED_CASES:
+          serviceImpl.getResolvedCases((proto.OfficeProto.Client) request,
               (io.grpc.stub.StreamObserver<proto.OfficeProto.CaseResultSequence>) responseObserver);
           break;
         default:
@@ -270,7 +270,7 @@ public final class OfficeGrpc {
       switch (methodId) {
         case METHODID_CASE_REQUEST:
           return (io.grpc.stub.StreamObserver<Req>) serviceImpl.caseRequest(
-              (io.grpc.stub.StreamObserver<proto.OfficeProto.RegisterCaseResult>) responseObserver);
+              (io.grpc.stub.StreamObserver<proto.OfficeProto.CaseResult>) responseObserver);
         default:
           throw new AssertionError();
       }
@@ -323,7 +323,7 @@ public final class OfficeGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new OfficeFileDescriptorSupplier())
               .addMethod(getCaseRequestMethod())
-              .addMethod(getHelloRequestMethod())
+              .addMethod(getGetResolvedCasesMethod())
               .build();
         }
       }

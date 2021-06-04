@@ -1411,22 +1411,7 @@ public final class OfficeProto {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.office.Case case = 1;</code>
-     * @return Whether the case field is set.
-     */
-    boolean hasCase();
-    /**
-     * <code>.office.Case case = 1;</code>
-     * @return The case.
-     */
-    proto.OfficeProto.Case getCase();
-    /**
-     * <code>.office.Case case = 1;</code>
-     */
-    proto.OfficeProto.CaseOrBuilder getCaseOrBuilder();
-
-    /**
-     * <code>uint32 resolutionTime = 2;</code>
+     * <code>uint32 resolutionTime = 1;</code>
      * @return The resolutionTime.
      */
     int getResolutionTime();
@@ -1476,20 +1461,7 @@ public final class OfficeProto {
             case 0:
               done = true;
               break;
-            case 10: {
-              proto.OfficeProto.Case.Builder subBuilder = null;
-              if (case_ != null) {
-                subBuilder = case_.toBuilder();
-              }
-              case_ = input.readMessage(proto.OfficeProto.Case.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(case_);
-                case_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 16: {
+            case 8: {
 
               resolutionTime_ = input.readUInt32();
               break;
@@ -1526,36 +1498,10 @@ public final class OfficeProto {
               proto.OfficeProto.CaseAck.class, proto.OfficeProto.CaseAck.Builder.class);
     }
 
-    public static final int CASE_FIELD_NUMBER = 1;
-    private proto.OfficeProto.Case case_;
-    /**
-     * <code>.office.Case case = 1;</code>
-     * @return Whether the case field is set.
-     */
-    @java.lang.Override
-    public boolean hasCase() {
-      return case_ != null;
-    }
-    /**
-     * <code>.office.Case case = 1;</code>
-     * @return The case.
-     */
-    @java.lang.Override
-    public proto.OfficeProto.Case getCase() {
-      return case_ == null ? proto.OfficeProto.Case.getDefaultInstance() : case_;
-    }
-    /**
-     * <code>.office.Case case = 1;</code>
-     */
-    @java.lang.Override
-    public proto.OfficeProto.CaseOrBuilder getCaseOrBuilder() {
-      return getCase();
-    }
-
-    public static final int RESOLUTIONTIME_FIELD_NUMBER = 2;
+    public static final int RESOLUTIONTIME_FIELD_NUMBER = 1;
     private int resolutionTime_;
     /**
-     * <code>uint32 resolutionTime = 2;</code>
+     * <code>uint32 resolutionTime = 1;</code>
      * @return The resolutionTime.
      */
     @java.lang.Override
@@ -1577,11 +1523,8 @@ public final class OfficeProto {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (case_ != null) {
-        output.writeMessage(1, getCase());
-      }
       if (resolutionTime_ != 0) {
-        output.writeUInt32(2, resolutionTime_);
+        output.writeUInt32(1, resolutionTime_);
       }
       unknownFields.writeTo(output);
     }
@@ -1592,13 +1535,9 @@ public final class OfficeProto {
       if (size != -1) return size;
 
       size = 0;
-      if (case_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getCase());
-      }
       if (resolutionTime_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(2, resolutionTime_);
+          .computeUInt32Size(1, resolutionTime_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1615,11 +1554,6 @@ public final class OfficeProto {
       }
       proto.OfficeProto.CaseAck other = (proto.OfficeProto.CaseAck) obj;
 
-      if (hasCase() != other.hasCase()) return false;
-      if (hasCase()) {
-        if (!getCase()
-            .equals(other.getCase())) return false;
-      }
       if (getResolutionTime()
           != other.getResolutionTime()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
@@ -1633,10 +1567,6 @@ public final class OfficeProto {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasCase()) {
-        hash = (37 * hash) + CASE_FIELD_NUMBER;
-        hash = (53 * hash) + getCase().hashCode();
-      }
       hash = (37 * hash) + RESOLUTIONTIME_FIELD_NUMBER;
       hash = (53 * hash) + getResolutionTime();
       hash = (29 * hash) + unknownFields.hashCode();
@@ -1772,12 +1702,6 @@ public final class OfficeProto {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (caseBuilder_ == null) {
-          case_ = null;
-        } else {
-          case_ = null;
-          caseBuilder_ = null;
-        }
         resolutionTime_ = 0;
 
         return this;
@@ -1806,11 +1730,6 @@ public final class OfficeProto {
       @java.lang.Override
       public proto.OfficeProto.CaseAck buildPartial() {
         proto.OfficeProto.CaseAck result = new proto.OfficeProto.CaseAck(this);
-        if (caseBuilder_ == null) {
-          result.case_ = case_;
-        } else {
-          result.case_ = caseBuilder_.build();
-        }
         result.resolutionTime_ = resolutionTime_;
         onBuilt();
         return result;
@@ -1860,9 +1779,6 @@ public final class OfficeProto {
 
       public Builder mergeFrom(proto.OfficeProto.CaseAck other) {
         if (other == proto.OfficeProto.CaseAck.getDefaultInstance()) return this;
-        if (other.hasCase()) {
-          mergeCase(other.getCase());
-        }
         if (other.getResolutionTime() != 0) {
           setResolutionTime(other.getResolutionTime());
         }
@@ -1895,128 +1811,9 @@ public final class OfficeProto {
         return this;
       }
 
-      private proto.OfficeProto.Case case_;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          proto.OfficeProto.Case, proto.OfficeProto.Case.Builder, proto.OfficeProto.CaseOrBuilder> caseBuilder_;
-      /**
-       * <code>.office.Case case = 1;</code>
-       * @return Whether the case field is set.
-       */
-      public boolean hasCase() {
-        return caseBuilder_ != null || case_ != null;
-      }
-      /**
-       * <code>.office.Case case = 1;</code>
-       * @return The case.
-       */
-      public proto.OfficeProto.Case getCase() {
-        if (caseBuilder_ == null) {
-          return case_ == null ? proto.OfficeProto.Case.getDefaultInstance() : case_;
-        } else {
-          return caseBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>.office.Case case = 1;</code>
-       */
-      public Builder setCase(proto.OfficeProto.Case value) {
-        if (caseBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          case_ = value;
-          onChanged();
-        } else {
-          caseBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.office.Case case = 1;</code>
-       */
-      public Builder setCase(
-          proto.OfficeProto.Case.Builder builderForValue) {
-        if (caseBuilder_ == null) {
-          case_ = builderForValue.build();
-          onChanged();
-        } else {
-          caseBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>.office.Case case = 1;</code>
-       */
-      public Builder mergeCase(proto.OfficeProto.Case value) {
-        if (caseBuilder_ == null) {
-          if (case_ != null) {
-            case_ =
-              proto.OfficeProto.Case.newBuilder(case_).mergeFrom(value).buildPartial();
-          } else {
-            case_ = value;
-          }
-          onChanged();
-        } else {
-          caseBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.office.Case case = 1;</code>
-       */
-      public Builder clearCase() {
-        if (caseBuilder_ == null) {
-          case_ = null;
-          onChanged();
-        } else {
-          case_ = null;
-          caseBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>.office.Case case = 1;</code>
-       */
-      public proto.OfficeProto.Case.Builder getCaseBuilder() {
-        
-        onChanged();
-        return getCaseFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.office.Case case = 1;</code>
-       */
-      public proto.OfficeProto.CaseOrBuilder getCaseOrBuilder() {
-        if (caseBuilder_ != null) {
-          return caseBuilder_.getMessageOrBuilder();
-        } else {
-          return case_ == null ?
-              proto.OfficeProto.Case.getDefaultInstance() : case_;
-        }
-      }
-      /**
-       * <code>.office.Case case = 1;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          proto.OfficeProto.Case, proto.OfficeProto.Case.Builder, proto.OfficeProto.CaseOrBuilder> 
-          getCaseFieldBuilder() {
-        if (caseBuilder_ == null) {
-          caseBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              proto.OfficeProto.Case, proto.OfficeProto.Case.Builder, proto.OfficeProto.CaseOrBuilder>(
-                  getCase(),
-                  getParentForChildren(),
-                  isClean());
-          case_ = null;
-        }
-        return caseBuilder_;
-      }
-
       private int resolutionTime_ ;
       /**
-       * <code>uint32 resolutionTime = 2;</code>
+       * <code>uint32 resolutionTime = 1;</code>
        * @return The resolutionTime.
        */
       @java.lang.Override
@@ -2024,7 +1821,7 @@ public final class OfficeProto {
         return resolutionTime_;
       }
       /**
-       * <code>uint32 resolutionTime = 2;</code>
+       * <code>uint32 resolutionTime = 1;</code>
        * @param value The resolutionTime to set.
        * @return This builder for chaining.
        */
@@ -2035,7 +1832,7 @@ public final class OfficeProto {
         return this;
       }
       /**
-       * <code>uint32 resolutionTime = 2;</code>
+       * <code>uint32 resolutionTime = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearResolutionTime() {
@@ -2097,6 +1894,574 @@ public final class OfficeProto {
 
   }
 
+  public interface CaseResolvedResultOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:office.CaseResolvedResult)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string message = 1;</code>
+     * @return The message.
+     */
+    java.lang.String getMessage();
+    /**
+     * <code>string message = 1;</code>
+     * @return The bytes for message.
+     */
+    com.google.protobuf.ByteString
+        getMessageBytes();
+  }
+  /**
+   * Protobuf type {@code office.CaseResolvedResult}
+   */
+  public static final class CaseResolvedResult extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:office.CaseResolvedResult)
+      CaseResolvedResultOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use CaseResolvedResult.newBuilder() to construct.
+    private CaseResolvedResult(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private CaseResolvedResult() {
+      message_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new CaseResolvedResult();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private CaseResolvedResult(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              message_ = s;
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return proto.OfficeProto.internal_static_office_CaseResolvedResult_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return proto.OfficeProto.internal_static_office_CaseResolvedResult_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              proto.OfficeProto.CaseResolvedResult.class, proto.OfficeProto.CaseResolvedResult.Builder.class);
+    }
+
+    public static final int MESSAGE_FIELD_NUMBER = 1;
+    private volatile java.lang.Object message_;
+    /**
+     * <code>string message = 1;</code>
+     * @return The message.
+     */
+    @java.lang.Override
+    public java.lang.String getMessage() {
+      java.lang.Object ref = message_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        message_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string message = 1;</code>
+     * @return The bytes for message.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getMessageBytes() {
+      java.lang.Object ref = message_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        message_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getMessageBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, message_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getMessageBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, message_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof proto.OfficeProto.CaseResolvedResult)) {
+        return super.equals(obj);
+      }
+      proto.OfficeProto.CaseResolvedResult other = (proto.OfficeProto.CaseResolvedResult) obj;
+
+      if (!getMessage()
+          .equals(other.getMessage())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
+      hash = (53 * hash) + getMessage().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static proto.OfficeProto.CaseResolvedResult parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static proto.OfficeProto.CaseResolvedResult parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static proto.OfficeProto.CaseResolvedResult parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static proto.OfficeProto.CaseResolvedResult parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static proto.OfficeProto.CaseResolvedResult parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static proto.OfficeProto.CaseResolvedResult parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static proto.OfficeProto.CaseResolvedResult parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static proto.OfficeProto.CaseResolvedResult parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static proto.OfficeProto.CaseResolvedResult parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static proto.OfficeProto.CaseResolvedResult parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static proto.OfficeProto.CaseResolvedResult parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static proto.OfficeProto.CaseResolvedResult parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(proto.OfficeProto.CaseResolvedResult prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code office.CaseResolvedResult}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:office.CaseResolvedResult)
+        proto.OfficeProto.CaseResolvedResultOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return proto.OfficeProto.internal_static_office_CaseResolvedResult_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return proto.OfficeProto.internal_static_office_CaseResolvedResult_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                proto.OfficeProto.CaseResolvedResult.class, proto.OfficeProto.CaseResolvedResult.Builder.class);
+      }
+
+      // Construct using proto.OfficeProto.CaseResolvedResult.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        message_ = "";
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return proto.OfficeProto.internal_static_office_CaseResolvedResult_descriptor;
+      }
+
+      @java.lang.Override
+      public proto.OfficeProto.CaseResolvedResult getDefaultInstanceForType() {
+        return proto.OfficeProto.CaseResolvedResult.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public proto.OfficeProto.CaseResolvedResult build() {
+        proto.OfficeProto.CaseResolvedResult result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public proto.OfficeProto.CaseResolvedResult buildPartial() {
+        proto.OfficeProto.CaseResolvedResult result = new proto.OfficeProto.CaseResolvedResult(this);
+        result.message_ = message_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof proto.OfficeProto.CaseResolvedResult) {
+          return mergeFrom((proto.OfficeProto.CaseResolvedResult)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(proto.OfficeProto.CaseResolvedResult other) {
+        if (other == proto.OfficeProto.CaseResolvedResult.getDefaultInstance()) return this;
+        if (!other.getMessage().isEmpty()) {
+          message_ = other.message_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        proto.OfficeProto.CaseResolvedResult parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (proto.OfficeProto.CaseResolvedResult) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object message_ = "";
+      /**
+       * <code>string message = 1;</code>
+       * @return The message.
+       */
+      public java.lang.String getMessage() {
+        java.lang.Object ref = message_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          message_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string message = 1;</code>
+       * @return The bytes for message.
+       */
+      public com.google.protobuf.ByteString
+          getMessageBytes() {
+        java.lang.Object ref = message_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          message_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string message = 1;</code>
+       * @param value The message to set.
+       * @return This builder for chaining.
+       */
+      public Builder setMessage(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        message_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string message = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearMessage() {
+        
+        message_ = getDefaultInstance().getMessage();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string message = 1;</code>
+       * @param value The bytes for message to set.
+       * @return This builder for chaining.
+       */
+      public Builder setMessageBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        message_ = value;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:office.CaseResolvedResult)
+    }
+
+    // @@protoc_insertion_point(class_scope:office.CaseResolvedResult)
+    private static final proto.OfficeProto.CaseResolvedResult DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new proto.OfficeProto.CaseResolvedResult();
+    }
+
+    public static proto.OfficeProto.CaseResolvedResult getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<CaseResolvedResult>
+        PARSER = new com.google.protobuf.AbstractParser<CaseResolvedResult>() {
+      @java.lang.Override
+      public CaseResolvedResult parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new CaseResolvedResult(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<CaseResolvedResult> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<CaseResolvedResult> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public proto.OfficeProto.CaseResolvedResult getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface CaseResultOrBuilder extends
       // @@protoc_insertion_point(interface_extends:office.CaseResult)
       com.google.protobuf.MessageOrBuilder {
@@ -2117,16 +2482,36 @@ public final class OfficeProto {
     proto.OfficeProto.CaseOrBuilder getCaseOrBuilder();
 
     /**
-     * <code>string message = 2;</code>
-     * @return The message.
+     * <code>.office.CaseAck caseAck = 2;</code>
+     * @return Whether the caseAck field is set.
      */
-    java.lang.String getMessage();
+    boolean hasCaseAck();
     /**
-     * <code>string message = 2;</code>
-     * @return The bytes for message.
+     * <code>.office.CaseAck caseAck = 2;</code>
+     * @return The caseAck.
      */
-    com.google.protobuf.ByteString
-        getMessageBytes();
+    proto.OfficeProto.CaseAck getCaseAck();
+    /**
+     * <code>.office.CaseAck caseAck = 2;</code>
+     */
+    proto.OfficeProto.CaseAckOrBuilder getCaseAckOrBuilder();
+
+    /**
+     * <code>.office.CaseResolvedResult caseResolvedResult = 3;</code>
+     * @return Whether the caseResolvedResult field is set.
+     */
+    boolean hasCaseResolvedResult();
+    /**
+     * <code>.office.CaseResolvedResult caseResolvedResult = 3;</code>
+     * @return The caseResolvedResult.
+     */
+    proto.OfficeProto.CaseResolvedResult getCaseResolvedResult();
+    /**
+     * <code>.office.CaseResolvedResult caseResolvedResult = 3;</code>
+     */
+    proto.OfficeProto.CaseResolvedResultOrBuilder getCaseResolvedResultOrBuilder();
+
+    public proto.OfficeProto.CaseResult.ResultCase getResultCase();
   }
   /**
    * Protobuf type {@code office.CaseResult}
@@ -2141,7 +2526,6 @@ public final class OfficeProto {
       super(builder);
     }
     private CaseResult() {
-      message_ = "";
     }
 
     @java.lang.Override
@@ -2188,9 +2572,31 @@ public final class OfficeProto {
               break;
             }
             case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              message_ = s;
+              proto.OfficeProto.CaseAck.Builder subBuilder = null;
+              if (resultCase_ == 2) {
+                subBuilder = ((proto.OfficeProto.CaseAck) result_).toBuilder();
+              }
+              result_ =
+                  input.readMessage(proto.OfficeProto.CaseAck.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom((proto.OfficeProto.CaseAck) result_);
+                result_ = subBuilder.buildPartial();
+              }
+              resultCase_ = 2;
+              break;
+            }
+            case 26: {
+              proto.OfficeProto.CaseResolvedResult.Builder subBuilder = null;
+              if (resultCase_ == 3) {
+                subBuilder = ((proto.OfficeProto.CaseResolvedResult) result_).toBuilder();
+              }
+              result_ =
+                  input.readMessage(proto.OfficeProto.CaseResolvedResult.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom((proto.OfficeProto.CaseResolvedResult) result_);
+                result_ = subBuilder.buildPartial();
+              }
+              resultCase_ = 3;
               break;
             }
             default: {
@@ -2225,6 +2631,47 @@ public final class OfficeProto {
               proto.OfficeProto.CaseResult.class, proto.OfficeProto.CaseResult.Builder.class);
     }
 
+    private int resultCase_ = 0;
+    private java.lang.Object result_;
+    public enum ResultCase
+        implements com.google.protobuf.Internal.EnumLite,
+            com.google.protobuf.AbstractMessage.InternalOneOfEnum {
+      CASEACK(2),
+      CASERESOLVEDRESULT(3),
+      RESULT_NOT_SET(0);
+      private final int value;
+      private ResultCase(int value) {
+        this.value = value;
+      }
+      /**
+       * @param value The number of the enum to look for.
+       * @return The enum associated with the given number.
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static ResultCase valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static ResultCase forNumber(int value) {
+        switch (value) {
+          case 2: return CASEACK;
+          case 3: return CASERESOLVEDRESULT;
+          case 0: return RESULT_NOT_SET;
+          default: return null;
+        }
+      }
+      public int getNumber() {
+        return this.value;
+      }
+    };
+
+    public ResultCase
+    getResultCase() {
+      return ResultCase.forNumber(
+          resultCase_);
+    }
+
     public static final int CASE_FIELD_NUMBER = 1;
     private proto.OfficeProto.Case case_;
     /**
@@ -2251,42 +2698,66 @@ public final class OfficeProto {
       return getCase();
     }
 
-    public static final int MESSAGE_FIELD_NUMBER = 2;
-    private volatile java.lang.Object message_;
+    public static final int CASEACK_FIELD_NUMBER = 2;
     /**
-     * <code>string message = 2;</code>
-     * @return The message.
+     * <code>.office.CaseAck caseAck = 2;</code>
+     * @return Whether the caseAck field is set.
      */
     @java.lang.Override
-    public java.lang.String getMessage() {
-      java.lang.Object ref = message_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        message_ = s;
-        return s;
-      }
+    public boolean hasCaseAck() {
+      return resultCase_ == 2;
     }
     /**
-     * <code>string message = 2;</code>
-     * @return The bytes for message.
+     * <code>.office.CaseAck caseAck = 2;</code>
+     * @return The caseAck.
      */
     @java.lang.Override
-    public com.google.protobuf.ByteString
-        getMessageBytes() {
-      java.lang.Object ref = message_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        message_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
+    public proto.OfficeProto.CaseAck getCaseAck() {
+      if (resultCase_ == 2) {
+         return (proto.OfficeProto.CaseAck) result_;
       }
+      return proto.OfficeProto.CaseAck.getDefaultInstance();
+    }
+    /**
+     * <code>.office.CaseAck caseAck = 2;</code>
+     */
+    @java.lang.Override
+    public proto.OfficeProto.CaseAckOrBuilder getCaseAckOrBuilder() {
+      if (resultCase_ == 2) {
+         return (proto.OfficeProto.CaseAck) result_;
+      }
+      return proto.OfficeProto.CaseAck.getDefaultInstance();
+    }
+
+    public static final int CASERESOLVEDRESULT_FIELD_NUMBER = 3;
+    /**
+     * <code>.office.CaseResolvedResult caseResolvedResult = 3;</code>
+     * @return Whether the caseResolvedResult field is set.
+     */
+    @java.lang.Override
+    public boolean hasCaseResolvedResult() {
+      return resultCase_ == 3;
+    }
+    /**
+     * <code>.office.CaseResolvedResult caseResolvedResult = 3;</code>
+     * @return The caseResolvedResult.
+     */
+    @java.lang.Override
+    public proto.OfficeProto.CaseResolvedResult getCaseResolvedResult() {
+      if (resultCase_ == 3) {
+         return (proto.OfficeProto.CaseResolvedResult) result_;
+      }
+      return proto.OfficeProto.CaseResolvedResult.getDefaultInstance();
+    }
+    /**
+     * <code>.office.CaseResolvedResult caseResolvedResult = 3;</code>
+     */
+    @java.lang.Override
+    public proto.OfficeProto.CaseResolvedResultOrBuilder getCaseResolvedResultOrBuilder() {
+      if (resultCase_ == 3) {
+         return (proto.OfficeProto.CaseResolvedResult) result_;
+      }
+      return proto.OfficeProto.CaseResolvedResult.getDefaultInstance();
     }
 
     private byte memoizedIsInitialized = -1;
@@ -2306,8 +2777,11 @@ public final class OfficeProto {
       if (case_ != null) {
         output.writeMessage(1, getCase());
       }
-      if (!getMessageBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, message_);
+      if (resultCase_ == 2) {
+        output.writeMessage(2, (proto.OfficeProto.CaseAck) result_);
+      }
+      if (resultCase_ == 3) {
+        output.writeMessage(3, (proto.OfficeProto.CaseResolvedResult) result_);
       }
       unknownFields.writeTo(output);
     }
@@ -2322,8 +2796,13 @@ public final class OfficeProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getCase());
       }
-      if (!getMessageBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, message_);
+      if (resultCase_ == 2) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, (proto.OfficeProto.CaseAck) result_);
+      }
+      if (resultCase_ == 3) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, (proto.OfficeProto.CaseResolvedResult) result_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -2345,8 +2824,19 @@ public final class OfficeProto {
         if (!getCase()
             .equals(other.getCase())) return false;
       }
-      if (!getMessage()
-          .equals(other.getMessage())) return false;
+      if (!getResultCase().equals(other.getResultCase())) return false;
+      switch (resultCase_) {
+        case 2:
+          if (!getCaseAck()
+              .equals(other.getCaseAck())) return false;
+          break;
+        case 3:
+          if (!getCaseResolvedResult()
+              .equals(other.getCaseResolvedResult())) return false;
+          break;
+        case 0:
+        default:
+      }
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -2362,8 +2852,18 @@ public final class OfficeProto {
         hash = (37 * hash) + CASE_FIELD_NUMBER;
         hash = (53 * hash) + getCase().hashCode();
       }
-      hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
-      hash = (53 * hash) + getMessage().hashCode();
+      switch (resultCase_) {
+        case 2:
+          hash = (37 * hash) + CASEACK_FIELD_NUMBER;
+          hash = (53 * hash) + getCaseAck().hashCode();
+          break;
+        case 3:
+          hash = (37 * hash) + CASERESOLVEDRESULT_FIELD_NUMBER;
+          hash = (53 * hash) + getCaseResolvedResult().hashCode();
+          break;
+        case 0:
+        default:
+      }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -2503,8 +3003,8 @@ public final class OfficeProto {
           case_ = null;
           caseBuilder_ = null;
         }
-        message_ = "";
-
+        resultCase_ = 0;
+        result_ = null;
         return this;
       }
 
@@ -2536,7 +3036,21 @@ public final class OfficeProto {
         } else {
           result.case_ = caseBuilder_.build();
         }
-        result.message_ = message_;
+        if (resultCase_ == 2) {
+          if (caseAckBuilder_ == null) {
+            result.result_ = result_;
+          } else {
+            result.result_ = caseAckBuilder_.build();
+          }
+        }
+        if (resultCase_ == 3) {
+          if (caseResolvedResultBuilder_ == null) {
+            result.result_ = result_;
+          } else {
+            result.result_ = caseResolvedResultBuilder_.build();
+          }
+        }
+        result.resultCase_ = resultCase_;
         onBuilt();
         return result;
       }
@@ -2588,9 +3102,18 @@ public final class OfficeProto {
         if (other.hasCase()) {
           mergeCase(other.getCase());
         }
-        if (!other.getMessage().isEmpty()) {
-          message_ = other.message_;
-          onChanged();
+        switch (other.getResultCase()) {
+          case CASEACK: {
+            mergeCaseAck(other.getCaseAck());
+            break;
+          }
+          case CASERESOLVEDRESULT: {
+            mergeCaseResolvedResult(other.getCaseResolvedResult());
+            break;
+          }
+          case RESULT_NOT_SET: {
+            break;
+          }
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -2620,6 +3143,21 @@ public final class OfficeProto {
         }
         return this;
       }
+      private int resultCase_ = 0;
+      private java.lang.Object result_;
+      public ResultCase
+          getResultCase() {
+        return ResultCase.forNumber(
+            resultCase_);
+      }
+
+      public Builder clearResult() {
+        resultCase_ = 0;
+        result_ = null;
+        onChanged();
+        return this;
+      }
+
 
       private proto.OfficeProto.Case case_;
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -2740,80 +3278,286 @@ public final class OfficeProto {
         return caseBuilder_;
       }
 
-      private java.lang.Object message_ = "";
+      private com.google.protobuf.SingleFieldBuilderV3<
+          proto.OfficeProto.CaseAck, proto.OfficeProto.CaseAck.Builder, proto.OfficeProto.CaseAckOrBuilder> caseAckBuilder_;
       /**
-       * <code>string message = 2;</code>
-       * @return The message.
+       * <code>.office.CaseAck caseAck = 2;</code>
+       * @return Whether the caseAck field is set.
        */
-      public java.lang.String getMessage() {
-        java.lang.Object ref = message_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          message_ = s;
-          return s;
+      @java.lang.Override
+      public boolean hasCaseAck() {
+        return resultCase_ == 2;
+      }
+      /**
+       * <code>.office.CaseAck caseAck = 2;</code>
+       * @return The caseAck.
+       */
+      @java.lang.Override
+      public proto.OfficeProto.CaseAck getCaseAck() {
+        if (caseAckBuilder_ == null) {
+          if (resultCase_ == 2) {
+            return (proto.OfficeProto.CaseAck) result_;
+          }
+          return proto.OfficeProto.CaseAck.getDefaultInstance();
         } else {
-          return (java.lang.String) ref;
+          if (resultCase_ == 2) {
+            return caseAckBuilder_.getMessage();
+          }
+          return proto.OfficeProto.CaseAck.getDefaultInstance();
         }
       }
       /**
-       * <code>string message = 2;</code>
-       * @return The bytes for message.
+       * <code>.office.CaseAck caseAck = 2;</code>
        */
-      public com.google.protobuf.ByteString
-          getMessageBytes() {
-        java.lang.Object ref = message_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          message_ = b;
-          return b;
+      public Builder setCaseAck(proto.OfficeProto.CaseAck value) {
+        if (caseAckBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          result_ = value;
+          onChanged();
         } else {
-          return (com.google.protobuf.ByteString) ref;
+          caseAckBuilder_.setMessage(value);
+        }
+        resultCase_ = 2;
+        return this;
+      }
+      /**
+       * <code>.office.CaseAck caseAck = 2;</code>
+       */
+      public Builder setCaseAck(
+          proto.OfficeProto.CaseAck.Builder builderForValue) {
+        if (caseAckBuilder_ == null) {
+          result_ = builderForValue.build();
+          onChanged();
+        } else {
+          caseAckBuilder_.setMessage(builderForValue.build());
+        }
+        resultCase_ = 2;
+        return this;
+      }
+      /**
+       * <code>.office.CaseAck caseAck = 2;</code>
+       */
+      public Builder mergeCaseAck(proto.OfficeProto.CaseAck value) {
+        if (caseAckBuilder_ == null) {
+          if (resultCase_ == 2 &&
+              result_ != proto.OfficeProto.CaseAck.getDefaultInstance()) {
+            result_ = proto.OfficeProto.CaseAck.newBuilder((proto.OfficeProto.CaseAck) result_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            result_ = value;
+          }
+          onChanged();
+        } else {
+          if (resultCase_ == 2) {
+            caseAckBuilder_.mergeFrom(value);
+          }
+          caseAckBuilder_.setMessage(value);
+        }
+        resultCase_ = 2;
+        return this;
+      }
+      /**
+       * <code>.office.CaseAck caseAck = 2;</code>
+       */
+      public Builder clearCaseAck() {
+        if (caseAckBuilder_ == null) {
+          if (resultCase_ == 2) {
+            resultCase_ = 0;
+            result_ = null;
+            onChanged();
+          }
+        } else {
+          if (resultCase_ == 2) {
+            resultCase_ = 0;
+            result_ = null;
+          }
+          caseAckBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.office.CaseAck caseAck = 2;</code>
+       */
+      public proto.OfficeProto.CaseAck.Builder getCaseAckBuilder() {
+        return getCaseAckFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.office.CaseAck caseAck = 2;</code>
+       */
+      @java.lang.Override
+      public proto.OfficeProto.CaseAckOrBuilder getCaseAckOrBuilder() {
+        if ((resultCase_ == 2) && (caseAckBuilder_ != null)) {
+          return caseAckBuilder_.getMessageOrBuilder();
+        } else {
+          if (resultCase_ == 2) {
+            return (proto.OfficeProto.CaseAck) result_;
+          }
+          return proto.OfficeProto.CaseAck.getDefaultInstance();
         }
       }
       /**
-       * <code>string message = 2;</code>
-       * @param value The message to set.
-       * @return This builder for chaining.
+       * <code>.office.CaseAck caseAck = 2;</code>
        */
-      public Builder setMessage(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        message_ = value;
-        onChanged();
+      private com.google.protobuf.SingleFieldBuilderV3<
+          proto.OfficeProto.CaseAck, proto.OfficeProto.CaseAck.Builder, proto.OfficeProto.CaseAckOrBuilder> 
+          getCaseAckFieldBuilder() {
+        if (caseAckBuilder_ == null) {
+          if (!(resultCase_ == 2)) {
+            result_ = proto.OfficeProto.CaseAck.getDefaultInstance();
+          }
+          caseAckBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              proto.OfficeProto.CaseAck, proto.OfficeProto.CaseAck.Builder, proto.OfficeProto.CaseAckOrBuilder>(
+                  (proto.OfficeProto.CaseAck) result_,
+                  getParentForChildren(),
+                  isClean());
+          result_ = null;
+        }
+        resultCase_ = 2;
+        onChanged();;
+        return caseAckBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          proto.OfficeProto.CaseResolvedResult, proto.OfficeProto.CaseResolvedResult.Builder, proto.OfficeProto.CaseResolvedResultOrBuilder> caseResolvedResultBuilder_;
+      /**
+       * <code>.office.CaseResolvedResult caseResolvedResult = 3;</code>
+       * @return Whether the caseResolvedResult field is set.
+       */
+      @java.lang.Override
+      public boolean hasCaseResolvedResult() {
+        return resultCase_ == 3;
+      }
+      /**
+       * <code>.office.CaseResolvedResult caseResolvedResult = 3;</code>
+       * @return The caseResolvedResult.
+       */
+      @java.lang.Override
+      public proto.OfficeProto.CaseResolvedResult getCaseResolvedResult() {
+        if (caseResolvedResultBuilder_ == null) {
+          if (resultCase_ == 3) {
+            return (proto.OfficeProto.CaseResolvedResult) result_;
+          }
+          return proto.OfficeProto.CaseResolvedResult.getDefaultInstance();
+        } else {
+          if (resultCase_ == 3) {
+            return caseResolvedResultBuilder_.getMessage();
+          }
+          return proto.OfficeProto.CaseResolvedResult.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.office.CaseResolvedResult caseResolvedResult = 3;</code>
+       */
+      public Builder setCaseResolvedResult(proto.OfficeProto.CaseResolvedResult value) {
+        if (caseResolvedResultBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          result_ = value;
+          onChanged();
+        } else {
+          caseResolvedResultBuilder_.setMessage(value);
+        }
+        resultCase_ = 3;
         return this;
       }
       /**
-       * <code>string message = 2;</code>
-       * @return This builder for chaining.
+       * <code>.office.CaseResolvedResult caseResolvedResult = 3;</code>
        */
-      public Builder clearMessage() {
-        
-        message_ = getDefaultInstance().getMessage();
-        onChanged();
+      public Builder setCaseResolvedResult(
+          proto.OfficeProto.CaseResolvedResult.Builder builderForValue) {
+        if (caseResolvedResultBuilder_ == null) {
+          result_ = builderForValue.build();
+          onChanged();
+        } else {
+          caseResolvedResultBuilder_.setMessage(builderForValue.build());
+        }
+        resultCase_ = 3;
         return this;
       }
       /**
-       * <code>string message = 2;</code>
-       * @param value The bytes for message to set.
-       * @return This builder for chaining.
+       * <code>.office.CaseResolvedResult caseResolvedResult = 3;</code>
        */
-      public Builder setMessageBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        message_ = value;
-        onChanged();
+      public Builder mergeCaseResolvedResult(proto.OfficeProto.CaseResolvedResult value) {
+        if (caseResolvedResultBuilder_ == null) {
+          if (resultCase_ == 3 &&
+              result_ != proto.OfficeProto.CaseResolvedResult.getDefaultInstance()) {
+            result_ = proto.OfficeProto.CaseResolvedResult.newBuilder((proto.OfficeProto.CaseResolvedResult) result_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            result_ = value;
+          }
+          onChanged();
+        } else {
+          if (resultCase_ == 3) {
+            caseResolvedResultBuilder_.mergeFrom(value);
+          }
+          caseResolvedResultBuilder_.setMessage(value);
+        }
+        resultCase_ = 3;
         return this;
+      }
+      /**
+       * <code>.office.CaseResolvedResult caseResolvedResult = 3;</code>
+       */
+      public Builder clearCaseResolvedResult() {
+        if (caseResolvedResultBuilder_ == null) {
+          if (resultCase_ == 3) {
+            resultCase_ = 0;
+            result_ = null;
+            onChanged();
+          }
+        } else {
+          if (resultCase_ == 3) {
+            resultCase_ = 0;
+            result_ = null;
+          }
+          caseResolvedResultBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.office.CaseResolvedResult caseResolvedResult = 3;</code>
+       */
+      public proto.OfficeProto.CaseResolvedResult.Builder getCaseResolvedResultBuilder() {
+        return getCaseResolvedResultFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.office.CaseResolvedResult caseResolvedResult = 3;</code>
+       */
+      @java.lang.Override
+      public proto.OfficeProto.CaseResolvedResultOrBuilder getCaseResolvedResultOrBuilder() {
+        if ((resultCase_ == 3) && (caseResolvedResultBuilder_ != null)) {
+          return caseResolvedResultBuilder_.getMessageOrBuilder();
+        } else {
+          if (resultCase_ == 3) {
+            return (proto.OfficeProto.CaseResolvedResult) result_;
+          }
+          return proto.OfficeProto.CaseResolvedResult.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.office.CaseResolvedResult caseResolvedResult = 3;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          proto.OfficeProto.CaseResolvedResult, proto.OfficeProto.CaseResolvedResult.Builder, proto.OfficeProto.CaseResolvedResultOrBuilder> 
+          getCaseResolvedResultFieldBuilder() {
+        if (caseResolvedResultBuilder_ == null) {
+          if (!(resultCase_ == 3)) {
+            result_ = proto.OfficeProto.CaseResolvedResult.getDefaultInstance();
+          }
+          caseResolvedResultBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              proto.OfficeProto.CaseResolvedResult, proto.OfficeProto.CaseResolvedResult.Builder, proto.OfficeProto.CaseResolvedResultOrBuilder>(
+                  (proto.OfficeProto.CaseResolvedResult) result_,
+                  getParentForChildren(),
+                  isClean());
+          result_ = null;
+        }
+        resultCase_ = 3;
+        onChanged();;
+        return caseResolvedResultBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -2868,983 +3612,33 @@ public final class OfficeProto {
 
   }
 
-  public interface RegisterCaseResultOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:office.RegisterCaseResult)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>.office.CaseAck caseAck = 1;</code>
-     * @return Whether the caseAck field is set.
-     */
-    boolean hasCaseAck();
-    /**
-     * <code>.office.CaseAck caseAck = 1;</code>
-     * @return The caseAck.
-     */
-    proto.OfficeProto.CaseAck getCaseAck();
-    /**
-     * <code>.office.CaseAck caseAck = 1;</code>
-     */
-    proto.OfficeProto.CaseAckOrBuilder getCaseAckOrBuilder();
-
-    /**
-     * <code>.office.CaseResult caseResult = 2;</code>
-     * @return Whether the caseResult field is set.
-     */
-    boolean hasCaseResult();
-    /**
-     * <code>.office.CaseResult caseResult = 2;</code>
-     * @return The caseResult.
-     */
-    proto.OfficeProto.CaseResult getCaseResult();
-    /**
-     * <code>.office.CaseResult caseResult = 2;</code>
-     */
-    proto.OfficeProto.CaseResultOrBuilder getCaseResultOrBuilder();
-
-    public proto.OfficeProto.RegisterCaseResult.ResultCase getResultCase();
-  }
-  /**
-   * Protobuf type {@code office.RegisterCaseResult}
-   */
-  public static final class RegisterCaseResult extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:office.RegisterCaseResult)
-      RegisterCaseResultOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use RegisterCaseResult.newBuilder() to construct.
-    private RegisterCaseResult(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private RegisterCaseResult() {
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new RegisterCaseResult();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private RegisterCaseResult(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              proto.OfficeProto.CaseAck.Builder subBuilder = null;
-              if (resultCase_ == 1) {
-                subBuilder = ((proto.OfficeProto.CaseAck) result_).toBuilder();
-              }
-              result_ =
-                  input.readMessage(proto.OfficeProto.CaseAck.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom((proto.OfficeProto.CaseAck) result_);
-                result_ = subBuilder.buildPartial();
-              }
-              resultCase_ = 1;
-              break;
-            }
-            case 18: {
-              proto.OfficeProto.CaseResult.Builder subBuilder = null;
-              if (resultCase_ == 2) {
-                subBuilder = ((proto.OfficeProto.CaseResult) result_).toBuilder();
-              }
-              result_ =
-                  input.readMessage(proto.OfficeProto.CaseResult.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom((proto.OfficeProto.CaseResult) result_);
-                result_ = subBuilder.buildPartial();
-              }
-              resultCase_ = 2;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return proto.OfficeProto.internal_static_office_RegisterCaseResult_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return proto.OfficeProto.internal_static_office_RegisterCaseResult_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              proto.OfficeProto.RegisterCaseResult.class, proto.OfficeProto.RegisterCaseResult.Builder.class);
-    }
-
-    private int resultCase_ = 0;
-    private java.lang.Object result_;
-    public enum ResultCase
-        implements com.google.protobuf.Internal.EnumLite,
-            com.google.protobuf.AbstractMessage.InternalOneOfEnum {
-      CASEACK(1),
-      CASERESULT(2),
-      RESULT_NOT_SET(0);
-      private final int value;
-      private ResultCase(int value) {
-        this.value = value;
-      }
-      /**
-       * @param value The number of the enum to look for.
-       * @return The enum associated with the given number.
-       * @deprecated Use {@link #forNumber(int)} instead.
-       */
-      @java.lang.Deprecated
-      public static ResultCase valueOf(int value) {
-        return forNumber(value);
-      }
-
-      public static ResultCase forNumber(int value) {
-        switch (value) {
-          case 1: return CASEACK;
-          case 2: return CASERESULT;
-          case 0: return RESULT_NOT_SET;
-          default: return null;
-        }
-      }
-      public int getNumber() {
-        return this.value;
-      }
-    };
-
-    public ResultCase
-    getResultCase() {
-      return ResultCase.forNumber(
-          resultCase_);
-    }
-
-    public static final int CASEACK_FIELD_NUMBER = 1;
-    /**
-     * <code>.office.CaseAck caseAck = 1;</code>
-     * @return Whether the caseAck field is set.
-     */
-    @java.lang.Override
-    public boolean hasCaseAck() {
-      return resultCase_ == 1;
-    }
-    /**
-     * <code>.office.CaseAck caseAck = 1;</code>
-     * @return The caseAck.
-     */
-    @java.lang.Override
-    public proto.OfficeProto.CaseAck getCaseAck() {
-      if (resultCase_ == 1) {
-         return (proto.OfficeProto.CaseAck) result_;
-      }
-      return proto.OfficeProto.CaseAck.getDefaultInstance();
-    }
-    /**
-     * <code>.office.CaseAck caseAck = 1;</code>
-     */
-    @java.lang.Override
-    public proto.OfficeProto.CaseAckOrBuilder getCaseAckOrBuilder() {
-      if (resultCase_ == 1) {
-         return (proto.OfficeProto.CaseAck) result_;
-      }
-      return proto.OfficeProto.CaseAck.getDefaultInstance();
-    }
-
-    public static final int CASERESULT_FIELD_NUMBER = 2;
-    /**
-     * <code>.office.CaseResult caseResult = 2;</code>
-     * @return Whether the caseResult field is set.
-     */
-    @java.lang.Override
-    public boolean hasCaseResult() {
-      return resultCase_ == 2;
-    }
-    /**
-     * <code>.office.CaseResult caseResult = 2;</code>
-     * @return The caseResult.
-     */
-    @java.lang.Override
-    public proto.OfficeProto.CaseResult getCaseResult() {
-      if (resultCase_ == 2) {
-         return (proto.OfficeProto.CaseResult) result_;
-      }
-      return proto.OfficeProto.CaseResult.getDefaultInstance();
-    }
-    /**
-     * <code>.office.CaseResult caseResult = 2;</code>
-     */
-    @java.lang.Override
-    public proto.OfficeProto.CaseResultOrBuilder getCaseResultOrBuilder() {
-      if (resultCase_ == 2) {
-         return (proto.OfficeProto.CaseResult) result_;
-      }
-      return proto.OfficeProto.CaseResult.getDefaultInstance();
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (resultCase_ == 1) {
-        output.writeMessage(1, (proto.OfficeProto.CaseAck) result_);
-      }
-      if (resultCase_ == 2) {
-        output.writeMessage(2, (proto.OfficeProto.CaseResult) result_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (resultCase_ == 1) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, (proto.OfficeProto.CaseAck) result_);
-      }
-      if (resultCase_ == 2) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, (proto.OfficeProto.CaseResult) result_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof proto.OfficeProto.RegisterCaseResult)) {
-        return super.equals(obj);
-      }
-      proto.OfficeProto.RegisterCaseResult other = (proto.OfficeProto.RegisterCaseResult) obj;
-
-      if (!getResultCase().equals(other.getResultCase())) return false;
-      switch (resultCase_) {
-        case 1:
-          if (!getCaseAck()
-              .equals(other.getCaseAck())) return false;
-          break;
-        case 2:
-          if (!getCaseResult()
-              .equals(other.getCaseResult())) return false;
-          break;
-        case 0:
-        default:
-      }
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      switch (resultCase_) {
-        case 1:
-          hash = (37 * hash) + CASEACK_FIELD_NUMBER;
-          hash = (53 * hash) + getCaseAck().hashCode();
-          break;
-        case 2:
-          hash = (37 * hash) + CASERESULT_FIELD_NUMBER;
-          hash = (53 * hash) + getCaseResult().hashCode();
-          break;
-        case 0:
-        default:
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static proto.OfficeProto.RegisterCaseResult parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static proto.OfficeProto.RegisterCaseResult parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static proto.OfficeProto.RegisterCaseResult parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static proto.OfficeProto.RegisterCaseResult parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static proto.OfficeProto.RegisterCaseResult parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static proto.OfficeProto.RegisterCaseResult parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static proto.OfficeProto.RegisterCaseResult parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static proto.OfficeProto.RegisterCaseResult parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static proto.OfficeProto.RegisterCaseResult parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static proto.OfficeProto.RegisterCaseResult parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static proto.OfficeProto.RegisterCaseResult parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static proto.OfficeProto.RegisterCaseResult parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(proto.OfficeProto.RegisterCaseResult prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code office.RegisterCaseResult}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:office.RegisterCaseResult)
-        proto.OfficeProto.RegisterCaseResultOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return proto.OfficeProto.internal_static_office_RegisterCaseResult_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return proto.OfficeProto.internal_static_office_RegisterCaseResult_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                proto.OfficeProto.RegisterCaseResult.class, proto.OfficeProto.RegisterCaseResult.Builder.class);
-      }
-
-      // Construct using proto.OfficeProto.RegisterCaseResult.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        resultCase_ = 0;
-        result_ = null;
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return proto.OfficeProto.internal_static_office_RegisterCaseResult_descriptor;
-      }
-
-      @java.lang.Override
-      public proto.OfficeProto.RegisterCaseResult getDefaultInstanceForType() {
-        return proto.OfficeProto.RegisterCaseResult.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public proto.OfficeProto.RegisterCaseResult build() {
-        proto.OfficeProto.RegisterCaseResult result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public proto.OfficeProto.RegisterCaseResult buildPartial() {
-        proto.OfficeProto.RegisterCaseResult result = new proto.OfficeProto.RegisterCaseResult(this);
-        if (resultCase_ == 1) {
-          if (caseAckBuilder_ == null) {
-            result.result_ = result_;
-          } else {
-            result.result_ = caseAckBuilder_.build();
-          }
-        }
-        if (resultCase_ == 2) {
-          if (caseResultBuilder_ == null) {
-            result.result_ = result_;
-          } else {
-            result.result_ = caseResultBuilder_.build();
-          }
-        }
-        result.resultCase_ = resultCase_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof proto.OfficeProto.RegisterCaseResult) {
-          return mergeFrom((proto.OfficeProto.RegisterCaseResult)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(proto.OfficeProto.RegisterCaseResult other) {
-        if (other == proto.OfficeProto.RegisterCaseResult.getDefaultInstance()) return this;
-        switch (other.getResultCase()) {
-          case CASEACK: {
-            mergeCaseAck(other.getCaseAck());
-            break;
-          }
-          case CASERESULT: {
-            mergeCaseResult(other.getCaseResult());
-            break;
-          }
-          case RESULT_NOT_SET: {
-            break;
-          }
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        proto.OfficeProto.RegisterCaseResult parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (proto.OfficeProto.RegisterCaseResult) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int resultCase_ = 0;
-      private java.lang.Object result_;
-      public ResultCase
-          getResultCase() {
-        return ResultCase.forNumber(
-            resultCase_);
-      }
-
-      public Builder clearResult() {
-        resultCase_ = 0;
-        result_ = null;
-        onChanged();
-        return this;
-      }
-
-
-      private com.google.protobuf.SingleFieldBuilderV3<
-          proto.OfficeProto.CaseAck, proto.OfficeProto.CaseAck.Builder, proto.OfficeProto.CaseAckOrBuilder> caseAckBuilder_;
-      /**
-       * <code>.office.CaseAck caseAck = 1;</code>
-       * @return Whether the caseAck field is set.
-       */
-      @java.lang.Override
-      public boolean hasCaseAck() {
-        return resultCase_ == 1;
-      }
-      /**
-       * <code>.office.CaseAck caseAck = 1;</code>
-       * @return The caseAck.
-       */
-      @java.lang.Override
-      public proto.OfficeProto.CaseAck getCaseAck() {
-        if (caseAckBuilder_ == null) {
-          if (resultCase_ == 1) {
-            return (proto.OfficeProto.CaseAck) result_;
-          }
-          return proto.OfficeProto.CaseAck.getDefaultInstance();
-        } else {
-          if (resultCase_ == 1) {
-            return caseAckBuilder_.getMessage();
-          }
-          return proto.OfficeProto.CaseAck.getDefaultInstance();
-        }
-      }
-      /**
-       * <code>.office.CaseAck caseAck = 1;</code>
-       */
-      public Builder setCaseAck(proto.OfficeProto.CaseAck value) {
-        if (caseAckBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          result_ = value;
-          onChanged();
-        } else {
-          caseAckBuilder_.setMessage(value);
-        }
-        resultCase_ = 1;
-        return this;
-      }
-      /**
-       * <code>.office.CaseAck caseAck = 1;</code>
-       */
-      public Builder setCaseAck(
-          proto.OfficeProto.CaseAck.Builder builderForValue) {
-        if (caseAckBuilder_ == null) {
-          result_ = builderForValue.build();
-          onChanged();
-        } else {
-          caseAckBuilder_.setMessage(builderForValue.build());
-        }
-        resultCase_ = 1;
-        return this;
-      }
-      /**
-       * <code>.office.CaseAck caseAck = 1;</code>
-       */
-      public Builder mergeCaseAck(proto.OfficeProto.CaseAck value) {
-        if (caseAckBuilder_ == null) {
-          if (resultCase_ == 1 &&
-              result_ != proto.OfficeProto.CaseAck.getDefaultInstance()) {
-            result_ = proto.OfficeProto.CaseAck.newBuilder((proto.OfficeProto.CaseAck) result_)
-                .mergeFrom(value).buildPartial();
-          } else {
-            result_ = value;
-          }
-          onChanged();
-        } else {
-          if (resultCase_ == 1) {
-            caseAckBuilder_.mergeFrom(value);
-          }
-          caseAckBuilder_.setMessage(value);
-        }
-        resultCase_ = 1;
-        return this;
-      }
-      /**
-       * <code>.office.CaseAck caseAck = 1;</code>
-       */
-      public Builder clearCaseAck() {
-        if (caseAckBuilder_ == null) {
-          if (resultCase_ == 1) {
-            resultCase_ = 0;
-            result_ = null;
-            onChanged();
-          }
-        } else {
-          if (resultCase_ == 1) {
-            resultCase_ = 0;
-            result_ = null;
-          }
-          caseAckBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <code>.office.CaseAck caseAck = 1;</code>
-       */
-      public proto.OfficeProto.CaseAck.Builder getCaseAckBuilder() {
-        return getCaseAckFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.office.CaseAck caseAck = 1;</code>
-       */
-      @java.lang.Override
-      public proto.OfficeProto.CaseAckOrBuilder getCaseAckOrBuilder() {
-        if ((resultCase_ == 1) && (caseAckBuilder_ != null)) {
-          return caseAckBuilder_.getMessageOrBuilder();
-        } else {
-          if (resultCase_ == 1) {
-            return (proto.OfficeProto.CaseAck) result_;
-          }
-          return proto.OfficeProto.CaseAck.getDefaultInstance();
-        }
-      }
-      /**
-       * <code>.office.CaseAck caseAck = 1;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          proto.OfficeProto.CaseAck, proto.OfficeProto.CaseAck.Builder, proto.OfficeProto.CaseAckOrBuilder> 
-          getCaseAckFieldBuilder() {
-        if (caseAckBuilder_ == null) {
-          if (!(resultCase_ == 1)) {
-            result_ = proto.OfficeProto.CaseAck.getDefaultInstance();
-          }
-          caseAckBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              proto.OfficeProto.CaseAck, proto.OfficeProto.CaseAck.Builder, proto.OfficeProto.CaseAckOrBuilder>(
-                  (proto.OfficeProto.CaseAck) result_,
-                  getParentForChildren(),
-                  isClean());
-          result_ = null;
-        }
-        resultCase_ = 1;
-        onChanged();;
-        return caseAckBuilder_;
-      }
-
-      private com.google.protobuf.SingleFieldBuilderV3<
-          proto.OfficeProto.CaseResult, proto.OfficeProto.CaseResult.Builder, proto.OfficeProto.CaseResultOrBuilder> caseResultBuilder_;
-      /**
-       * <code>.office.CaseResult caseResult = 2;</code>
-       * @return Whether the caseResult field is set.
-       */
-      @java.lang.Override
-      public boolean hasCaseResult() {
-        return resultCase_ == 2;
-      }
-      /**
-       * <code>.office.CaseResult caseResult = 2;</code>
-       * @return The caseResult.
-       */
-      @java.lang.Override
-      public proto.OfficeProto.CaseResult getCaseResult() {
-        if (caseResultBuilder_ == null) {
-          if (resultCase_ == 2) {
-            return (proto.OfficeProto.CaseResult) result_;
-          }
-          return proto.OfficeProto.CaseResult.getDefaultInstance();
-        } else {
-          if (resultCase_ == 2) {
-            return caseResultBuilder_.getMessage();
-          }
-          return proto.OfficeProto.CaseResult.getDefaultInstance();
-        }
-      }
-      /**
-       * <code>.office.CaseResult caseResult = 2;</code>
-       */
-      public Builder setCaseResult(proto.OfficeProto.CaseResult value) {
-        if (caseResultBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          result_ = value;
-          onChanged();
-        } else {
-          caseResultBuilder_.setMessage(value);
-        }
-        resultCase_ = 2;
-        return this;
-      }
-      /**
-       * <code>.office.CaseResult caseResult = 2;</code>
-       */
-      public Builder setCaseResult(
-          proto.OfficeProto.CaseResult.Builder builderForValue) {
-        if (caseResultBuilder_ == null) {
-          result_ = builderForValue.build();
-          onChanged();
-        } else {
-          caseResultBuilder_.setMessage(builderForValue.build());
-        }
-        resultCase_ = 2;
-        return this;
-      }
-      /**
-       * <code>.office.CaseResult caseResult = 2;</code>
-       */
-      public Builder mergeCaseResult(proto.OfficeProto.CaseResult value) {
-        if (caseResultBuilder_ == null) {
-          if (resultCase_ == 2 &&
-              result_ != proto.OfficeProto.CaseResult.getDefaultInstance()) {
-            result_ = proto.OfficeProto.CaseResult.newBuilder((proto.OfficeProto.CaseResult) result_)
-                .mergeFrom(value).buildPartial();
-          } else {
-            result_ = value;
-          }
-          onChanged();
-        } else {
-          if (resultCase_ == 2) {
-            caseResultBuilder_.mergeFrom(value);
-          }
-          caseResultBuilder_.setMessage(value);
-        }
-        resultCase_ = 2;
-        return this;
-      }
-      /**
-       * <code>.office.CaseResult caseResult = 2;</code>
-       */
-      public Builder clearCaseResult() {
-        if (caseResultBuilder_ == null) {
-          if (resultCase_ == 2) {
-            resultCase_ = 0;
-            result_ = null;
-            onChanged();
-          }
-        } else {
-          if (resultCase_ == 2) {
-            resultCase_ = 0;
-            result_ = null;
-          }
-          caseResultBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <code>.office.CaseResult caseResult = 2;</code>
-       */
-      public proto.OfficeProto.CaseResult.Builder getCaseResultBuilder() {
-        return getCaseResultFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.office.CaseResult caseResult = 2;</code>
-       */
-      @java.lang.Override
-      public proto.OfficeProto.CaseResultOrBuilder getCaseResultOrBuilder() {
-        if ((resultCase_ == 2) && (caseResultBuilder_ != null)) {
-          return caseResultBuilder_.getMessageOrBuilder();
-        } else {
-          if (resultCase_ == 2) {
-            return (proto.OfficeProto.CaseResult) result_;
-          }
-          return proto.OfficeProto.CaseResult.getDefaultInstance();
-        }
-      }
-      /**
-       * <code>.office.CaseResult caseResult = 2;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          proto.OfficeProto.CaseResult, proto.OfficeProto.CaseResult.Builder, proto.OfficeProto.CaseResultOrBuilder> 
-          getCaseResultFieldBuilder() {
-        if (caseResultBuilder_ == null) {
-          if (!(resultCase_ == 2)) {
-            result_ = proto.OfficeProto.CaseResult.getDefaultInstance();
-          }
-          caseResultBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              proto.OfficeProto.CaseResult, proto.OfficeProto.CaseResult.Builder, proto.OfficeProto.CaseResultOrBuilder>(
-                  (proto.OfficeProto.CaseResult) result_,
-                  getParentForChildren(),
-                  isClean());
-          result_ = null;
-        }
-        resultCase_ = 2;
-        onChanged();;
-        return caseResultBuilder_;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:office.RegisterCaseResult)
-    }
-
-    // @@protoc_insertion_point(class_scope:office.RegisterCaseResult)
-    private static final proto.OfficeProto.RegisterCaseResult DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new proto.OfficeProto.RegisterCaseResult();
-    }
-
-    public static proto.OfficeProto.RegisterCaseResult getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<RegisterCaseResult>
-        PARSER = new com.google.protobuf.AbstractParser<RegisterCaseResult>() {
-      @java.lang.Override
-      public RegisterCaseResult parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new RegisterCaseResult(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<RegisterCaseResult> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<RegisterCaseResult> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public proto.OfficeProto.RegisterCaseResult getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
   public interface DriverLicenseDataOrBuilder extends
       // @@protoc_insertion_point(interface_extends:office.DriverLicenseData)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.office.Client client = 1;</code>
-     * @return Whether the client field is set.
-     */
-    boolean hasClient();
-    /**
-     * <code>.office.Client client = 1;</code>
-     * @return The client.
-     */
-    proto.OfficeProto.Client getClient();
-    /**
-     * <code>.office.Client client = 1;</code>
-     */
-    proto.OfficeProto.ClientOrBuilder getClientOrBuilder();
-
-    /**
-     * <code>string category = 2;</code>
+     * <code>string category = 1;</code>
      * @return The category.
      */
     java.lang.String getCategory();
     /**
-     * <code>string category = 2;</code>
+     * <code>string category = 1;</code>
      * @return The bytes for category.
      */
     com.google.protobuf.ByteString
         getCategoryBytes();
+
+    /**
+     * <code>string birthDate = 2;</code>
+     * @return The birthDate.
+     */
+    java.lang.String getBirthDate();
+    /**
+     * <code>string birthDate = 2;</code>
+     * @return The bytes for birthDate.
+     */
+    com.google.protobuf.ByteString
+        getBirthDateBytes();
   }
   /**
    * Protobuf type {@code office.DriverLicenseData}
@@ -3860,6 +3654,7 @@ public final class OfficeProto {
     }
     private DriverLicenseData() {
       category_ = "";
+      birthDate_ = "";
     }
 
     @java.lang.Override
@@ -3893,22 +3688,15 @@ public final class OfficeProto {
               done = true;
               break;
             case 10: {
-              proto.OfficeProto.Client.Builder subBuilder = null;
-              if (client_ != null) {
-                subBuilder = client_.toBuilder();
-              }
-              client_ = input.readMessage(proto.OfficeProto.Client.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(client_);
-                client_ = subBuilder.buildPartial();
-              }
+              java.lang.String s = input.readStringRequireUtf8();
 
+              category_ = s;
               break;
             }
             case 18: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              category_ = s;
+              birthDate_ = s;
               break;
             }
             default: {
@@ -3943,36 +3731,10 @@ public final class OfficeProto {
               proto.OfficeProto.DriverLicenseData.class, proto.OfficeProto.DriverLicenseData.Builder.class);
     }
 
-    public static final int CLIENT_FIELD_NUMBER = 1;
-    private proto.OfficeProto.Client client_;
-    /**
-     * <code>.office.Client client = 1;</code>
-     * @return Whether the client field is set.
-     */
-    @java.lang.Override
-    public boolean hasClient() {
-      return client_ != null;
-    }
-    /**
-     * <code>.office.Client client = 1;</code>
-     * @return The client.
-     */
-    @java.lang.Override
-    public proto.OfficeProto.Client getClient() {
-      return client_ == null ? proto.OfficeProto.Client.getDefaultInstance() : client_;
-    }
-    /**
-     * <code>.office.Client client = 1;</code>
-     */
-    @java.lang.Override
-    public proto.OfficeProto.ClientOrBuilder getClientOrBuilder() {
-      return getClient();
-    }
-
-    public static final int CATEGORY_FIELD_NUMBER = 2;
+    public static final int CATEGORY_FIELD_NUMBER = 1;
     private volatile java.lang.Object category_;
     /**
-     * <code>string category = 2;</code>
+     * <code>string category = 1;</code>
      * @return The category.
      */
     @java.lang.Override
@@ -3989,7 +3751,7 @@ public final class OfficeProto {
       }
     }
     /**
-     * <code>string category = 2;</code>
+     * <code>string category = 1;</code>
      * @return The bytes for category.
      */
     @java.lang.Override
@@ -4001,6 +3763,44 @@ public final class OfficeProto {
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         category_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int BIRTHDATE_FIELD_NUMBER = 2;
+    private volatile java.lang.Object birthDate_;
+    /**
+     * <code>string birthDate = 2;</code>
+     * @return The birthDate.
+     */
+    @java.lang.Override
+    public java.lang.String getBirthDate() {
+      java.lang.Object ref = birthDate_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        birthDate_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string birthDate = 2;</code>
+     * @return The bytes for birthDate.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getBirthDateBytes() {
+      java.lang.Object ref = birthDate_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        birthDate_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -4021,11 +3821,11 @@ public final class OfficeProto {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (client_ != null) {
-        output.writeMessage(1, getClient());
-      }
       if (!getCategoryBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, category_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, category_);
+      }
+      if (!getBirthDateBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, birthDate_);
       }
       unknownFields.writeTo(output);
     }
@@ -4036,12 +3836,11 @@ public final class OfficeProto {
       if (size != -1) return size;
 
       size = 0;
-      if (client_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getClient());
-      }
       if (!getCategoryBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, category_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, category_);
+      }
+      if (!getBirthDateBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, birthDate_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -4058,13 +3857,10 @@ public final class OfficeProto {
       }
       proto.OfficeProto.DriverLicenseData other = (proto.OfficeProto.DriverLicenseData) obj;
 
-      if (hasClient() != other.hasClient()) return false;
-      if (hasClient()) {
-        if (!getClient()
-            .equals(other.getClient())) return false;
-      }
       if (!getCategory()
           .equals(other.getCategory())) return false;
+      if (!getBirthDate()
+          .equals(other.getBirthDate())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -4076,12 +3872,10 @@ public final class OfficeProto {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasClient()) {
-        hash = (37 * hash) + CLIENT_FIELD_NUMBER;
-        hash = (53 * hash) + getClient().hashCode();
-      }
       hash = (37 * hash) + CATEGORY_FIELD_NUMBER;
       hash = (53 * hash) + getCategory().hashCode();
+      hash = (37 * hash) + BIRTHDATE_FIELD_NUMBER;
+      hash = (53 * hash) + getBirthDate().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -4215,13 +4009,9 @@ public final class OfficeProto {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (clientBuilder_ == null) {
-          client_ = null;
-        } else {
-          client_ = null;
-          clientBuilder_ = null;
-        }
         category_ = "";
+
+        birthDate_ = "";
 
         return this;
       }
@@ -4249,12 +4039,8 @@ public final class OfficeProto {
       @java.lang.Override
       public proto.OfficeProto.DriverLicenseData buildPartial() {
         proto.OfficeProto.DriverLicenseData result = new proto.OfficeProto.DriverLicenseData(this);
-        if (clientBuilder_ == null) {
-          result.client_ = client_;
-        } else {
-          result.client_ = clientBuilder_.build();
-        }
         result.category_ = category_;
+        result.birthDate_ = birthDate_;
         onBuilt();
         return result;
       }
@@ -4303,11 +4089,12 @@ public final class OfficeProto {
 
       public Builder mergeFrom(proto.OfficeProto.DriverLicenseData other) {
         if (other == proto.OfficeProto.DriverLicenseData.getDefaultInstance()) return this;
-        if (other.hasClient()) {
-          mergeClient(other.getClient());
-        }
         if (!other.getCategory().isEmpty()) {
           category_ = other.category_;
+          onChanged();
+        }
+        if (!other.getBirthDate().isEmpty()) {
+          birthDate_ = other.birthDate_;
           onChanged();
         }
         this.mergeUnknownFields(other.unknownFields);
@@ -4339,128 +4126,9 @@ public final class OfficeProto {
         return this;
       }
 
-      private proto.OfficeProto.Client client_;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          proto.OfficeProto.Client, proto.OfficeProto.Client.Builder, proto.OfficeProto.ClientOrBuilder> clientBuilder_;
-      /**
-       * <code>.office.Client client = 1;</code>
-       * @return Whether the client field is set.
-       */
-      public boolean hasClient() {
-        return clientBuilder_ != null || client_ != null;
-      }
-      /**
-       * <code>.office.Client client = 1;</code>
-       * @return The client.
-       */
-      public proto.OfficeProto.Client getClient() {
-        if (clientBuilder_ == null) {
-          return client_ == null ? proto.OfficeProto.Client.getDefaultInstance() : client_;
-        } else {
-          return clientBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>.office.Client client = 1;</code>
-       */
-      public Builder setClient(proto.OfficeProto.Client value) {
-        if (clientBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          client_ = value;
-          onChanged();
-        } else {
-          clientBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.office.Client client = 1;</code>
-       */
-      public Builder setClient(
-          proto.OfficeProto.Client.Builder builderForValue) {
-        if (clientBuilder_ == null) {
-          client_ = builderForValue.build();
-          onChanged();
-        } else {
-          clientBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>.office.Client client = 1;</code>
-       */
-      public Builder mergeClient(proto.OfficeProto.Client value) {
-        if (clientBuilder_ == null) {
-          if (client_ != null) {
-            client_ =
-              proto.OfficeProto.Client.newBuilder(client_).mergeFrom(value).buildPartial();
-          } else {
-            client_ = value;
-          }
-          onChanged();
-        } else {
-          clientBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.office.Client client = 1;</code>
-       */
-      public Builder clearClient() {
-        if (clientBuilder_ == null) {
-          client_ = null;
-          onChanged();
-        } else {
-          client_ = null;
-          clientBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>.office.Client client = 1;</code>
-       */
-      public proto.OfficeProto.Client.Builder getClientBuilder() {
-        
-        onChanged();
-        return getClientFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.office.Client client = 1;</code>
-       */
-      public proto.OfficeProto.ClientOrBuilder getClientOrBuilder() {
-        if (clientBuilder_ != null) {
-          return clientBuilder_.getMessageOrBuilder();
-        } else {
-          return client_ == null ?
-              proto.OfficeProto.Client.getDefaultInstance() : client_;
-        }
-      }
-      /**
-       * <code>.office.Client client = 1;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          proto.OfficeProto.Client, proto.OfficeProto.Client.Builder, proto.OfficeProto.ClientOrBuilder> 
-          getClientFieldBuilder() {
-        if (clientBuilder_ == null) {
-          clientBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              proto.OfficeProto.Client, proto.OfficeProto.Client.Builder, proto.OfficeProto.ClientOrBuilder>(
-                  getClient(),
-                  getParentForChildren(),
-                  isClean());
-          client_ = null;
-        }
-        return clientBuilder_;
-      }
-
       private java.lang.Object category_ = "";
       /**
-       * <code>string category = 2;</code>
+       * <code>string category = 1;</code>
        * @return The category.
        */
       public java.lang.String getCategory() {
@@ -4476,7 +4144,7 @@ public final class OfficeProto {
         }
       }
       /**
-       * <code>string category = 2;</code>
+       * <code>string category = 1;</code>
        * @return The bytes for category.
        */
       public com.google.protobuf.ByteString
@@ -4493,7 +4161,7 @@ public final class OfficeProto {
         }
       }
       /**
-       * <code>string category = 2;</code>
+       * <code>string category = 1;</code>
        * @param value The category to set.
        * @return This builder for chaining.
        */
@@ -4508,7 +4176,7 @@ public final class OfficeProto {
         return this;
       }
       /**
-       * <code>string category = 2;</code>
+       * <code>string category = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearCategory() {
@@ -4518,7 +4186,7 @@ public final class OfficeProto {
         return this;
       }
       /**
-       * <code>string category = 2;</code>
+       * <code>string category = 1;</code>
        * @param value The bytes for category to set.
        * @return This builder for chaining.
        */
@@ -4530,6 +4198,82 @@ public final class OfficeProto {
   checkByteStringIsUtf8(value);
         
         category_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object birthDate_ = "";
+      /**
+       * <code>string birthDate = 2;</code>
+       * @return The birthDate.
+       */
+      public java.lang.String getBirthDate() {
+        java.lang.Object ref = birthDate_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          birthDate_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string birthDate = 2;</code>
+       * @return The bytes for birthDate.
+       */
+      public com.google.protobuf.ByteString
+          getBirthDateBytes() {
+        java.lang.Object ref = birthDate_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          birthDate_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string birthDate = 2;</code>
+       * @param value The birthDate to set.
+       * @return This builder for chaining.
+       */
+      public Builder setBirthDate(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        birthDate_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string birthDate = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearBirthDate() {
+        
+        birthDate_ = getDefaultInstance().getBirthDate();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string birthDate = 2;</code>
+       * @param value The bytes for birthDate to set.
+       * @return This builder for chaining.
+       */
+      public Builder setBirthDateBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        birthDate_ = value;
         onChanged();
         return this;
       }
@@ -4591,19 +4335,28 @@ public final class OfficeProto {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.office.Client client = 1;</code>
-     * @return Whether the client field is set.
+     * <code>string birthDate = 1;</code>
+     * @return The birthDate.
      */
-    boolean hasClient();
+    java.lang.String getBirthDate();
     /**
-     * <code>.office.Client client = 1;</code>
-     * @return The client.
+     * <code>string birthDate = 1;</code>
+     * @return The bytes for birthDate.
      */
-    proto.OfficeProto.Client getClient();
+    com.google.protobuf.ByteString
+        getBirthDateBytes();
+
     /**
-     * <code>.office.Client client = 1;</code>
+     * <code>string placeOfResidence = 2;</code>
+     * @return The placeOfResidence.
      */
-    proto.OfficeProto.ClientOrBuilder getClientOrBuilder();
+    java.lang.String getPlaceOfResidence();
+    /**
+     * <code>string placeOfResidence = 2;</code>
+     * @return The bytes for placeOfResidence.
+     */
+    com.google.protobuf.ByteString
+        getPlaceOfResidenceBytes();
   }
   /**
    * Protobuf type {@code office.IDCardData}
@@ -4618,6 +4371,8 @@ public final class OfficeProto {
       super(builder);
     }
     private IDCardData() {
+      birthDate_ = "";
+      placeOfResidence_ = "";
     }
 
     @java.lang.Override
@@ -4651,16 +4406,15 @@ public final class OfficeProto {
               done = true;
               break;
             case 10: {
-              proto.OfficeProto.Client.Builder subBuilder = null;
-              if (client_ != null) {
-                subBuilder = client_.toBuilder();
-              }
-              client_ = input.readMessage(proto.OfficeProto.Client.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(client_);
-                client_ = subBuilder.buildPartial();
-              }
+              java.lang.String s = input.readStringRequireUtf8();
 
+              birthDate_ = s;
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              placeOfResidence_ = s;
               break;
             }
             default: {
@@ -4695,30 +4449,80 @@ public final class OfficeProto {
               proto.OfficeProto.IDCardData.class, proto.OfficeProto.IDCardData.Builder.class);
     }
 
-    public static final int CLIENT_FIELD_NUMBER = 1;
-    private proto.OfficeProto.Client client_;
+    public static final int BIRTHDATE_FIELD_NUMBER = 1;
+    private volatile java.lang.Object birthDate_;
     /**
-     * <code>.office.Client client = 1;</code>
-     * @return Whether the client field is set.
+     * <code>string birthDate = 1;</code>
+     * @return The birthDate.
      */
     @java.lang.Override
-    public boolean hasClient() {
-      return client_ != null;
+    public java.lang.String getBirthDate() {
+      java.lang.Object ref = birthDate_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        birthDate_ = s;
+        return s;
+      }
     }
     /**
-     * <code>.office.Client client = 1;</code>
-     * @return The client.
+     * <code>string birthDate = 1;</code>
+     * @return The bytes for birthDate.
      */
     @java.lang.Override
-    public proto.OfficeProto.Client getClient() {
-      return client_ == null ? proto.OfficeProto.Client.getDefaultInstance() : client_;
+    public com.google.protobuf.ByteString
+        getBirthDateBytes() {
+      java.lang.Object ref = birthDate_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        birthDate_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int PLACEOFRESIDENCE_FIELD_NUMBER = 2;
+    private volatile java.lang.Object placeOfResidence_;
+    /**
+     * <code>string placeOfResidence = 2;</code>
+     * @return The placeOfResidence.
+     */
+    @java.lang.Override
+    public java.lang.String getPlaceOfResidence() {
+      java.lang.Object ref = placeOfResidence_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        placeOfResidence_ = s;
+        return s;
+      }
     }
     /**
-     * <code>.office.Client client = 1;</code>
+     * <code>string placeOfResidence = 2;</code>
+     * @return The bytes for placeOfResidence.
      */
     @java.lang.Override
-    public proto.OfficeProto.ClientOrBuilder getClientOrBuilder() {
-      return getClient();
+    public com.google.protobuf.ByteString
+        getPlaceOfResidenceBytes() {
+      java.lang.Object ref = placeOfResidence_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        placeOfResidence_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     private byte memoizedIsInitialized = -1;
@@ -4735,8 +4539,11 @@ public final class OfficeProto {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (client_ != null) {
-        output.writeMessage(1, getClient());
+      if (!getBirthDateBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, birthDate_);
+      }
+      if (!getPlaceOfResidenceBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, placeOfResidence_);
       }
       unknownFields.writeTo(output);
     }
@@ -4747,9 +4554,11 @@ public final class OfficeProto {
       if (size != -1) return size;
 
       size = 0;
-      if (client_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getClient());
+      if (!getBirthDateBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, birthDate_);
+      }
+      if (!getPlaceOfResidenceBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, placeOfResidence_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -4766,11 +4575,10 @@ public final class OfficeProto {
       }
       proto.OfficeProto.IDCardData other = (proto.OfficeProto.IDCardData) obj;
 
-      if (hasClient() != other.hasClient()) return false;
-      if (hasClient()) {
-        if (!getClient()
-            .equals(other.getClient())) return false;
-      }
+      if (!getBirthDate()
+          .equals(other.getBirthDate())) return false;
+      if (!getPlaceOfResidence()
+          .equals(other.getPlaceOfResidence())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -4782,10 +4590,10 @@ public final class OfficeProto {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasClient()) {
-        hash = (37 * hash) + CLIENT_FIELD_NUMBER;
-        hash = (53 * hash) + getClient().hashCode();
-      }
+      hash = (37 * hash) + BIRTHDATE_FIELD_NUMBER;
+      hash = (53 * hash) + getBirthDate().hashCode();
+      hash = (37 * hash) + PLACEOFRESIDENCE_FIELD_NUMBER;
+      hash = (53 * hash) + getPlaceOfResidence().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -4919,12 +4727,10 @@ public final class OfficeProto {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (clientBuilder_ == null) {
-          client_ = null;
-        } else {
-          client_ = null;
-          clientBuilder_ = null;
-        }
+        birthDate_ = "";
+
+        placeOfResidence_ = "";
+
         return this;
       }
 
@@ -4951,11 +4757,8 @@ public final class OfficeProto {
       @java.lang.Override
       public proto.OfficeProto.IDCardData buildPartial() {
         proto.OfficeProto.IDCardData result = new proto.OfficeProto.IDCardData(this);
-        if (clientBuilder_ == null) {
-          result.client_ = client_;
-        } else {
-          result.client_ = clientBuilder_.build();
-        }
+        result.birthDate_ = birthDate_;
+        result.placeOfResidence_ = placeOfResidence_;
         onBuilt();
         return result;
       }
@@ -5004,8 +4807,13 @@ public final class OfficeProto {
 
       public Builder mergeFrom(proto.OfficeProto.IDCardData other) {
         if (other == proto.OfficeProto.IDCardData.getDefaultInstance()) return this;
-        if (other.hasClient()) {
-          mergeClient(other.getClient());
+        if (!other.getBirthDate().isEmpty()) {
+          birthDate_ = other.birthDate_;
+          onChanged();
+        }
+        if (!other.getPlaceOfResidence().isEmpty()) {
+          placeOfResidence_ = other.placeOfResidence_;
+          onChanged();
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -5036,123 +4844,156 @@ public final class OfficeProto {
         return this;
       }
 
-      private proto.OfficeProto.Client client_;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          proto.OfficeProto.Client, proto.OfficeProto.Client.Builder, proto.OfficeProto.ClientOrBuilder> clientBuilder_;
+      private java.lang.Object birthDate_ = "";
       /**
-       * <code>.office.Client client = 1;</code>
-       * @return Whether the client field is set.
+       * <code>string birthDate = 1;</code>
+       * @return The birthDate.
        */
-      public boolean hasClient() {
-        return clientBuilder_ != null || client_ != null;
-      }
-      /**
-       * <code>.office.Client client = 1;</code>
-       * @return The client.
-       */
-      public proto.OfficeProto.Client getClient() {
-        if (clientBuilder_ == null) {
-          return client_ == null ? proto.OfficeProto.Client.getDefaultInstance() : client_;
+      public java.lang.String getBirthDate() {
+        java.lang.Object ref = birthDate_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          birthDate_ = s;
+          return s;
         } else {
-          return clientBuilder_.getMessage();
+          return (java.lang.String) ref;
         }
       }
       /**
-       * <code>.office.Client client = 1;</code>
+       * <code>string birthDate = 1;</code>
+       * @return The bytes for birthDate.
        */
-      public Builder setClient(proto.OfficeProto.Client value) {
-        if (clientBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          client_ = value;
-          onChanged();
+      public com.google.protobuf.ByteString
+          getBirthDateBytes() {
+        java.lang.Object ref = birthDate_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          birthDate_ = b;
+          return b;
         } else {
-          clientBuilder_.setMessage(value);
+          return (com.google.protobuf.ByteString) ref;
         }
-
-        return this;
       }
       /**
-       * <code>.office.Client client = 1;</code>
+       * <code>string birthDate = 1;</code>
+       * @param value The birthDate to set.
+       * @return This builder for chaining.
        */
-      public Builder setClient(
-          proto.OfficeProto.Client.Builder builderForValue) {
-        if (clientBuilder_ == null) {
-          client_ = builderForValue.build();
-          onChanged();
-        } else {
-          clientBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>.office.Client client = 1;</code>
-       */
-      public Builder mergeClient(proto.OfficeProto.Client value) {
-        if (clientBuilder_ == null) {
-          if (client_ != null) {
-            client_ =
-              proto.OfficeProto.Client.newBuilder(client_).mergeFrom(value).buildPartial();
-          } else {
-            client_ = value;
-          }
-          onChanged();
-        } else {
-          clientBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.office.Client client = 1;</code>
-       */
-      public Builder clearClient() {
-        if (clientBuilder_ == null) {
-          client_ = null;
-          onChanged();
-        } else {
-          client_ = null;
-          clientBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>.office.Client client = 1;</code>
-       */
-      public proto.OfficeProto.Client.Builder getClientBuilder() {
-        
+      public Builder setBirthDate(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        birthDate_ = value;
         onChanged();
-        return getClientFieldBuilder().getBuilder();
+        return this;
       }
       /**
-       * <code>.office.Client client = 1;</code>
+       * <code>string birthDate = 1;</code>
+       * @return This builder for chaining.
        */
-      public proto.OfficeProto.ClientOrBuilder getClientOrBuilder() {
-        if (clientBuilder_ != null) {
-          return clientBuilder_.getMessageOrBuilder();
+      public Builder clearBirthDate() {
+        
+        birthDate_ = getDefaultInstance().getBirthDate();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string birthDate = 1;</code>
+       * @param value The bytes for birthDate to set.
+       * @return This builder for chaining.
+       */
+      public Builder setBirthDateBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        birthDate_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object placeOfResidence_ = "";
+      /**
+       * <code>string placeOfResidence = 2;</code>
+       * @return The placeOfResidence.
+       */
+      public java.lang.String getPlaceOfResidence() {
+        java.lang.Object ref = placeOfResidence_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          placeOfResidence_ = s;
+          return s;
         } else {
-          return client_ == null ?
-              proto.OfficeProto.Client.getDefaultInstance() : client_;
+          return (java.lang.String) ref;
         }
       }
       /**
-       * <code>.office.Client client = 1;</code>
+       * <code>string placeOfResidence = 2;</code>
+       * @return The bytes for placeOfResidence.
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          proto.OfficeProto.Client, proto.OfficeProto.Client.Builder, proto.OfficeProto.ClientOrBuilder> 
-          getClientFieldBuilder() {
-        if (clientBuilder_ == null) {
-          clientBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              proto.OfficeProto.Client, proto.OfficeProto.Client.Builder, proto.OfficeProto.ClientOrBuilder>(
-                  getClient(),
-                  getParentForChildren(),
-                  isClean());
-          client_ = null;
+      public com.google.protobuf.ByteString
+          getPlaceOfResidenceBytes() {
+        java.lang.Object ref = placeOfResidence_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          placeOfResidence_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
         }
-        return clientBuilder_;
+      }
+      /**
+       * <code>string placeOfResidence = 2;</code>
+       * @param value The placeOfResidence to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPlaceOfResidence(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        placeOfResidence_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string placeOfResidence = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPlaceOfResidence() {
+        
+        placeOfResidence_ = getDefaultInstance().getPlaceOfResidence();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string placeOfResidence = 2;</code>
+       * @param value The bytes for placeOfResidence to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPlaceOfResidenceBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        placeOfResidence_ = value;
+        onChanged();
+        return this;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -5212,34 +5053,19 @@ public final class OfficeProto {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.office.Client client = 1;</code>
-     * @return Whether the client field is set.
-     */
-    boolean hasClient();
-    /**
-     * <code>.office.Client client = 1;</code>
-     * @return The client.
-     */
-    proto.OfficeProto.Client getClient();
-    /**
-     * <code>.office.Client client = 1;</code>
-     */
-    proto.OfficeProto.ClientOrBuilder getClientOrBuilder();
-
-    /**
-     * <code>string companyName = 2;</code>
+     * <code>string companyName = 1;</code>
      * @return The companyName.
      */
     java.lang.String getCompanyName();
     /**
-     * <code>string companyName = 2;</code>
+     * <code>string companyName = 1;</code>
      * @return The bytes for companyName.
      */
     com.google.protobuf.ByteString
         getCompanyNameBytes();
 
     /**
-     * <code>double startUpCapital = 3;</code>
+     * <code>double startUpCapital = 2;</code>
      * @return The startUpCapital.
      */
     double getStartUpCapital();
@@ -5291,25 +5117,12 @@ public final class OfficeProto {
               done = true;
               break;
             case 10: {
-              proto.OfficeProto.Client.Builder subBuilder = null;
-              if (client_ != null) {
-                subBuilder = client_.toBuilder();
-              }
-              client_ = input.readMessage(proto.OfficeProto.Client.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(client_);
-                client_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 18: {
               java.lang.String s = input.readStringRequireUtf8();
 
               companyName_ = s;
               break;
             }
-            case 25: {
+            case 17: {
 
               startUpCapital_ = input.readDouble();
               break;
@@ -5346,36 +5159,10 @@ public final class OfficeProto {
               proto.OfficeProto.RegisterCompanyData.class, proto.OfficeProto.RegisterCompanyData.Builder.class);
     }
 
-    public static final int CLIENT_FIELD_NUMBER = 1;
-    private proto.OfficeProto.Client client_;
-    /**
-     * <code>.office.Client client = 1;</code>
-     * @return Whether the client field is set.
-     */
-    @java.lang.Override
-    public boolean hasClient() {
-      return client_ != null;
-    }
-    /**
-     * <code>.office.Client client = 1;</code>
-     * @return The client.
-     */
-    @java.lang.Override
-    public proto.OfficeProto.Client getClient() {
-      return client_ == null ? proto.OfficeProto.Client.getDefaultInstance() : client_;
-    }
-    /**
-     * <code>.office.Client client = 1;</code>
-     */
-    @java.lang.Override
-    public proto.OfficeProto.ClientOrBuilder getClientOrBuilder() {
-      return getClient();
-    }
-
-    public static final int COMPANYNAME_FIELD_NUMBER = 2;
+    public static final int COMPANYNAME_FIELD_NUMBER = 1;
     private volatile java.lang.Object companyName_;
     /**
-     * <code>string companyName = 2;</code>
+     * <code>string companyName = 1;</code>
      * @return The companyName.
      */
     @java.lang.Override
@@ -5392,7 +5179,7 @@ public final class OfficeProto {
       }
     }
     /**
-     * <code>string companyName = 2;</code>
+     * <code>string companyName = 1;</code>
      * @return The bytes for companyName.
      */
     @java.lang.Override
@@ -5410,10 +5197,10 @@ public final class OfficeProto {
       }
     }
 
-    public static final int STARTUPCAPITAL_FIELD_NUMBER = 3;
+    public static final int STARTUPCAPITAL_FIELD_NUMBER = 2;
     private double startUpCapital_;
     /**
-     * <code>double startUpCapital = 3;</code>
+     * <code>double startUpCapital = 2;</code>
      * @return The startUpCapital.
      */
     @java.lang.Override
@@ -5435,14 +5222,11 @@ public final class OfficeProto {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (client_ != null) {
-        output.writeMessage(1, getClient());
-      }
       if (!getCompanyNameBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, companyName_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, companyName_);
       }
       if (startUpCapital_ != 0D) {
-        output.writeDouble(3, startUpCapital_);
+        output.writeDouble(2, startUpCapital_);
       }
       unknownFields.writeTo(output);
     }
@@ -5453,16 +5237,12 @@ public final class OfficeProto {
       if (size != -1) return size;
 
       size = 0;
-      if (client_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getClient());
-      }
       if (!getCompanyNameBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, companyName_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, companyName_);
       }
       if (startUpCapital_ != 0D) {
         size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(3, startUpCapital_);
+          .computeDoubleSize(2, startUpCapital_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -5479,11 +5259,6 @@ public final class OfficeProto {
       }
       proto.OfficeProto.RegisterCompanyData other = (proto.OfficeProto.RegisterCompanyData) obj;
 
-      if (hasClient() != other.hasClient()) return false;
-      if (hasClient()) {
-        if (!getClient()
-            .equals(other.getClient())) return false;
-      }
       if (!getCompanyName()
           .equals(other.getCompanyName())) return false;
       if (java.lang.Double.doubleToLongBits(getStartUpCapital())
@@ -5500,10 +5275,6 @@ public final class OfficeProto {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasClient()) {
-        hash = (37 * hash) + CLIENT_FIELD_NUMBER;
-        hash = (53 * hash) + getClient().hashCode();
-      }
       hash = (37 * hash) + COMPANYNAME_FIELD_NUMBER;
       hash = (53 * hash) + getCompanyName().hashCode();
       hash = (37 * hash) + STARTUPCAPITAL_FIELD_NUMBER;
@@ -5642,12 +5413,6 @@ public final class OfficeProto {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (clientBuilder_ == null) {
-          client_ = null;
-        } else {
-          client_ = null;
-          clientBuilder_ = null;
-        }
         companyName_ = "";
 
         startUpCapital_ = 0D;
@@ -5678,11 +5443,6 @@ public final class OfficeProto {
       @java.lang.Override
       public proto.OfficeProto.RegisterCompanyData buildPartial() {
         proto.OfficeProto.RegisterCompanyData result = new proto.OfficeProto.RegisterCompanyData(this);
-        if (clientBuilder_ == null) {
-          result.client_ = client_;
-        } else {
-          result.client_ = clientBuilder_.build();
-        }
         result.companyName_ = companyName_;
         result.startUpCapital_ = startUpCapital_;
         onBuilt();
@@ -5733,9 +5493,6 @@ public final class OfficeProto {
 
       public Builder mergeFrom(proto.OfficeProto.RegisterCompanyData other) {
         if (other == proto.OfficeProto.RegisterCompanyData.getDefaultInstance()) return this;
-        if (other.hasClient()) {
-          mergeClient(other.getClient());
-        }
         if (!other.getCompanyName().isEmpty()) {
           companyName_ = other.companyName_;
           onChanged();
@@ -5772,128 +5529,9 @@ public final class OfficeProto {
         return this;
       }
 
-      private proto.OfficeProto.Client client_;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          proto.OfficeProto.Client, proto.OfficeProto.Client.Builder, proto.OfficeProto.ClientOrBuilder> clientBuilder_;
-      /**
-       * <code>.office.Client client = 1;</code>
-       * @return Whether the client field is set.
-       */
-      public boolean hasClient() {
-        return clientBuilder_ != null || client_ != null;
-      }
-      /**
-       * <code>.office.Client client = 1;</code>
-       * @return The client.
-       */
-      public proto.OfficeProto.Client getClient() {
-        if (clientBuilder_ == null) {
-          return client_ == null ? proto.OfficeProto.Client.getDefaultInstance() : client_;
-        } else {
-          return clientBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>.office.Client client = 1;</code>
-       */
-      public Builder setClient(proto.OfficeProto.Client value) {
-        if (clientBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          client_ = value;
-          onChanged();
-        } else {
-          clientBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.office.Client client = 1;</code>
-       */
-      public Builder setClient(
-          proto.OfficeProto.Client.Builder builderForValue) {
-        if (clientBuilder_ == null) {
-          client_ = builderForValue.build();
-          onChanged();
-        } else {
-          clientBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>.office.Client client = 1;</code>
-       */
-      public Builder mergeClient(proto.OfficeProto.Client value) {
-        if (clientBuilder_ == null) {
-          if (client_ != null) {
-            client_ =
-              proto.OfficeProto.Client.newBuilder(client_).mergeFrom(value).buildPartial();
-          } else {
-            client_ = value;
-          }
-          onChanged();
-        } else {
-          clientBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.office.Client client = 1;</code>
-       */
-      public Builder clearClient() {
-        if (clientBuilder_ == null) {
-          client_ = null;
-          onChanged();
-        } else {
-          client_ = null;
-          clientBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>.office.Client client = 1;</code>
-       */
-      public proto.OfficeProto.Client.Builder getClientBuilder() {
-        
-        onChanged();
-        return getClientFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.office.Client client = 1;</code>
-       */
-      public proto.OfficeProto.ClientOrBuilder getClientOrBuilder() {
-        if (clientBuilder_ != null) {
-          return clientBuilder_.getMessageOrBuilder();
-        } else {
-          return client_ == null ?
-              proto.OfficeProto.Client.getDefaultInstance() : client_;
-        }
-      }
-      /**
-       * <code>.office.Client client = 1;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          proto.OfficeProto.Client, proto.OfficeProto.Client.Builder, proto.OfficeProto.ClientOrBuilder> 
-          getClientFieldBuilder() {
-        if (clientBuilder_ == null) {
-          clientBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              proto.OfficeProto.Client, proto.OfficeProto.Client.Builder, proto.OfficeProto.ClientOrBuilder>(
-                  getClient(),
-                  getParentForChildren(),
-                  isClean());
-          client_ = null;
-        }
-        return clientBuilder_;
-      }
-
       private java.lang.Object companyName_ = "";
       /**
-       * <code>string companyName = 2;</code>
+       * <code>string companyName = 1;</code>
        * @return The companyName.
        */
       public java.lang.String getCompanyName() {
@@ -5909,7 +5547,7 @@ public final class OfficeProto {
         }
       }
       /**
-       * <code>string companyName = 2;</code>
+       * <code>string companyName = 1;</code>
        * @return The bytes for companyName.
        */
       public com.google.protobuf.ByteString
@@ -5926,7 +5564,7 @@ public final class OfficeProto {
         }
       }
       /**
-       * <code>string companyName = 2;</code>
+       * <code>string companyName = 1;</code>
        * @param value The companyName to set.
        * @return This builder for chaining.
        */
@@ -5941,7 +5579,7 @@ public final class OfficeProto {
         return this;
       }
       /**
-       * <code>string companyName = 2;</code>
+       * <code>string companyName = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearCompanyName() {
@@ -5951,7 +5589,7 @@ public final class OfficeProto {
         return this;
       }
       /**
-       * <code>string companyName = 2;</code>
+       * <code>string companyName = 1;</code>
        * @param value The bytes for companyName to set.
        * @return This builder for chaining.
        */
@@ -5969,7 +5607,7 @@ public final class OfficeProto {
 
       private double startUpCapital_ ;
       /**
-       * <code>double startUpCapital = 3;</code>
+       * <code>double startUpCapital = 2;</code>
        * @return The startUpCapital.
        */
       @java.lang.Override
@@ -5977,7 +5615,7 @@ public final class OfficeProto {
         return startUpCapital_;
       }
       /**
-       * <code>double startUpCapital = 3;</code>
+       * <code>double startUpCapital = 2;</code>
        * @param value The startUpCapital to set.
        * @return This builder for chaining.
        */
@@ -5988,7 +5626,7 @@ public final class OfficeProto {
         return this;
       }
       /**
-       * <code>double startUpCapital = 3;</code>
+       * <code>double startUpCapital = 2;</code>
        * @return This builder for chaining.
        */
       public Builder clearStartUpCapital() {
@@ -6053,21 +5691,6 @@ public final class OfficeProto {
   public interface ClientReadyOrBuilder extends
       // @@protoc_insertion_point(interface_extends:office.ClientReady)
       com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>.office.Client client = 1;</code>
-     * @return Whether the client field is set.
-     */
-    boolean hasClient();
-    /**
-     * <code>.office.Client client = 1;</code>
-     * @return The client.
-     */
-    proto.OfficeProto.Client getClient();
-    /**
-     * <code>.office.Client client = 1;</code>
-     */
-    proto.OfficeProto.ClientOrBuilder getClientOrBuilder();
   }
   /**
    * Protobuf type {@code office.ClientReady}
@@ -6114,19 +5737,6 @@ public final class OfficeProto {
             case 0:
               done = true;
               break;
-            case 10: {
-              proto.OfficeProto.Client.Builder subBuilder = null;
-              if (client_ != null) {
-                subBuilder = client_.toBuilder();
-              }
-              client_ = input.readMessage(proto.OfficeProto.Client.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(client_);
-                client_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
             default: {
               if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
@@ -6159,32 +5769,6 @@ public final class OfficeProto {
               proto.OfficeProto.ClientReady.class, proto.OfficeProto.ClientReady.Builder.class);
     }
 
-    public static final int CLIENT_FIELD_NUMBER = 1;
-    private proto.OfficeProto.Client client_;
-    /**
-     * <code>.office.Client client = 1;</code>
-     * @return Whether the client field is set.
-     */
-    @java.lang.Override
-    public boolean hasClient() {
-      return client_ != null;
-    }
-    /**
-     * <code>.office.Client client = 1;</code>
-     * @return The client.
-     */
-    @java.lang.Override
-    public proto.OfficeProto.Client getClient() {
-      return client_ == null ? proto.OfficeProto.Client.getDefaultInstance() : client_;
-    }
-    /**
-     * <code>.office.Client client = 1;</code>
-     */
-    @java.lang.Override
-    public proto.OfficeProto.ClientOrBuilder getClientOrBuilder() {
-      return getClient();
-    }
-
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -6199,9 +5783,6 @@ public final class OfficeProto {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (client_ != null) {
-        output.writeMessage(1, getClient());
-      }
       unknownFields.writeTo(output);
     }
 
@@ -6211,10 +5792,6 @@ public final class OfficeProto {
       if (size != -1) return size;
 
       size = 0;
-      if (client_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getClient());
-      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -6230,11 +5807,6 @@ public final class OfficeProto {
       }
       proto.OfficeProto.ClientReady other = (proto.OfficeProto.ClientReady) obj;
 
-      if (hasClient() != other.hasClient()) return false;
-      if (hasClient()) {
-        if (!getClient()
-            .equals(other.getClient())) return false;
-      }
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -6246,10 +5818,6 @@ public final class OfficeProto {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasClient()) {
-        hash = (37 * hash) + CLIENT_FIELD_NUMBER;
-        hash = (53 * hash) + getClient().hashCode();
-      }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -6383,12 +5951,6 @@ public final class OfficeProto {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (clientBuilder_ == null) {
-          client_ = null;
-        } else {
-          client_ = null;
-          clientBuilder_ = null;
-        }
         return this;
       }
 
@@ -6415,11 +5977,6 @@ public final class OfficeProto {
       @java.lang.Override
       public proto.OfficeProto.ClientReady buildPartial() {
         proto.OfficeProto.ClientReady result = new proto.OfficeProto.ClientReady(this);
-        if (clientBuilder_ == null) {
-          result.client_ = client_;
-        } else {
-          result.client_ = clientBuilder_.build();
-        }
         onBuilt();
         return result;
       }
@@ -6468,9 +6025,6 @@ public final class OfficeProto {
 
       public Builder mergeFrom(proto.OfficeProto.ClientReady other) {
         if (other == proto.OfficeProto.ClientReady.getDefaultInstance()) return this;
-        if (other.hasClient()) {
-          mergeClient(other.getClient());
-        }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
@@ -6498,125 +6052,6 @@ public final class OfficeProto {
           }
         }
         return this;
-      }
-
-      private proto.OfficeProto.Client client_;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          proto.OfficeProto.Client, proto.OfficeProto.Client.Builder, proto.OfficeProto.ClientOrBuilder> clientBuilder_;
-      /**
-       * <code>.office.Client client = 1;</code>
-       * @return Whether the client field is set.
-       */
-      public boolean hasClient() {
-        return clientBuilder_ != null || client_ != null;
-      }
-      /**
-       * <code>.office.Client client = 1;</code>
-       * @return The client.
-       */
-      public proto.OfficeProto.Client getClient() {
-        if (clientBuilder_ == null) {
-          return client_ == null ? proto.OfficeProto.Client.getDefaultInstance() : client_;
-        } else {
-          return clientBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>.office.Client client = 1;</code>
-       */
-      public Builder setClient(proto.OfficeProto.Client value) {
-        if (clientBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          client_ = value;
-          onChanged();
-        } else {
-          clientBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.office.Client client = 1;</code>
-       */
-      public Builder setClient(
-          proto.OfficeProto.Client.Builder builderForValue) {
-        if (clientBuilder_ == null) {
-          client_ = builderForValue.build();
-          onChanged();
-        } else {
-          clientBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>.office.Client client = 1;</code>
-       */
-      public Builder mergeClient(proto.OfficeProto.Client value) {
-        if (clientBuilder_ == null) {
-          if (client_ != null) {
-            client_ =
-              proto.OfficeProto.Client.newBuilder(client_).mergeFrom(value).buildPartial();
-          } else {
-            client_ = value;
-          }
-          onChanged();
-        } else {
-          clientBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.office.Client client = 1;</code>
-       */
-      public Builder clearClient() {
-        if (clientBuilder_ == null) {
-          client_ = null;
-          onChanged();
-        } else {
-          client_ = null;
-          clientBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>.office.Client client = 1;</code>
-       */
-      public proto.OfficeProto.Client.Builder getClientBuilder() {
-        
-        onChanged();
-        return getClientFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.office.Client client = 1;</code>
-       */
-      public proto.OfficeProto.ClientOrBuilder getClientOrBuilder() {
-        if (clientBuilder_ != null) {
-          return clientBuilder_.getMessageOrBuilder();
-        } else {
-          return client_ == null ?
-              proto.OfficeProto.Client.getDefaultInstance() : client_;
-        }
-      }
-      /**
-       * <code>.office.Client client = 1;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          proto.OfficeProto.Client, proto.OfficeProto.Client.Builder, proto.OfficeProto.ClientOrBuilder> 
-          getClientFieldBuilder() {
-        if (clientBuilder_ == null) {
-          clientBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              proto.OfficeProto.Client, proto.OfficeProto.Client.Builder, proto.OfficeProto.ClientOrBuilder>(
-                  getClient(),
-                  getParentForChildren(),
-                  isClean());
-          client_ = null;
-        }
-        return clientBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -6676,62 +6111,77 @@ public final class OfficeProto {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.office.ClientReady clientReady = 1;</code>
+     * <code>.office.Client client = 1;</code>
+     * @return Whether the client field is set.
+     */
+    boolean hasClient();
+    /**
+     * <code>.office.Client client = 1;</code>
+     * @return The client.
+     */
+    proto.OfficeProto.Client getClient();
+    /**
+     * <code>.office.Client client = 1;</code>
+     */
+    proto.OfficeProto.ClientOrBuilder getClientOrBuilder();
+
+    /**
+     * <code>.office.ClientReady clientReady = 2;</code>
      * @return Whether the clientReady field is set.
      */
     boolean hasClientReady();
     /**
-     * <code>.office.ClientReady clientReady = 1;</code>
+     * <code>.office.ClientReady clientReady = 2;</code>
      * @return The clientReady.
      */
     proto.OfficeProto.ClientReady getClientReady();
     /**
-     * <code>.office.ClientReady clientReady = 1;</code>
+     * <code>.office.ClientReady clientReady = 2;</code>
      */
     proto.OfficeProto.ClientReadyOrBuilder getClientReadyOrBuilder();
 
     /**
-     * <code>.office.DriverLicenseData driverLicenseData = 2;</code>
+     * <code>.office.DriverLicenseData driverLicenseData = 3;</code>
      * @return Whether the driverLicenseData field is set.
      */
     boolean hasDriverLicenseData();
     /**
-     * <code>.office.DriverLicenseData driverLicenseData = 2;</code>
+     * <code>.office.DriverLicenseData driverLicenseData = 3;</code>
      * @return The driverLicenseData.
      */
     proto.OfficeProto.DriverLicenseData getDriverLicenseData();
     /**
-     * <code>.office.DriverLicenseData driverLicenseData = 2;</code>
+     * <code>.office.DriverLicenseData driverLicenseData = 3;</code>
      */
     proto.OfficeProto.DriverLicenseDataOrBuilder getDriverLicenseDataOrBuilder();
 
     /**
-     * <code>.office.IDCardData idCardData = 3;</code>
+     * <code>.office.IDCardData idCardData = 4;</code>
      * @return Whether the idCardData field is set.
      */
     boolean hasIdCardData();
     /**
-     * <code>.office.IDCardData idCardData = 3;</code>
+     * <code>.office.IDCardData idCardData = 4;</code>
      * @return The idCardData.
      */
     proto.OfficeProto.IDCardData getIdCardData();
     /**
-     * <code>.office.IDCardData idCardData = 3;</code>
+     * <code>.office.IDCardData idCardData = 4;</code>
      */
     proto.OfficeProto.IDCardDataOrBuilder getIdCardDataOrBuilder();
 
     /**
-     * <code>.office.RegisterCompanyData registerCompanyData = 4;</code>
+     * <code>.office.RegisterCompanyData registerCompanyData = 5;</code>
      * @return Whether the registerCompanyData field is set.
      */
     boolean hasRegisterCompanyData();
     /**
-     * <code>.office.RegisterCompanyData registerCompanyData = 4;</code>
+     * <code>.office.RegisterCompanyData registerCompanyData = 5;</code>
      * @return The registerCompanyData.
      */
     proto.OfficeProto.RegisterCompanyData getRegisterCompanyData();
     /**
-     * <code>.office.RegisterCompanyData registerCompanyData = 4;</code>
+     * <code>.office.RegisterCompanyData registerCompanyData = 5;</code>
      */
     proto.OfficeProto.RegisterCompanyDataOrBuilder getRegisterCompanyDataOrBuilder();
 
@@ -6783,8 +6233,21 @@ public final class OfficeProto {
               done = true;
               break;
             case 10: {
+              proto.OfficeProto.Client.Builder subBuilder = null;
+              if (client_ != null) {
+                subBuilder = client_.toBuilder();
+              }
+              client_ = input.readMessage(proto.OfficeProto.Client.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(client_);
+                client_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 18: {
               proto.OfficeProto.ClientReady.Builder subBuilder = null;
-              if (typeCase_ == 1) {
+              if (typeCase_ == 2) {
                 subBuilder = ((proto.OfficeProto.ClientReady) type_).toBuilder();
               }
               type_ =
@@ -6793,12 +6256,12 @@ public final class OfficeProto {
                 subBuilder.mergeFrom((proto.OfficeProto.ClientReady) type_);
                 type_ = subBuilder.buildPartial();
               }
-              typeCase_ = 1;
+              typeCase_ = 2;
               break;
             }
-            case 18: {
+            case 26: {
               proto.OfficeProto.DriverLicenseData.Builder subBuilder = null;
-              if (typeCase_ == 2) {
+              if (typeCase_ == 3) {
                 subBuilder = ((proto.OfficeProto.DriverLicenseData) type_).toBuilder();
               }
               type_ =
@@ -6807,12 +6270,12 @@ public final class OfficeProto {
                 subBuilder.mergeFrom((proto.OfficeProto.DriverLicenseData) type_);
                 type_ = subBuilder.buildPartial();
               }
-              typeCase_ = 2;
+              typeCase_ = 3;
               break;
             }
-            case 26: {
+            case 34: {
               proto.OfficeProto.IDCardData.Builder subBuilder = null;
-              if (typeCase_ == 3) {
+              if (typeCase_ == 4) {
                 subBuilder = ((proto.OfficeProto.IDCardData) type_).toBuilder();
               }
               type_ =
@@ -6821,12 +6284,12 @@ public final class OfficeProto {
                 subBuilder.mergeFrom((proto.OfficeProto.IDCardData) type_);
                 type_ = subBuilder.buildPartial();
               }
-              typeCase_ = 3;
+              typeCase_ = 4;
               break;
             }
-            case 34: {
+            case 42: {
               proto.OfficeProto.RegisterCompanyData.Builder subBuilder = null;
-              if (typeCase_ == 4) {
+              if (typeCase_ == 5) {
                 subBuilder = ((proto.OfficeProto.RegisterCompanyData) type_).toBuilder();
               }
               type_ =
@@ -6835,7 +6298,7 @@ public final class OfficeProto {
                 subBuilder.mergeFrom((proto.OfficeProto.RegisterCompanyData) type_);
                 type_ = subBuilder.buildPartial();
               }
-              typeCase_ = 4;
+              typeCase_ = 5;
               break;
             }
             default: {
@@ -6875,10 +6338,10 @@ public final class OfficeProto {
     public enum TypeCase
         implements com.google.protobuf.Internal.EnumLite,
             com.google.protobuf.AbstractMessage.InternalOneOfEnum {
-      CLIENTREADY(1),
-      DRIVERLICENSEDATA(2),
-      IDCARDDATA(3),
-      REGISTERCOMPANYDATA(4),
+      CLIENTREADY(2),
+      DRIVERLICENSEDATA(3),
+      IDCARDDATA(4),
+      REGISTERCOMPANYDATA(5),
       TYPE_NOT_SET(0);
       private final int value;
       private TypeCase(int value) {
@@ -6896,10 +6359,10 @@ public final class OfficeProto {
 
       public static TypeCase forNumber(int value) {
         switch (value) {
-          case 1: return CLIENTREADY;
-          case 2: return DRIVERLICENSEDATA;
-          case 3: return IDCARDDATA;
-          case 4: return REGISTERCOMPANYDATA;
+          case 2: return CLIENTREADY;
+          case 3: return DRIVERLICENSEDATA;
+          case 4: return IDCARDDATA;
+          case 5: return REGISTERCOMPANYDATA;
           case 0: return TYPE_NOT_SET;
           default: return null;
         }
@@ -6915,125 +6378,151 @@ public final class OfficeProto {
           typeCase_);
     }
 
-    public static final int CLIENTREADY_FIELD_NUMBER = 1;
+    public static final int CLIENT_FIELD_NUMBER = 1;
+    private proto.OfficeProto.Client client_;
     /**
-     * <code>.office.ClientReady clientReady = 1;</code>
+     * <code>.office.Client client = 1;</code>
+     * @return Whether the client field is set.
+     */
+    @java.lang.Override
+    public boolean hasClient() {
+      return client_ != null;
+    }
+    /**
+     * <code>.office.Client client = 1;</code>
+     * @return The client.
+     */
+    @java.lang.Override
+    public proto.OfficeProto.Client getClient() {
+      return client_ == null ? proto.OfficeProto.Client.getDefaultInstance() : client_;
+    }
+    /**
+     * <code>.office.Client client = 1;</code>
+     */
+    @java.lang.Override
+    public proto.OfficeProto.ClientOrBuilder getClientOrBuilder() {
+      return getClient();
+    }
+
+    public static final int CLIENTREADY_FIELD_NUMBER = 2;
+    /**
+     * <code>.office.ClientReady clientReady = 2;</code>
      * @return Whether the clientReady field is set.
      */
     @java.lang.Override
     public boolean hasClientReady() {
-      return typeCase_ == 1;
+      return typeCase_ == 2;
     }
     /**
-     * <code>.office.ClientReady clientReady = 1;</code>
+     * <code>.office.ClientReady clientReady = 2;</code>
      * @return The clientReady.
      */
     @java.lang.Override
     public proto.OfficeProto.ClientReady getClientReady() {
-      if (typeCase_ == 1) {
+      if (typeCase_ == 2) {
          return (proto.OfficeProto.ClientReady) type_;
       }
       return proto.OfficeProto.ClientReady.getDefaultInstance();
     }
     /**
-     * <code>.office.ClientReady clientReady = 1;</code>
+     * <code>.office.ClientReady clientReady = 2;</code>
      */
     @java.lang.Override
     public proto.OfficeProto.ClientReadyOrBuilder getClientReadyOrBuilder() {
-      if (typeCase_ == 1) {
+      if (typeCase_ == 2) {
          return (proto.OfficeProto.ClientReady) type_;
       }
       return proto.OfficeProto.ClientReady.getDefaultInstance();
     }
 
-    public static final int DRIVERLICENSEDATA_FIELD_NUMBER = 2;
+    public static final int DRIVERLICENSEDATA_FIELD_NUMBER = 3;
     /**
-     * <code>.office.DriverLicenseData driverLicenseData = 2;</code>
+     * <code>.office.DriverLicenseData driverLicenseData = 3;</code>
      * @return Whether the driverLicenseData field is set.
      */
     @java.lang.Override
     public boolean hasDriverLicenseData() {
-      return typeCase_ == 2;
+      return typeCase_ == 3;
     }
     /**
-     * <code>.office.DriverLicenseData driverLicenseData = 2;</code>
+     * <code>.office.DriverLicenseData driverLicenseData = 3;</code>
      * @return The driverLicenseData.
      */
     @java.lang.Override
     public proto.OfficeProto.DriverLicenseData getDriverLicenseData() {
-      if (typeCase_ == 2) {
+      if (typeCase_ == 3) {
          return (proto.OfficeProto.DriverLicenseData) type_;
       }
       return proto.OfficeProto.DriverLicenseData.getDefaultInstance();
     }
     /**
-     * <code>.office.DriverLicenseData driverLicenseData = 2;</code>
+     * <code>.office.DriverLicenseData driverLicenseData = 3;</code>
      */
     @java.lang.Override
     public proto.OfficeProto.DriverLicenseDataOrBuilder getDriverLicenseDataOrBuilder() {
-      if (typeCase_ == 2) {
+      if (typeCase_ == 3) {
          return (proto.OfficeProto.DriverLicenseData) type_;
       }
       return proto.OfficeProto.DriverLicenseData.getDefaultInstance();
     }
 
-    public static final int IDCARDDATA_FIELD_NUMBER = 3;
+    public static final int IDCARDDATA_FIELD_NUMBER = 4;
     /**
-     * <code>.office.IDCardData idCardData = 3;</code>
+     * <code>.office.IDCardData idCardData = 4;</code>
      * @return Whether the idCardData field is set.
      */
     @java.lang.Override
     public boolean hasIdCardData() {
-      return typeCase_ == 3;
+      return typeCase_ == 4;
     }
     /**
-     * <code>.office.IDCardData idCardData = 3;</code>
+     * <code>.office.IDCardData idCardData = 4;</code>
      * @return The idCardData.
      */
     @java.lang.Override
     public proto.OfficeProto.IDCardData getIdCardData() {
-      if (typeCase_ == 3) {
+      if (typeCase_ == 4) {
          return (proto.OfficeProto.IDCardData) type_;
       }
       return proto.OfficeProto.IDCardData.getDefaultInstance();
     }
     /**
-     * <code>.office.IDCardData idCardData = 3;</code>
+     * <code>.office.IDCardData idCardData = 4;</code>
      */
     @java.lang.Override
     public proto.OfficeProto.IDCardDataOrBuilder getIdCardDataOrBuilder() {
-      if (typeCase_ == 3) {
+      if (typeCase_ == 4) {
          return (proto.OfficeProto.IDCardData) type_;
       }
       return proto.OfficeProto.IDCardData.getDefaultInstance();
     }
 
-    public static final int REGISTERCOMPANYDATA_FIELD_NUMBER = 4;
+    public static final int REGISTERCOMPANYDATA_FIELD_NUMBER = 5;
     /**
-     * <code>.office.RegisterCompanyData registerCompanyData = 4;</code>
+     * <code>.office.RegisterCompanyData registerCompanyData = 5;</code>
      * @return Whether the registerCompanyData field is set.
      */
     @java.lang.Override
     public boolean hasRegisterCompanyData() {
-      return typeCase_ == 4;
+      return typeCase_ == 5;
     }
     /**
-     * <code>.office.RegisterCompanyData registerCompanyData = 4;</code>
+     * <code>.office.RegisterCompanyData registerCompanyData = 5;</code>
      * @return The registerCompanyData.
      */
     @java.lang.Override
     public proto.OfficeProto.RegisterCompanyData getRegisterCompanyData() {
-      if (typeCase_ == 4) {
+      if (typeCase_ == 5) {
          return (proto.OfficeProto.RegisterCompanyData) type_;
       }
       return proto.OfficeProto.RegisterCompanyData.getDefaultInstance();
     }
     /**
-     * <code>.office.RegisterCompanyData registerCompanyData = 4;</code>
+     * <code>.office.RegisterCompanyData registerCompanyData = 5;</code>
      */
     @java.lang.Override
     public proto.OfficeProto.RegisterCompanyDataOrBuilder getRegisterCompanyDataOrBuilder() {
-      if (typeCase_ == 4) {
+      if (typeCase_ == 5) {
          return (proto.OfficeProto.RegisterCompanyData) type_;
       }
       return proto.OfficeProto.RegisterCompanyData.getDefaultInstance();
@@ -7053,17 +6542,20 @@ public final class OfficeProto {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (typeCase_ == 1) {
-        output.writeMessage(1, (proto.OfficeProto.ClientReady) type_);
+      if (client_ != null) {
+        output.writeMessage(1, getClient());
       }
       if (typeCase_ == 2) {
-        output.writeMessage(2, (proto.OfficeProto.DriverLicenseData) type_);
+        output.writeMessage(2, (proto.OfficeProto.ClientReady) type_);
       }
       if (typeCase_ == 3) {
-        output.writeMessage(3, (proto.OfficeProto.IDCardData) type_);
+        output.writeMessage(3, (proto.OfficeProto.DriverLicenseData) type_);
       }
       if (typeCase_ == 4) {
-        output.writeMessage(4, (proto.OfficeProto.RegisterCompanyData) type_);
+        output.writeMessage(4, (proto.OfficeProto.IDCardData) type_);
+      }
+      if (typeCase_ == 5) {
+        output.writeMessage(5, (proto.OfficeProto.RegisterCompanyData) type_);
       }
       unknownFields.writeTo(output);
     }
@@ -7074,21 +6566,25 @@ public final class OfficeProto {
       if (size != -1) return size;
 
       size = 0;
-      if (typeCase_ == 1) {
+      if (client_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, (proto.OfficeProto.ClientReady) type_);
+          .computeMessageSize(1, getClient());
       }
       if (typeCase_ == 2) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, (proto.OfficeProto.DriverLicenseData) type_);
+          .computeMessageSize(2, (proto.OfficeProto.ClientReady) type_);
       }
       if (typeCase_ == 3) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, (proto.OfficeProto.IDCardData) type_);
+          .computeMessageSize(3, (proto.OfficeProto.DriverLicenseData) type_);
       }
       if (typeCase_ == 4) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, (proto.OfficeProto.RegisterCompanyData) type_);
+          .computeMessageSize(4, (proto.OfficeProto.IDCardData) type_);
+      }
+      if (typeCase_ == 5) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(5, (proto.OfficeProto.RegisterCompanyData) type_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -7105,21 +6601,26 @@ public final class OfficeProto {
       }
       proto.OfficeProto.CaseRequestData other = (proto.OfficeProto.CaseRequestData) obj;
 
+      if (hasClient() != other.hasClient()) return false;
+      if (hasClient()) {
+        if (!getClient()
+            .equals(other.getClient())) return false;
+      }
       if (!getTypeCase().equals(other.getTypeCase())) return false;
       switch (typeCase_) {
-        case 1:
+        case 2:
           if (!getClientReady()
               .equals(other.getClientReady())) return false;
           break;
-        case 2:
+        case 3:
           if (!getDriverLicenseData()
               .equals(other.getDriverLicenseData())) return false;
           break;
-        case 3:
+        case 4:
           if (!getIdCardData()
               .equals(other.getIdCardData())) return false;
           break;
-        case 4:
+        case 5:
           if (!getRegisterCompanyData()
               .equals(other.getRegisterCompanyData())) return false;
           break;
@@ -7137,20 +6638,24 @@ public final class OfficeProto {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasClient()) {
+        hash = (37 * hash) + CLIENT_FIELD_NUMBER;
+        hash = (53 * hash) + getClient().hashCode();
+      }
       switch (typeCase_) {
-        case 1:
+        case 2:
           hash = (37 * hash) + CLIENTREADY_FIELD_NUMBER;
           hash = (53 * hash) + getClientReady().hashCode();
           break;
-        case 2:
+        case 3:
           hash = (37 * hash) + DRIVERLICENSEDATA_FIELD_NUMBER;
           hash = (53 * hash) + getDriverLicenseData().hashCode();
           break;
-        case 3:
+        case 4:
           hash = (37 * hash) + IDCARDDATA_FIELD_NUMBER;
           hash = (53 * hash) + getIdCardData().hashCode();
           break;
-        case 4:
+        case 5:
           hash = (37 * hash) + REGISTERCOMPANYDATA_FIELD_NUMBER;
           hash = (53 * hash) + getRegisterCompanyData().hashCode();
           break;
@@ -7290,6 +6795,12 @@ public final class OfficeProto {
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        if (clientBuilder_ == null) {
+          client_ = null;
+        } else {
+          client_ = null;
+          clientBuilder_ = null;
+        }
         typeCase_ = 0;
         type_ = null;
         return this;
@@ -7318,28 +6829,33 @@ public final class OfficeProto {
       @java.lang.Override
       public proto.OfficeProto.CaseRequestData buildPartial() {
         proto.OfficeProto.CaseRequestData result = new proto.OfficeProto.CaseRequestData(this);
-        if (typeCase_ == 1) {
+        if (clientBuilder_ == null) {
+          result.client_ = client_;
+        } else {
+          result.client_ = clientBuilder_.build();
+        }
+        if (typeCase_ == 2) {
           if (clientReadyBuilder_ == null) {
             result.type_ = type_;
           } else {
             result.type_ = clientReadyBuilder_.build();
           }
         }
-        if (typeCase_ == 2) {
+        if (typeCase_ == 3) {
           if (driverLicenseDataBuilder_ == null) {
             result.type_ = type_;
           } else {
             result.type_ = driverLicenseDataBuilder_.build();
           }
         }
-        if (typeCase_ == 3) {
+        if (typeCase_ == 4) {
           if (idCardDataBuilder_ == null) {
             result.type_ = type_;
           } else {
             result.type_ = idCardDataBuilder_.build();
           }
         }
-        if (typeCase_ == 4) {
+        if (typeCase_ == 5) {
           if (registerCompanyDataBuilder_ == null) {
             result.type_ = type_;
           } else {
@@ -7395,6 +6911,9 @@ public final class OfficeProto {
 
       public Builder mergeFrom(proto.OfficeProto.CaseRequestData other) {
         if (other == proto.OfficeProto.CaseRequestData.getDefaultInstance()) return this;
+        if (other.hasClient()) {
+          mergeClient(other.getClient());
+        }
         switch (other.getTypeCase()) {
           case CLIENTREADY: {
             mergeClientReady(other.getClientReady());
@@ -7460,36 +6979,155 @@ public final class OfficeProto {
       }
 
 
+      private proto.OfficeProto.Client client_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          proto.OfficeProto.Client, proto.OfficeProto.Client.Builder, proto.OfficeProto.ClientOrBuilder> clientBuilder_;
+      /**
+       * <code>.office.Client client = 1;</code>
+       * @return Whether the client field is set.
+       */
+      public boolean hasClient() {
+        return clientBuilder_ != null || client_ != null;
+      }
+      /**
+       * <code>.office.Client client = 1;</code>
+       * @return The client.
+       */
+      public proto.OfficeProto.Client getClient() {
+        if (clientBuilder_ == null) {
+          return client_ == null ? proto.OfficeProto.Client.getDefaultInstance() : client_;
+        } else {
+          return clientBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.office.Client client = 1;</code>
+       */
+      public Builder setClient(proto.OfficeProto.Client value) {
+        if (clientBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          client_ = value;
+          onChanged();
+        } else {
+          clientBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.office.Client client = 1;</code>
+       */
+      public Builder setClient(
+          proto.OfficeProto.Client.Builder builderForValue) {
+        if (clientBuilder_ == null) {
+          client_ = builderForValue.build();
+          onChanged();
+        } else {
+          clientBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.office.Client client = 1;</code>
+       */
+      public Builder mergeClient(proto.OfficeProto.Client value) {
+        if (clientBuilder_ == null) {
+          if (client_ != null) {
+            client_ =
+              proto.OfficeProto.Client.newBuilder(client_).mergeFrom(value).buildPartial();
+          } else {
+            client_ = value;
+          }
+          onChanged();
+        } else {
+          clientBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.office.Client client = 1;</code>
+       */
+      public Builder clearClient() {
+        if (clientBuilder_ == null) {
+          client_ = null;
+          onChanged();
+        } else {
+          client_ = null;
+          clientBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.office.Client client = 1;</code>
+       */
+      public proto.OfficeProto.Client.Builder getClientBuilder() {
+        
+        onChanged();
+        return getClientFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.office.Client client = 1;</code>
+       */
+      public proto.OfficeProto.ClientOrBuilder getClientOrBuilder() {
+        if (clientBuilder_ != null) {
+          return clientBuilder_.getMessageOrBuilder();
+        } else {
+          return client_ == null ?
+              proto.OfficeProto.Client.getDefaultInstance() : client_;
+        }
+      }
+      /**
+       * <code>.office.Client client = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          proto.OfficeProto.Client, proto.OfficeProto.Client.Builder, proto.OfficeProto.ClientOrBuilder> 
+          getClientFieldBuilder() {
+        if (clientBuilder_ == null) {
+          clientBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              proto.OfficeProto.Client, proto.OfficeProto.Client.Builder, proto.OfficeProto.ClientOrBuilder>(
+                  getClient(),
+                  getParentForChildren(),
+                  isClean());
+          client_ = null;
+        }
+        return clientBuilder_;
+      }
+
       private com.google.protobuf.SingleFieldBuilderV3<
           proto.OfficeProto.ClientReady, proto.OfficeProto.ClientReady.Builder, proto.OfficeProto.ClientReadyOrBuilder> clientReadyBuilder_;
       /**
-       * <code>.office.ClientReady clientReady = 1;</code>
+       * <code>.office.ClientReady clientReady = 2;</code>
        * @return Whether the clientReady field is set.
        */
       @java.lang.Override
       public boolean hasClientReady() {
-        return typeCase_ == 1;
+        return typeCase_ == 2;
       }
       /**
-       * <code>.office.ClientReady clientReady = 1;</code>
+       * <code>.office.ClientReady clientReady = 2;</code>
        * @return The clientReady.
        */
       @java.lang.Override
       public proto.OfficeProto.ClientReady getClientReady() {
         if (clientReadyBuilder_ == null) {
-          if (typeCase_ == 1) {
+          if (typeCase_ == 2) {
             return (proto.OfficeProto.ClientReady) type_;
           }
           return proto.OfficeProto.ClientReady.getDefaultInstance();
         } else {
-          if (typeCase_ == 1) {
+          if (typeCase_ == 2) {
             return clientReadyBuilder_.getMessage();
           }
           return proto.OfficeProto.ClientReady.getDefaultInstance();
         }
       }
       /**
-       * <code>.office.ClientReady clientReady = 1;</code>
+       * <code>.office.ClientReady clientReady = 2;</code>
        */
       public Builder setClientReady(proto.OfficeProto.ClientReady value) {
         if (clientReadyBuilder_ == null) {
@@ -7501,11 +7139,11 @@ public final class OfficeProto {
         } else {
           clientReadyBuilder_.setMessage(value);
         }
-        typeCase_ = 1;
+        typeCase_ = 2;
         return this;
       }
       /**
-       * <code>.office.ClientReady clientReady = 1;</code>
+       * <code>.office.ClientReady clientReady = 2;</code>
        */
       public Builder setClientReady(
           proto.OfficeProto.ClientReady.Builder builderForValue) {
@@ -7515,15 +7153,15 @@ public final class OfficeProto {
         } else {
           clientReadyBuilder_.setMessage(builderForValue.build());
         }
-        typeCase_ = 1;
+        typeCase_ = 2;
         return this;
       }
       /**
-       * <code>.office.ClientReady clientReady = 1;</code>
+       * <code>.office.ClientReady clientReady = 2;</code>
        */
       public Builder mergeClientReady(proto.OfficeProto.ClientReady value) {
         if (clientReadyBuilder_ == null) {
-          if (typeCase_ == 1 &&
+          if (typeCase_ == 2 &&
               type_ != proto.OfficeProto.ClientReady.getDefaultInstance()) {
             type_ = proto.OfficeProto.ClientReady.newBuilder((proto.OfficeProto.ClientReady) type_)
                 .mergeFrom(value).buildPartial();
@@ -7532,26 +7170,26 @@ public final class OfficeProto {
           }
           onChanged();
         } else {
-          if (typeCase_ == 1) {
+          if (typeCase_ == 2) {
             clientReadyBuilder_.mergeFrom(value);
           }
           clientReadyBuilder_.setMessage(value);
         }
-        typeCase_ = 1;
+        typeCase_ = 2;
         return this;
       }
       /**
-       * <code>.office.ClientReady clientReady = 1;</code>
+       * <code>.office.ClientReady clientReady = 2;</code>
        */
       public Builder clearClientReady() {
         if (clientReadyBuilder_ == null) {
-          if (typeCase_ == 1) {
+          if (typeCase_ == 2) {
             typeCase_ = 0;
             type_ = null;
             onChanged();
           }
         } else {
-          if (typeCase_ == 1) {
+          if (typeCase_ == 2) {
             typeCase_ = 0;
             type_ = null;
           }
@@ -7560,33 +7198,33 @@ public final class OfficeProto {
         return this;
       }
       /**
-       * <code>.office.ClientReady clientReady = 1;</code>
+       * <code>.office.ClientReady clientReady = 2;</code>
        */
       public proto.OfficeProto.ClientReady.Builder getClientReadyBuilder() {
         return getClientReadyFieldBuilder().getBuilder();
       }
       /**
-       * <code>.office.ClientReady clientReady = 1;</code>
+       * <code>.office.ClientReady clientReady = 2;</code>
        */
       @java.lang.Override
       public proto.OfficeProto.ClientReadyOrBuilder getClientReadyOrBuilder() {
-        if ((typeCase_ == 1) && (clientReadyBuilder_ != null)) {
+        if ((typeCase_ == 2) && (clientReadyBuilder_ != null)) {
           return clientReadyBuilder_.getMessageOrBuilder();
         } else {
-          if (typeCase_ == 1) {
+          if (typeCase_ == 2) {
             return (proto.OfficeProto.ClientReady) type_;
           }
           return proto.OfficeProto.ClientReady.getDefaultInstance();
         }
       }
       /**
-       * <code>.office.ClientReady clientReady = 1;</code>
+       * <code>.office.ClientReady clientReady = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           proto.OfficeProto.ClientReady, proto.OfficeProto.ClientReady.Builder, proto.OfficeProto.ClientReadyOrBuilder> 
           getClientReadyFieldBuilder() {
         if (clientReadyBuilder_ == null) {
-          if (!(typeCase_ == 1)) {
+          if (!(typeCase_ == 2)) {
             type_ = proto.OfficeProto.ClientReady.getDefaultInstance();
           }
           clientReadyBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -7596,7 +7234,7 @@ public final class OfficeProto {
                   isClean());
           type_ = null;
         }
-        typeCase_ = 1;
+        typeCase_ = 2;
         onChanged();;
         return clientReadyBuilder_;
       }
@@ -7604,33 +7242,33 @@ public final class OfficeProto {
       private com.google.protobuf.SingleFieldBuilderV3<
           proto.OfficeProto.DriverLicenseData, proto.OfficeProto.DriverLicenseData.Builder, proto.OfficeProto.DriverLicenseDataOrBuilder> driverLicenseDataBuilder_;
       /**
-       * <code>.office.DriverLicenseData driverLicenseData = 2;</code>
+       * <code>.office.DriverLicenseData driverLicenseData = 3;</code>
        * @return Whether the driverLicenseData field is set.
        */
       @java.lang.Override
       public boolean hasDriverLicenseData() {
-        return typeCase_ == 2;
+        return typeCase_ == 3;
       }
       /**
-       * <code>.office.DriverLicenseData driverLicenseData = 2;</code>
+       * <code>.office.DriverLicenseData driverLicenseData = 3;</code>
        * @return The driverLicenseData.
        */
       @java.lang.Override
       public proto.OfficeProto.DriverLicenseData getDriverLicenseData() {
         if (driverLicenseDataBuilder_ == null) {
-          if (typeCase_ == 2) {
+          if (typeCase_ == 3) {
             return (proto.OfficeProto.DriverLicenseData) type_;
           }
           return proto.OfficeProto.DriverLicenseData.getDefaultInstance();
         } else {
-          if (typeCase_ == 2) {
+          if (typeCase_ == 3) {
             return driverLicenseDataBuilder_.getMessage();
           }
           return proto.OfficeProto.DriverLicenseData.getDefaultInstance();
         }
       }
       /**
-       * <code>.office.DriverLicenseData driverLicenseData = 2;</code>
+       * <code>.office.DriverLicenseData driverLicenseData = 3;</code>
        */
       public Builder setDriverLicenseData(proto.OfficeProto.DriverLicenseData value) {
         if (driverLicenseDataBuilder_ == null) {
@@ -7642,11 +7280,11 @@ public final class OfficeProto {
         } else {
           driverLicenseDataBuilder_.setMessage(value);
         }
-        typeCase_ = 2;
+        typeCase_ = 3;
         return this;
       }
       /**
-       * <code>.office.DriverLicenseData driverLicenseData = 2;</code>
+       * <code>.office.DriverLicenseData driverLicenseData = 3;</code>
        */
       public Builder setDriverLicenseData(
           proto.OfficeProto.DriverLicenseData.Builder builderForValue) {
@@ -7656,15 +7294,15 @@ public final class OfficeProto {
         } else {
           driverLicenseDataBuilder_.setMessage(builderForValue.build());
         }
-        typeCase_ = 2;
+        typeCase_ = 3;
         return this;
       }
       /**
-       * <code>.office.DriverLicenseData driverLicenseData = 2;</code>
+       * <code>.office.DriverLicenseData driverLicenseData = 3;</code>
        */
       public Builder mergeDriverLicenseData(proto.OfficeProto.DriverLicenseData value) {
         if (driverLicenseDataBuilder_ == null) {
-          if (typeCase_ == 2 &&
+          if (typeCase_ == 3 &&
               type_ != proto.OfficeProto.DriverLicenseData.getDefaultInstance()) {
             type_ = proto.OfficeProto.DriverLicenseData.newBuilder((proto.OfficeProto.DriverLicenseData) type_)
                 .mergeFrom(value).buildPartial();
@@ -7673,26 +7311,26 @@ public final class OfficeProto {
           }
           onChanged();
         } else {
-          if (typeCase_ == 2) {
+          if (typeCase_ == 3) {
             driverLicenseDataBuilder_.mergeFrom(value);
           }
           driverLicenseDataBuilder_.setMessage(value);
         }
-        typeCase_ = 2;
+        typeCase_ = 3;
         return this;
       }
       /**
-       * <code>.office.DriverLicenseData driverLicenseData = 2;</code>
+       * <code>.office.DriverLicenseData driverLicenseData = 3;</code>
        */
       public Builder clearDriverLicenseData() {
         if (driverLicenseDataBuilder_ == null) {
-          if (typeCase_ == 2) {
+          if (typeCase_ == 3) {
             typeCase_ = 0;
             type_ = null;
             onChanged();
           }
         } else {
-          if (typeCase_ == 2) {
+          if (typeCase_ == 3) {
             typeCase_ = 0;
             type_ = null;
           }
@@ -7701,33 +7339,33 @@ public final class OfficeProto {
         return this;
       }
       /**
-       * <code>.office.DriverLicenseData driverLicenseData = 2;</code>
+       * <code>.office.DriverLicenseData driverLicenseData = 3;</code>
        */
       public proto.OfficeProto.DriverLicenseData.Builder getDriverLicenseDataBuilder() {
         return getDriverLicenseDataFieldBuilder().getBuilder();
       }
       /**
-       * <code>.office.DriverLicenseData driverLicenseData = 2;</code>
+       * <code>.office.DriverLicenseData driverLicenseData = 3;</code>
        */
       @java.lang.Override
       public proto.OfficeProto.DriverLicenseDataOrBuilder getDriverLicenseDataOrBuilder() {
-        if ((typeCase_ == 2) && (driverLicenseDataBuilder_ != null)) {
+        if ((typeCase_ == 3) && (driverLicenseDataBuilder_ != null)) {
           return driverLicenseDataBuilder_.getMessageOrBuilder();
         } else {
-          if (typeCase_ == 2) {
+          if (typeCase_ == 3) {
             return (proto.OfficeProto.DriverLicenseData) type_;
           }
           return proto.OfficeProto.DriverLicenseData.getDefaultInstance();
         }
       }
       /**
-       * <code>.office.DriverLicenseData driverLicenseData = 2;</code>
+       * <code>.office.DriverLicenseData driverLicenseData = 3;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           proto.OfficeProto.DriverLicenseData, proto.OfficeProto.DriverLicenseData.Builder, proto.OfficeProto.DriverLicenseDataOrBuilder> 
           getDriverLicenseDataFieldBuilder() {
         if (driverLicenseDataBuilder_ == null) {
-          if (!(typeCase_ == 2)) {
+          if (!(typeCase_ == 3)) {
             type_ = proto.OfficeProto.DriverLicenseData.getDefaultInstance();
           }
           driverLicenseDataBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -7737,7 +7375,7 @@ public final class OfficeProto {
                   isClean());
           type_ = null;
         }
-        typeCase_ = 2;
+        typeCase_ = 3;
         onChanged();;
         return driverLicenseDataBuilder_;
       }
@@ -7745,33 +7383,33 @@ public final class OfficeProto {
       private com.google.protobuf.SingleFieldBuilderV3<
           proto.OfficeProto.IDCardData, proto.OfficeProto.IDCardData.Builder, proto.OfficeProto.IDCardDataOrBuilder> idCardDataBuilder_;
       /**
-       * <code>.office.IDCardData idCardData = 3;</code>
+       * <code>.office.IDCardData idCardData = 4;</code>
        * @return Whether the idCardData field is set.
        */
       @java.lang.Override
       public boolean hasIdCardData() {
-        return typeCase_ == 3;
+        return typeCase_ == 4;
       }
       /**
-       * <code>.office.IDCardData idCardData = 3;</code>
+       * <code>.office.IDCardData idCardData = 4;</code>
        * @return The idCardData.
        */
       @java.lang.Override
       public proto.OfficeProto.IDCardData getIdCardData() {
         if (idCardDataBuilder_ == null) {
-          if (typeCase_ == 3) {
+          if (typeCase_ == 4) {
             return (proto.OfficeProto.IDCardData) type_;
           }
           return proto.OfficeProto.IDCardData.getDefaultInstance();
         } else {
-          if (typeCase_ == 3) {
+          if (typeCase_ == 4) {
             return idCardDataBuilder_.getMessage();
           }
           return proto.OfficeProto.IDCardData.getDefaultInstance();
         }
       }
       /**
-       * <code>.office.IDCardData idCardData = 3;</code>
+       * <code>.office.IDCardData idCardData = 4;</code>
        */
       public Builder setIdCardData(proto.OfficeProto.IDCardData value) {
         if (idCardDataBuilder_ == null) {
@@ -7783,11 +7421,11 @@ public final class OfficeProto {
         } else {
           idCardDataBuilder_.setMessage(value);
         }
-        typeCase_ = 3;
+        typeCase_ = 4;
         return this;
       }
       /**
-       * <code>.office.IDCardData idCardData = 3;</code>
+       * <code>.office.IDCardData idCardData = 4;</code>
        */
       public Builder setIdCardData(
           proto.OfficeProto.IDCardData.Builder builderForValue) {
@@ -7797,15 +7435,15 @@ public final class OfficeProto {
         } else {
           idCardDataBuilder_.setMessage(builderForValue.build());
         }
-        typeCase_ = 3;
+        typeCase_ = 4;
         return this;
       }
       /**
-       * <code>.office.IDCardData idCardData = 3;</code>
+       * <code>.office.IDCardData idCardData = 4;</code>
        */
       public Builder mergeIdCardData(proto.OfficeProto.IDCardData value) {
         if (idCardDataBuilder_ == null) {
-          if (typeCase_ == 3 &&
+          if (typeCase_ == 4 &&
               type_ != proto.OfficeProto.IDCardData.getDefaultInstance()) {
             type_ = proto.OfficeProto.IDCardData.newBuilder((proto.OfficeProto.IDCardData) type_)
                 .mergeFrom(value).buildPartial();
@@ -7814,26 +7452,26 @@ public final class OfficeProto {
           }
           onChanged();
         } else {
-          if (typeCase_ == 3) {
+          if (typeCase_ == 4) {
             idCardDataBuilder_.mergeFrom(value);
           }
           idCardDataBuilder_.setMessage(value);
         }
-        typeCase_ = 3;
+        typeCase_ = 4;
         return this;
       }
       /**
-       * <code>.office.IDCardData idCardData = 3;</code>
+       * <code>.office.IDCardData idCardData = 4;</code>
        */
       public Builder clearIdCardData() {
         if (idCardDataBuilder_ == null) {
-          if (typeCase_ == 3) {
+          if (typeCase_ == 4) {
             typeCase_ = 0;
             type_ = null;
             onChanged();
           }
         } else {
-          if (typeCase_ == 3) {
+          if (typeCase_ == 4) {
             typeCase_ = 0;
             type_ = null;
           }
@@ -7842,33 +7480,33 @@ public final class OfficeProto {
         return this;
       }
       /**
-       * <code>.office.IDCardData idCardData = 3;</code>
+       * <code>.office.IDCardData idCardData = 4;</code>
        */
       public proto.OfficeProto.IDCardData.Builder getIdCardDataBuilder() {
         return getIdCardDataFieldBuilder().getBuilder();
       }
       /**
-       * <code>.office.IDCardData idCardData = 3;</code>
+       * <code>.office.IDCardData idCardData = 4;</code>
        */
       @java.lang.Override
       public proto.OfficeProto.IDCardDataOrBuilder getIdCardDataOrBuilder() {
-        if ((typeCase_ == 3) && (idCardDataBuilder_ != null)) {
+        if ((typeCase_ == 4) && (idCardDataBuilder_ != null)) {
           return idCardDataBuilder_.getMessageOrBuilder();
         } else {
-          if (typeCase_ == 3) {
+          if (typeCase_ == 4) {
             return (proto.OfficeProto.IDCardData) type_;
           }
           return proto.OfficeProto.IDCardData.getDefaultInstance();
         }
       }
       /**
-       * <code>.office.IDCardData idCardData = 3;</code>
+       * <code>.office.IDCardData idCardData = 4;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           proto.OfficeProto.IDCardData, proto.OfficeProto.IDCardData.Builder, proto.OfficeProto.IDCardDataOrBuilder> 
           getIdCardDataFieldBuilder() {
         if (idCardDataBuilder_ == null) {
-          if (!(typeCase_ == 3)) {
+          if (!(typeCase_ == 4)) {
             type_ = proto.OfficeProto.IDCardData.getDefaultInstance();
           }
           idCardDataBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -7878,7 +7516,7 @@ public final class OfficeProto {
                   isClean());
           type_ = null;
         }
-        typeCase_ = 3;
+        typeCase_ = 4;
         onChanged();;
         return idCardDataBuilder_;
       }
@@ -7886,33 +7524,33 @@ public final class OfficeProto {
       private com.google.protobuf.SingleFieldBuilderV3<
           proto.OfficeProto.RegisterCompanyData, proto.OfficeProto.RegisterCompanyData.Builder, proto.OfficeProto.RegisterCompanyDataOrBuilder> registerCompanyDataBuilder_;
       /**
-       * <code>.office.RegisterCompanyData registerCompanyData = 4;</code>
+       * <code>.office.RegisterCompanyData registerCompanyData = 5;</code>
        * @return Whether the registerCompanyData field is set.
        */
       @java.lang.Override
       public boolean hasRegisterCompanyData() {
-        return typeCase_ == 4;
+        return typeCase_ == 5;
       }
       /**
-       * <code>.office.RegisterCompanyData registerCompanyData = 4;</code>
+       * <code>.office.RegisterCompanyData registerCompanyData = 5;</code>
        * @return The registerCompanyData.
        */
       @java.lang.Override
       public proto.OfficeProto.RegisterCompanyData getRegisterCompanyData() {
         if (registerCompanyDataBuilder_ == null) {
-          if (typeCase_ == 4) {
+          if (typeCase_ == 5) {
             return (proto.OfficeProto.RegisterCompanyData) type_;
           }
           return proto.OfficeProto.RegisterCompanyData.getDefaultInstance();
         } else {
-          if (typeCase_ == 4) {
+          if (typeCase_ == 5) {
             return registerCompanyDataBuilder_.getMessage();
           }
           return proto.OfficeProto.RegisterCompanyData.getDefaultInstance();
         }
       }
       /**
-       * <code>.office.RegisterCompanyData registerCompanyData = 4;</code>
+       * <code>.office.RegisterCompanyData registerCompanyData = 5;</code>
        */
       public Builder setRegisterCompanyData(proto.OfficeProto.RegisterCompanyData value) {
         if (registerCompanyDataBuilder_ == null) {
@@ -7924,11 +7562,11 @@ public final class OfficeProto {
         } else {
           registerCompanyDataBuilder_.setMessage(value);
         }
-        typeCase_ = 4;
+        typeCase_ = 5;
         return this;
       }
       /**
-       * <code>.office.RegisterCompanyData registerCompanyData = 4;</code>
+       * <code>.office.RegisterCompanyData registerCompanyData = 5;</code>
        */
       public Builder setRegisterCompanyData(
           proto.OfficeProto.RegisterCompanyData.Builder builderForValue) {
@@ -7938,15 +7576,15 @@ public final class OfficeProto {
         } else {
           registerCompanyDataBuilder_.setMessage(builderForValue.build());
         }
-        typeCase_ = 4;
+        typeCase_ = 5;
         return this;
       }
       /**
-       * <code>.office.RegisterCompanyData registerCompanyData = 4;</code>
+       * <code>.office.RegisterCompanyData registerCompanyData = 5;</code>
        */
       public Builder mergeRegisterCompanyData(proto.OfficeProto.RegisterCompanyData value) {
         if (registerCompanyDataBuilder_ == null) {
-          if (typeCase_ == 4 &&
+          if (typeCase_ == 5 &&
               type_ != proto.OfficeProto.RegisterCompanyData.getDefaultInstance()) {
             type_ = proto.OfficeProto.RegisterCompanyData.newBuilder((proto.OfficeProto.RegisterCompanyData) type_)
                 .mergeFrom(value).buildPartial();
@@ -7955,26 +7593,26 @@ public final class OfficeProto {
           }
           onChanged();
         } else {
-          if (typeCase_ == 4) {
+          if (typeCase_ == 5) {
             registerCompanyDataBuilder_.mergeFrom(value);
           }
           registerCompanyDataBuilder_.setMessage(value);
         }
-        typeCase_ = 4;
+        typeCase_ = 5;
         return this;
       }
       /**
-       * <code>.office.RegisterCompanyData registerCompanyData = 4;</code>
+       * <code>.office.RegisterCompanyData registerCompanyData = 5;</code>
        */
       public Builder clearRegisterCompanyData() {
         if (registerCompanyDataBuilder_ == null) {
-          if (typeCase_ == 4) {
+          if (typeCase_ == 5) {
             typeCase_ = 0;
             type_ = null;
             onChanged();
           }
         } else {
-          if (typeCase_ == 4) {
+          if (typeCase_ == 5) {
             typeCase_ = 0;
             type_ = null;
           }
@@ -7983,33 +7621,33 @@ public final class OfficeProto {
         return this;
       }
       /**
-       * <code>.office.RegisterCompanyData registerCompanyData = 4;</code>
+       * <code>.office.RegisterCompanyData registerCompanyData = 5;</code>
        */
       public proto.OfficeProto.RegisterCompanyData.Builder getRegisterCompanyDataBuilder() {
         return getRegisterCompanyDataFieldBuilder().getBuilder();
       }
       /**
-       * <code>.office.RegisterCompanyData registerCompanyData = 4;</code>
+       * <code>.office.RegisterCompanyData registerCompanyData = 5;</code>
        */
       @java.lang.Override
       public proto.OfficeProto.RegisterCompanyDataOrBuilder getRegisterCompanyDataOrBuilder() {
-        if ((typeCase_ == 4) && (registerCompanyDataBuilder_ != null)) {
+        if ((typeCase_ == 5) && (registerCompanyDataBuilder_ != null)) {
           return registerCompanyDataBuilder_.getMessageOrBuilder();
         } else {
-          if (typeCase_ == 4) {
+          if (typeCase_ == 5) {
             return (proto.OfficeProto.RegisterCompanyData) type_;
           }
           return proto.OfficeProto.RegisterCompanyData.getDefaultInstance();
         }
       }
       /**
-       * <code>.office.RegisterCompanyData registerCompanyData = 4;</code>
+       * <code>.office.RegisterCompanyData registerCompanyData = 5;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           proto.OfficeProto.RegisterCompanyData, proto.OfficeProto.RegisterCompanyData.Builder, proto.OfficeProto.RegisterCompanyDataOrBuilder> 
           getRegisterCompanyDataFieldBuilder() {
         if (registerCompanyDataBuilder_ == null) {
-          if (!(typeCase_ == 4)) {
+          if (!(typeCase_ == 5)) {
             type_ = proto.OfficeProto.RegisterCompanyData.getDefaultInstance();
           }
           registerCompanyDataBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -8019,7 +7657,7 @@ public final class OfficeProto {
                   isClean());
           type_ = null;
         }
-        typeCase_ = 4;
+        typeCase_ = 5;
         onChanged();;
         return registerCompanyDataBuilder_;
       }
@@ -8885,15 +8523,15 @@ public final class OfficeProto {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_office_CaseAck_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_office_CaseResolvedResult_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_office_CaseResolvedResult_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_office_CaseResult_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_office_CaseResult_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_office_RegisterCaseResult_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_office_RegisterCaseResult_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_office_DriverLicenseData_descriptor;
   private static final 
@@ -8935,31 +8573,30 @@ public final class OfficeProto {
     java.lang.String[] descriptorData = {
       "\n\014Office.proto\022\006office\"9\n\006Client\022\020\n\010clie" +
       "ntID\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\017\n\007surname\030\003 \001(" +
-      "\t\"\022\n\004Case\022\n\n\002id\030\001 \001(\r\"=\n\007CaseAck\022\032\n\004case" +
-      "\030\001 \001(\0132\014.office.Case\022\026\n\016resolutionTime\030\002" +
-      " \001(\r\"9\n\nCaseResult\022\032\n\004case\030\001 \001(\0132\014.offic" +
-      "e.Case\022\017\n\007message\030\002 \001(\t\"l\n\022RegisterCaseR" +
-      "esult\022\"\n\007caseAck\030\001 \001(\0132\017.office.CaseAckH" +
-      "\000\022(\n\ncaseResult\030\002 \001(\0132\022.office.CaseResul" +
-      "tH\000B\010\n\006result\"E\n\021DriverLicenseData\022\036\n\006cl" +
-      "ient\030\001 \001(\0132\016.office.Client\022\020\n\010category\030\002" +
-      " \001(\t\",\n\nIDCardData\022\036\n\006client\030\001 \001(\0132\016.off" +
-      "ice.Client\"b\n\023RegisterCompanyData\022\036\n\006cli" +
-      "ent\030\001 \001(\0132\016.office.Client\022\023\n\013companyName" +
-      "\030\002 \001(\t\022\026\n\016startUpCapital\030\003 \001(\001\"-\n\013Client" +
-      "Ready\022\036\n\006client\030\001 \001(\0132\016.office.Client\"\343\001" +
-      "\n\017CaseRequestData\022*\n\013clientReady\030\001 \001(\0132\023" +
-      ".office.ClientReadyH\000\0226\n\021driverLicenseDa" +
-      "ta\030\002 \001(\0132\031.office.DriverLicenseDataH\000\022(\n" +
-      "\nidCardData\030\003 \001(\0132\022.office.IDCardDataH\000\022" +
-      ":\n\023registerCompanyData\030\004 \001(\0132\033.office.Re" +
-      "gisterCompanyDataH\000B\006\n\004Type\"9\n\022CaseResul" +
-      "tSequence\022#\n\007results\030\001 \003(\0132\022.office.Case" +
-      "Result2\214\001\n\006Office\022F\n\013caseRequest\022\027.offic" +
-      "e.CaseRequestData\032\032.office.RegisterCaseR" +
-      "esult(\0010\001\022:\n\014helloRequest\022\016.office.Clien" +
-      "t\032\032.office.CaseResultSequenceB\024\n\005protoB\013" +
-      "OfficeProtob\006proto3"
+      "\t\"\022\n\004Case\022\n\n\002id\030\001 \001(\r\"!\n\007CaseAck\022\026\n\016reso" +
+      "lutionTime\030\001 \001(\r\"%\n\022CaseResolvedResult\022\017" +
+      "\n\007message\030\001 \001(\t\"\220\001\n\nCaseResult\022\032\n\004case\030\001" +
+      " \001(\0132\014.office.Case\022\"\n\007caseAck\030\002 \001(\0132\017.of" +
+      "fice.CaseAckH\000\0228\n\022caseResolvedResult\030\003 \001" +
+      "(\0132\032.office.CaseResolvedResultH\000B\010\n\006resu" +
+      "lt\"8\n\021DriverLicenseData\022\020\n\010category\030\001 \001(" +
+      "\t\022\021\n\tbirthDate\030\002 \001(\t\"9\n\nIDCardData\022\021\n\tbi" +
+      "rthDate\030\001 \001(\t\022\030\n\020placeOfResidence\030\002 \001(\t\"" +
+      "B\n\023RegisterCompanyData\022\023\n\013companyName\030\001 " +
+      "\001(\t\022\026\n\016startUpCapital\030\002 \001(\001\"\r\n\013ClientRea" +
+      "dy\"\203\002\n\017CaseRequestData\022\036\n\006client\030\001 \001(\0132\016" +
+      ".office.Client\022*\n\013clientReady\030\002 \001(\0132\023.of" +
+      "fice.ClientReadyH\000\0226\n\021driverLicenseData\030" +
+      "\003 \001(\0132\031.office.DriverLicenseDataH\000\022(\n\nid" +
+      "CardData\030\004 \001(\0132\022.office.IDCardDataH\000\022:\n\023" +
+      "registerCompanyData\030\005 \001(\0132\033.office.Regis" +
+      "terCompanyDataH\000B\006\n\004Type\"9\n\022CaseResultSe" +
+      "quence\022#\n\007results\030\001 \003(\0132\022.office.CaseRes" +
+      "ult2\210\001\n\006Office\022>\n\013caseRequest\022\027.office.C" +
+      "aseRequestData\032\022.office.CaseResult(\0010\001\022>" +
+      "\n\020getResolvedCases\022\016.office.Client\032\032.off" +
+      "ice.CaseResultSequenceB\024\n\005protoB\013OfficeP" +
+      "rotob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -8982,49 +8619,49 @@ public final class OfficeProto {
     internal_static_office_CaseAck_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_office_CaseAck_descriptor,
-        new java.lang.String[] { "Case", "ResolutionTime", });
-    internal_static_office_CaseResult_descriptor =
+        new java.lang.String[] { "ResolutionTime", });
+    internal_static_office_CaseResolvedResult_descriptor =
       getDescriptor().getMessageTypes().get(3);
+    internal_static_office_CaseResolvedResult_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_office_CaseResolvedResult_descriptor,
+        new java.lang.String[] { "Message", });
+    internal_static_office_CaseResult_descriptor =
+      getDescriptor().getMessageTypes().get(4);
     internal_static_office_CaseResult_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_office_CaseResult_descriptor,
-        new java.lang.String[] { "Case", "Message", });
-    internal_static_office_RegisterCaseResult_descriptor =
-      getDescriptor().getMessageTypes().get(4);
-    internal_static_office_RegisterCaseResult_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_office_RegisterCaseResult_descriptor,
-        new java.lang.String[] { "CaseAck", "CaseResult", "Result", });
+        new java.lang.String[] { "Case", "CaseAck", "CaseResolvedResult", "Result", });
     internal_static_office_DriverLicenseData_descriptor =
       getDescriptor().getMessageTypes().get(5);
     internal_static_office_DriverLicenseData_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_office_DriverLicenseData_descriptor,
-        new java.lang.String[] { "Client", "Category", });
+        new java.lang.String[] { "Category", "BirthDate", });
     internal_static_office_IDCardData_descriptor =
       getDescriptor().getMessageTypes().get(6);
     internal_static_office_IDCardData_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_office_IDCardData_descriptor,
-        new java.lang.String[] { "Client", });
+        new java.lang.String[] { "BirthDate", "PlaceOfResidence", });
     internal_static_office_RegisterCompanyData_descriptor =
       getDescriptor().getMessageTypes().get(7);
     internal_static_office_RegisterCompanyData_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_office_RegisterCompanyData_descriptor,
-        new java.lang.String[] { "Client", "CompanyName", "StartUpCapital", });
+        new java.lang.String[] { "CompanyName", "StartUpCapital", });
     internal_static_office_ClientReady_descriptor =
       getDescriptor().getMessageTypes().get(8);
     internal_static_office_ClientReady_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_office_ClientReady_descriptor,
-        new java.lang.String[] { "Client", });
+        new java.lang.String[] { });
     internal_static_office_CaseRequestData_descriptor =
       getDescriptor().getMessageTypes().get(9);
     internal_static_office_CaseRequestData_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_office_CaseRequestData_descriptor,
-        new java.lang.String[] { "ClientReady", "DriverLicenseData", "IdCardData", "RegisterCompanyData", "Type", });
+        new java.lang.String[] { "Client", "ClientReady", "DriverLicenseData", "IdCardData", "RegisterCompanyData", "Type", });
     internal_static_office_CaseResultSequence_descriptor =
       getDescriptor().getMessageTypes().get(10);
     internal_static_office_CaseResultSequence_fieldAccessorTable = new

@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'\n\005protoB\013OfficeProto',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0cOffice.proto\x12\x06office\"9\n\x06\x43lient\x12\x10\n\x08\x63lientID\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0f\n\x07surname\x18\x03 \x01(\t\"\x12\n\x04\x43\x61se\x12\n\n\x02id\x18\x01 \x01(\r\"=\n\x07\x43\x61seAck\x12\x1a\n\x04\x63\x61se\x18\x01 \x01(\x0b\x32\x0c.office.Case\x12\x16\n\x0eresolutionTime\x18\x02 \x01(\r\"9\n\nCaseResult\x12\x1a\n\x04\x63\x61se\x18\x01 \x01(\x0b\x32\x0c.office.Case\x12\x0f\n\x07message\x18\x02 \x01(\t\"l\n\x12RegisterCaseResult\x12\"\n\x07\x63\x61seAck\x18\x01 \x01(\x0b\x32\x0f.office.CaseAckH\x00\x12(\n\ncaseResult\x18\x02 \x01(\x0b\x32\x12.office.CaseResultH\x00\x42\x08\n\x06result\"E\n\x11\x44riverLicenseData\x12\x1e\n\x06\x63lient\x18\x01 \x01(\x0b\x32\x0e.office.Client\x12\x10\n\x08\x63\x61tegory\x18\x02 \x01(\t\",\n\nIDCardData\x12\x1e\n\x06\x63lient\x18\x01 \x01(\x0b\x32\x0e.office.Client\"b\n\x13RegisterCompanyData\x12\x1e\n\x06\x63lient\x18\x01 \x01(\x0b\x32\x0e.office.Client\x12\x13\n\x0b\x63ompanyName\x18\x02 \x01(\t\x12\x16\n\x0estartUpCapital\x18\x03 \x01(\x01\"-\n\x0b\x43lientReady\x12\x1e\n\x06\x63lient\x18\x01 \x01(\x0b\x32\x0e.office.Client\"\xe3\x01\n\x0f\x43\x61seRequestData\x12*\n\x0b\x63lientReady\x18\x01 \x01(\x0b\x32\x13.office.ClientReadyH\x00\x12\x36\n\x11\x64riverLicenseData\x18\x02 \x01(\x0b\x32\x19.office.DriverLicenseDataH\x00\x12(\n\nidCardData\x18\x03 \x01(\x0b\x32\x12.office.IDCardDataH\x00\x12:\n\x13registerCompanyData\x18\x04 \x01(\x0b\x32\x1b.office.RegisterCompanyDataH\x00\x42\x06\n\x04Type\"9\n\x12\x43\x61seResultSequence\x12#\n\x07results\x18\x01 \x03(\x0b\x32\x12.office.CaseResult2\x8c\x01\n\x06Office\x12\x46\n\x0b\x63\x61seRequest\x12\x17.office.CaseRequestData\x1a\x1a.office.RegisterCaseResult(\x01\x30\x01\x12:\n\x0chelloRequest\x12\x0e.office.Client\x1a\x1a.office.CaseResultSequenceB\x14\n\x05protoB\x0bOfficeProtob\x06proto3'
+  serialized_pb=b'\n\x0cOffice.proto\x12\x06office\"9\n\x06\x43lient\x12\x10\n\x08\x63lientID\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0f\n\x07surname\x18\x03 \x01(\t\"\x12\n\x04\x43\x61se\x12\n\n\x02id\x18\x01 \x01(\r\"!\n\x07\x43\x61seAck\x12\x16\n\x0eresolutionTime\x18\x01 \x01(\r\"%\n\x12\x43\x61seResolvedResult\x12\x0f\n\x07message\x18\x01 \x01(\t\"\x90\x01\n\nCaseResult\x12\x1a\n\x04\x63\x61se\x18\x01 \x01(\x0b\x32\x0c.office.Case\x12\"\n\x07\x63\x61seAck\x18\x02 \x01(\x0b\x32\x0f.office.CaseAckH\x00\x12\x38\n\x12\x63\x61seResolvedResult\x18\x03 \x01(\x0b\x32\x1a.office.CaseResolvedResultH\x00\x42\x08\n\x06result\"8\n\x11\x44riverLicenseData\x12\x10\n\x08\x63\x61tegory\x18\x01 \x01(\t\x12\x11\n\tbirthDate\x18\x02 \x01(\t\"9\n\nIDCardData\x12\x11\n\tbirthDate\x18\x01 \x01(\t\x12\x18\n\x10placeOfResidence\x18\x02 \x01(\t\"B\n\x13RegisterCompanyData\x12\x13\n\x0b\x63ompanyName\x18\x01 \x01(\t\x12\x16\n\x0estartUpCapital\x18\x02 \x01(\x01\"\r\n\x0b\x43lientReady\"\x83\x02\n\x0f\x43\x61seRequestData\x12\x1e\n\x06\x63lient\x18\x01 \x01(\x0b\x32\x0e.office.Client\x12*\n\x0b\x63lientReady\x18\x02 \x01(\x0b\x32\x13.office.ClientReadyH\x00\x12\x36\n\x11\x64riverLicenseData\x18\x03 \x01(\x0b\x32\x19.office.DriverLicenseDataH\x00\x12(\n\nidCardData\x18\x04 \x01(\x0b\x32\x12.office.IDCardDataH\x00\x12:\n\x13registerCompanyData\x18\x05 \x01(\x0b\x32\x1b.office.RegisterCompanyDataH\x00\x42\x06\n\x04Type\"9\n\x12\x43\x61seResultSequence\x12#\n\x07results\x18\x01 \x03(\x0b\x32\x12.office.CaseResult2\x88\x01\n\x06Office\x12>\n\x0b\x63\x61seRequest\x12\x17.office.CaseRequestData\x1a\x12.office.CaseResult(\x01\x30\x01\x12>\n\x10getResolvedCases\x12\x0e.office.Client\x1a\x1a.office.CaseResultSequenceB\x14\n\x05protoB\x0bOfficeProtob\x06proto3'
 )
 
 
@@ -112,15 +112,8 @@ _CASEACK = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='case', full_name='office.CaseAck.case', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='resolutionTime', full_name='office.CaseAck.resolutionTime', index=1,
-      number=2, type=13, cpp_type=3, label=1,
+      name='resolutionTime', full_name='office.CaseAck.resolutionTime', index=0,
+      number=1, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -138,7 +131,39 @@ _CASEACK = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=103,
-  serialized_end=164,
+  serialized_end=136,
+)
+
+
+_CASERESOLVEDRESULT = _descriptor.Descriptor(
+  name='CaseResolvedResult',
+  full_name='office.CaseResolvedResult',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='message', full_name='office.CaseResolvedResult.message', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=138,
+  serialized_end=175,
 )
 
 
@@ -158,47 +183,15 @@ _CASERESULT = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='message', full_name='office.CaseResult.message', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=166,
-  serialized_end=223,
-)
-
-
-_REGISTERCASERESULT = _descriptor.Descriptor(
-  name='RegisterCaseResult',
-  full_name='office.RegisterCaseResult',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='caseAck', full_name='office.RegisterCaseResult.caseAck', index=0,
-      number=1, type=11, cpp_type=10, label=1,
+      name='caseAck', full_name='office.CaseResult.caseAck', index=1,
+      number=2, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='caseResult', full_name='office.RegisterCaseResult.caseResult', index=1,
-      number=2, type=11, cpp_type=10, label=1,
+      name='caseResolvedResult', full_name='office.CaseResult.caseResolvedResult', index=2,
+      number=3, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -215,13 +208,13 @@ _REGISTERCASERESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
     _descriptor.OneofDescriptor(
-      name='result', full_name='office.RegisterCaseResult.result',
+      name='result', full_name='office.CaseResult.result',
       index=0, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=225,
-  serialized_end=333,
+  serialized_start=178,
+  serialized_end=322,
 )
 
 
@@ -234,14 +227,14 @@ _DRIVERLICENSEDATA = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='client', full_name='office.DriverLicenseData.client', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
+      name='category', full_name='office.DriverLicenseData.category', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='category', full_name='office.DriverLicenseData.category', index=1,
+      name='birthDate', full_name='office.DriverLicenseData.birthDate', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -259,8 +252,8 @@ _DRIVERLICENSEDATA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=335,
-  serialized_end=404,
+  serialized_start=324,
+  serialized_end=380,
 )
 
 
@@ -273,9 +266,16 @@ _IDCARDDATA = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='client', full_name='office.IDCardData.client', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
+      name='birthDate', full_name='office.IDCardData.birthDate', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='placeOfResidence', full_name='office.IDCardData.placeOfResidence', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
@@ -291,8 +291,8 @@ _IDCARDDATA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=406,
-  serialized_end=450,
+  serialized_start=382,
+  serialized_end=439,
 )
 
 
@@ -305,22 +305,15 @@ _REGISTERCOMPANYDATA = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='client', full_name='office.RegisterCompanyData.client', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='companyName', full_name='office.RegisterCompanyData.companyName', index=1,
-      number=2, type=9, cpp_type=9, label=1,
+      name='companyName', full_name='office.RegisterCompanyData.companyName', index=0,
+      number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='startUpCapital', full_name='office.RegisterCompanyData.startUpCapital', index=2,
-      number=3, type=1, cpp_type=5, label=1,
+      name='startUpCapital', full_name='office.RegisterCompanyData.startUpCapital', index=1,
+      number=2, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -337,8 +330,8 @@ _REGISTERCOMPANYDATA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=452,
-  serialized_end=550,
+  serialized_start=441,
+  serialized_end=507,
 )
 
 
@@ -350,13 +343,6 @@ _CLIENTREADY = _descriptor.Descriptor(
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
-    _descriptor.FieldDescriptor(
-      name='client', full_name='office.ClientReady.client', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -369,8 +355,8 @@ _CLIENTREADY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=552,
-  serialized_end=597,
+  serialized_start=509,
+  serialized_end=522,
 )
 
 
@@ -383,29 +369,36 @@ _CASEREQUESTDATA = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='clientReady', full_name='office.CaseRequestData.clientReady', index=0,
+      name='client', full_name='office.CaseRequestData.client', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='driverLicenseData', full_name='office.CaseRequestData.driverLicenseData', index=1,
+      name='clientReady', full_name='office.CaseRequestData.clientReady', index=1,
       number=2, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='idCardData', full_name='office.CaseRequestData.idCardData', index=2,
+      name='driverLicenseData', full_name='office.CaseRequestData.driverLicenseData', index=2,
       number=3, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='registerCompanyData', full_name='office.CaseRequestData.registerCompanyData', index=3,
+      name='idCardData', full_name='office.CaseRequestData.idCardData', index=3,
       number=4, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='registerCompanyData', full_name='office.CaseRequestData.registerCompanyData', index=4,
+      number=5, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -427,8 +420,8 @@ _CASEREQUESTDATA = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=600,
-  serialized_end=827,
+  serialized_start=525,
+  serialized_end=784,
 )
 
 
@@ -459,24 +452,20 @@ _CASERESULTSEQUENCE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=829,
-  serialized_end=886,
+  serialized_start=786,
+  serialized_end=843,
 )
 
-_CASEACK.fields_by_name['case'].message_type = _CASE
 _CASERESULT.fields_by_name['case'].message_type = _CASE
-_REGISTERCASERESULT.fields_by_name['caseAck'].message_type = _CASEACK
-_REGISTERCASERESULT.fields_by_name['caseResult'].message_type = _CASERESULT
-_REGISTERCASERESULT.oneofs_by_name['result'].fields.append(
-  _REGISTERCASERESULT.fields_by_name['caseAck'])
-_REGISTERCASERESULT.fields_by_name['caseAck'].containing_oneof = _REGISTERCASERESULT.oneofs_by_name['result']
-_REGISTERCASERESULT.oneofs_by_name['result'].fields.append(
-  _REGISTERCASERESULT.fields_by_name['caseResult'])
-_REGISTERCASERESULT.fields_by_name['caseResult'].containing_oneof = _REGISTERCASERESULT.oneofs_by_name['result']
-_DRIVERLICENSEDATA.fields_by_name['client'].message_type = _CLIENT
-_IDCARDDATA.fields_by_name['client'].message_type = _CLIENT
-_REGISTERCOMPANYDATA.fields_by_name['client'].message_type = _CLIENT
-_CLIENTREADY.fields_by_name['client'].message_type = _CLIENT
+_CASERESULT.fields_by_name['caseAck'].message_type = _CASEACK
+_CASERESULT.fields_by_name['caseResolvedResult'].message_type = _CASERESOLVEDRESULT
+_CASERESULT.oneofs_by_name['result'].fields.append(
+  _CASERESULT.fields_by_name['caseAck'])
+_CASERESULT.fields_by_name['caseAck'].containing_oneof = _CASERESULT.oneofs_by_name['result']
+_CASERESULT.oneofs_by_name['result'].fields.append(
+  _CASERESULT.fields_by_name['caseResolvedResult'])
+_CASERESULT.fields_by_name['caseResolvedResult'].containing_oneof = _CASERESULT.oneofs_by_name['result']
+_CASEREQUESTDATA.fields_by_name['client'].message_type = _CLIENT
 _CASEREQUESTDATA.fields_by_name['clientReady'].message_type = _CLIENTREADY
 _CASEREQUESTDATA.fields_by_name['driverLicenseData'].message_type = _DRIVERLICENSEDATA
 _CASEREQUESTDATA.fields_by_name['idCardData'].message_type = _IDCARDDATA
@@ -497,8 +486,8 @@ _CASERESULTSEQUENCE.fields_by_name['results'].message_type = _CASERESULT
 DESCRIPTOR.message_types_by_name['Client'] = _CLIENT
 DESCRIPTOR.message_types_by_name['Case'] = _CASE
 DESCRIPTOR.message_types_by_name['CaseAck'] = _CASEACK
+DESCRIPTOR.message_types_by_name['CaseResolvedResult'] = _CASERESOLVEDRESULT
 DESCRIPTOR.message_types_by_name['CaseResult'] = _CASERESULT
-DESCRIPTOR.message_types_by_name['RegisterCaseResult'] = _REGISTERCASERESULT
 DESCRIPTOR.message_types_by_name['DriverLicenseData'] = _DRIVERLICENSEDATA
 DESCRIPTOR.message_types_by_name['IDCardData'] = _IDCARDDATA
 DESCRIPTOR.message_types_by_name['RegisterCompanyData'] = _REGISTERCOMPANYDATA
@@ -528,19 +517,19 @@ CaseAck = _reflection.GeneratedProtocolMessageType('CaseAck', (_message.Message,
   })
 _sym_db.RegisterMessage(CaseAck)
 
+CaseResolvedResult = _reflection.GeneratedProtocolMessageType('CaseResolvedResult', (_message.Message,), {
+  'DESCRIPTOR' : _CASERESOLVEDRESULT,
+  '__module__' : 'Office_pb2'
+  # @@protoc_insertion_point(class_scope:office.CaseResolvedResult)
+  })
+_sym_db.RegisterMessage(CaseResolvedResult)
+
 CaseResult = _reflection.GeneratedProtocolMessageType('CaseResult', (_message.Message,), {
   'DESCRIPTOR' : _CASERESULT,
   '__module__' : 'Office_pb2'
   # @@protoc_insertion_point(class_scope:office.CaseResult)
   })
 _sym_db.RegisterMessage(CaseResult)
-
-RegisterCaseResult = _reflection.GeneratedProtocolMessageType('RegisterCaseResult', (_message.Message,), {
-  'DESCRIPTOR' : _REGISTERCASERESULT,
-  '__module__' : 'Office_pb2'
-  # @@protoc_insertion_point(class_scope:office.RegisterCaseResult)
-  })
-_sym_db.RegisterMessage(RegisterCaseResult)
 
 DriverLicenseData = _reflection.GeneratedProtocolMessageType('DriverLicenseData', (_message.Message,), {
   'DESCRIPTOR' : _DRIVERLICENSEDATA,
@@ -594,8 +583,8 @@ _OFFICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=889,
-  serialized_end=1029,
+  serialized_start=846,
+  serialized_end=982,
   methods=[
   _descriptor.MethodDescriptor(
     name='caseRequest',
@@ -603,13 +592,13 @@ _OFFICE = _descriptor.ServiceDescriptor(
     index=0,
     containing_service=None,
     input_type=_CASEREQUESTDATA,
-    output_type=_REGISTERCASERESULT,
+    output_type=_CASERESULT,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
-    name='helloRequest',
-    full_name='office.Office.helloRequest',
+    name='getResolvedCases',
+    full_name='office.Office.getResolvedCases',
     index=1,
     containing_service=None,
     input_type=_CLIENT,

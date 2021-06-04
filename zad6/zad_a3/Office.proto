@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package office;
+
+option java_package = "proto";
+option java_outer_classname = "OfficeProto";
+
+message Client {
+    string clientID = 1;    //uuid
+    string name = 2;
+    string surname = 3;
+}
+
+message Case {
+    uint32 id = 1;
+}
+
+message CaseAck {
+    Case case = 1;
+    uint32 resolutionTime = 2;
+}
+
+message CaseResult {
+    Case case = 1;
+    string message = 2;
+}
+
+message RegisterCaseResult {
+    oneof result {
+        CaseAck caseAck = 1;
+        CaseResult caseResult = 2;
+    }
+}
+
+message DriverLicenseData {
+    Client client = 1;
+    string category = 2;
+}
+
+message IDCardData{
+    Client client = 1;
+}
+
+message RegisterCompanyData{
+    Client client = 1;
+    string companyName = 2;
+    double startUpCapital = 3;
+}
+
+message ClientReady{
+    Client client = 1;
+}
+
+message CaseRequestData{
+    oneof Type {
+        ClientReady clientReady = 1;
+        DriverLicenseData driverLicenseData = 2;
+        IDCardData idCardData = 3;
+        RegisterCompanyData registerCompanyData = 4;
+    }
+}
+
+message CaseResultSequence {
+    repeated CaseResult results = 1;
+}
+
+service Office {
+    rpc caseRequest(stream CaseRequestData) returns (stream RegisterCaseResult);
+    rpc helloRequest(Client) returns (CaseResultSequence);
+}

@@ -220,7 +220,6 @@ class WorkerService {
     }
 }
 
-@Slf4j
 class ReceptionImpl extends OfficeGrpc.OfficeImplBase {
     private final WorkerService workerService = new WorkerService();
 
